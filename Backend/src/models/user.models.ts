@@ -27,6 +27,12 @@ interface User extends Document {
     skills: string[];
     bio: string;
     achievements: [{ title: string, description: string, attachment: string }]
+    refreshToken: string;
+
+    isPasswordCorrect(password: string): Promise<boolean>;
+    generateAccessToken(): string;
+    generateRefreshToken(): string;
+    generateTemporaryToken(): { unhashedToken: string, hashedToken: string, tokenExpiry: number }
 };
 
 const UserSchema = new Schema<User>({
@@ -54,9 +60,10 @@ const UserSchema = new Schema<User>({
         description: { type: String, required: true },
         attachment: { type: String, required: true }
     }],
+    refreshToken: { type: String }
 }, { timestamps: true });
 
-UserSchema.pre<User>('save', async function(next: NextFunction) {
+UserSchema.pre<User>("save", async function(next: NextFunction) {
     if (!this.isModified("password")) return next();
     
     try {
@@ -103,6 +110,12 @@ UserSchema.methods.generateAccessToken = function () {
 UserSchema.methods.generateRefreshToken = function () {
 
     const secretKey = process.env.REFRESH_TOKEN_SECRET;
+    const expiry = process.env.REFRESH_TOKEN_EXPIRY;
+
+
+    if (!expiry){
+        throw new Error("Could not find REFRESH_TOKEN_EXPIRY");
+    }
 
     if (!secretKey){
         throw new Error("Could not find REFRESH_TOKEN_SECRET");
@@ -112,13 +125,13 @@ UserSchema.methods.generateRefreshToken = function () {
       {
         _id: this._id,
       },
-      { expiresIn: process.env.REFRESH_TOKEN_EXPIRY }
+      secretKey,
+      { expiresIn: expiry }
     );
 };
 
 UserSchema.methods.generateTemporaryToken = function () {
-    // This token should be client facing
-    // for example: for email verification unHashedToken should go into the user's mail
+    // This token should be sent to the client
     const unHashedToken = crypto.randomBytes(20).toString("hex");
   
     // This should stay in the DB to compare at the time of verification
