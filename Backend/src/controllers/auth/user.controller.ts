@@ -1,9 +1,10 @@
 import { Request, Response } from "express";
-import asyncHandler from "../utils/AsyncHandler";
-import User from "../models/user.models";
-import APIResponse from "../utils/APIResponse";
-import APIError from "../utils/APIError";
-import { generateAccessAndRefreshToken } from "../utils/auth";
+import asyncHandler from "../../utils/AsyncHandler";
+import User from "../../models/user.models";
+import APIResponse from "../../utils/APIResponse";
+import APIError from "../../utils/APIError";
+import { generateAccessAndRefreshToken } from "../../utils/auth";
+import jwt from "jsonwebtoken"
 
 export const handleUserLogin = asyncHandler(async (req: Request, res: Response) => {
     const { email, password } = req.body;
@@ -56,7 +57,7 @@ export const handleUserLogin = asyncHandler(async (req: Request, res: Response) 
 });
 
 export const handleUserSignUp = asyncHandler(async (req: Request, res: Response) => {
-    const { firstName, lastName, email, password } = req.body;
+    const { firstName, lastName, email, password, role } = req.body;
 
     const existingUser = await User.findOne({ email: email });
 
@@ -68,7 +69,8 @@ export const handleUserSignUp = asyncHandler(async (req: Request, res: Response)
         firstName,
         lastName,
         email,
-        password
+        password,
+        role
     });
 
     if (!user){
@@ -93,7 +95,7 @@ export const handleUserLogout = asyncHandler(async (req: Request, res: Response)
 
     // Search up the user, delete the stored refresh token
     await User.findByIdAndUpdate(
-        req.user._id,
+        req.user?._id,
         {
             $unset: {
                 refreshToken: 1
@@ -117,6 +119,50 @@ export const handleRefreshAccessToken = asyncHandler(async (req: Request, res: R
     // Compare with  the one stored in db
     // If not match, Unauthorized access
     // Else, generate new access, refresh tokens and return
+    const incomingRefreshToken = req.cookies?.refreshToken;
+
+    if (!incomingRefreshToken){
+        throw new APIError(401, "Invalid Refresh Token");
+    }
+
+    try {
+
+        if (!process.env.REFRESH_TOKEN_SECRET) {
+            throw new APIError(404, "REFRESH_TOKEN_SECRET not found");
+        }
+
+        const decodedToken = jwt.verify(incomingRefreshToken, process.env.REFRESH_TOKEN_SECRET);
+
+        if (typeof decodedToken !== "object" || decodedToken === null){
+            throw new APIError(400, "Invalid Refresh Token");
+        }
+
+        const user = await User.findOne({ _id: decodedToken._id });
+
+        if (incomingRefreshToken !== user?.refreshToken || !user){
+            throw new APIError(401, "Invalid Refresh Token");
+        }
+
+        const options = {
+            httpOnly: true,
+            secure: true
+        };
+
+        const { accessToken, refreshToken } = generateAccessAndRefreshToken(user);
+
+        user.refreshToken = refreshToken;
+        await user.save();
+
+        res
+            .status(200)
+            .cookie("accessToken", accessToken, options)
+            .cookie("refreshToken", refreshToken, options)
+            .json(new APIResponse(200, { accessToken, refreshToken }, "Refreshed Access Token"));
+    }
+    catch(error) {
+        throw new APIError(401, "Invalid Refresh Token");
+    }
+
 });
 
 export const handleUpdateUserPassword = asyncHandler(async (req: Request, res: Response) => {

@@ -63,7 +63,7 @@ const UserSchema = new Schema<User>({
     refreshToken: { type: String }
 }, { timestamps: true });
 
-UserSchema.pre<User>("save", async function(next: NextFunction) {
+UserSchema.pre("save", async function(next) {
     if (!this.isModified("password")) return next();
     
     try {
@@ -82,7 +82,7 @@ UserSchema.methods.isPasswordCorrect = async function(password: string): Promise
 UserSchema.methods.generateAccessToken = function () {
 
     const secretKey = process.env.ACCESS_TOKEN_SECRET;
-    const tokenExpiry = process.env.ACCESS_TOKEN_EXPIRY;
+    const tokenExpiry = Number(process.env.ACCESS_TOKEN_EXPIRY);
 
     if (!secretKey){
         throw new Error("Could not find ACCESS_TOKEN_SECRET");
@@ -92,25 +92,22 @@ UserSchema.methods.generateAccessToken = function () {
         throw new Error("Could not find ACCESS_TOKEN_EXPIRY");
     }
 
-    return jwt.sign(
-        {
-            _id: this._id,
-            firstName: this.firstName,
-            lastName: this.lastName,
-            role: this.role,
-            email: this.email,
-            profileImageURL: this.profileImageURL
-        },
-        secretKey,
-        { expiresIn: tokenExpiry }
-    )
+    const payload = {
+        _id: this._id,
+        firstName: this.firstName,
+        lastName: this.lastName,
+        role: this.role,
+        email: this.email,
+    }
+
+    return jwt.sign(payload, secretKey, { expiresIn: tokenExpiry });
 }
 
 
 UserSchema.methods.generateRefreshToken = function () {
 
     const secretKey = process.env.REFRESH_TOKEN_SECRET;
-    const expiry = process.env.REFRESH_TOKEN_EXPIRY;
+    const expiry = Number(process.env.REFRESH_TOKEN_EXPIRY);
 
 
     if (!expiry){
@@ -121,13 +118,11 @@ UserSchema.methods.generateRefreshToken = function () {
         throw new Error("Could not find REFRESH_TOKEN_SECRET");
     }
 
-    return jwt.sign(
-      {
-        _id: this._id,
-      },
-      secretKey,
-      { expiresIn: expiry }
-    );
+    const payload = {
+        _id: this._id.toString(),
+    };
+
+    return jwt.sign(payload, secretKey, { expiresIn: expiry });
 };
 
 UserSchema.methods.generateTemporaryToken = function () {
