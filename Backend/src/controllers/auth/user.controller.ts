@@ -38,21 +38,21 @@ export const handleUserLogin = asyncHandler(async (req: Request, res: Response) 
         secure: true
     };
 
-    const data = {
-        firstName: user.firstName,
-        lastName: user.lastName,
-        email: user.email,
-        refreshToken,
-        accessToken,
-        profileImageURL: user.profileImageURL ?? "",
-        _id: user._id
-    };
+    // const data = {
+    //     firstName: user.firstName,
+    //     lastName: user.lastName,
+    //     email: user.email,
+    //     refreshToken,
+    //     accessToken,
+    //     profileImageURL: user.profileImageURL ?? "",
+    //     _id: user._id
+    // };
 
 
     res.status(200)
         .cookie("accessToken", accessToken, options)
         .cookie("refreshToken", refreshToken, options)
-        .json(new APIResponse(200, data, "User Logged In successfully!"))
+        .json(new APIResponse(200, { accessToken, refreshToken }, "User Logged In successfully!"))
 
 });
 
@@ -88,7 +88,7 @@ export const handleUserSignUp = asyncHandler(async (req: Request, res: Response)
         .status(201)
         .cookie("accessToken", accessToken, options)
         .cookie("refreshToken", refreshToken, options)
-        .json(new APIResponse(201, "User Signed Up successfully!"));
+        .json(new APIResponse(201, { accessToken, refreshToken }, "User Signed Up successfully!"));
 });
 
 export const handleUserLogout = asyncHandler(async (req: Request, res: Response) => {
