@@ -6,6 +6,8 @@ import { validate } from '../validators/validate';
 const router = express.Router();
 
 router.post('/login', userLoginValidator(), validate, handleUserLogin);
-router.post('/register', userRegistrationValidator(), validate, handleUserSignUp);
+router.post('/signup', userRegistrationValidator(), validate, handleUserSignUp);
 router.post('/logout', handleUserLogout);
 router.post('/refresh-token', handleRefreshAccessToken);
+
+export default router;

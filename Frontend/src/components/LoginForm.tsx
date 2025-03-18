@@ -12,6 +12,8 @@ import {
     FormMessage
 } from './ui/form'
 import { Button } from './ui/button'
+import { useNavigate } from 'react-router'
+import axios from 'axios'
 
 const formSchema = z.object({
     email: z.string().email("Invalid email address"),
@@ -19,6 +21,8 @@ const formSchema = z.object({
 });
 
 export const LoginForm = () => {
+
+    const navigate = useNavigate();
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -30,6 +34,21 @@ export const LoginForm = () => {
 
     const submitForm = async (values: z.infer<typeof formSchema>) => {
         console.log(values);
+
+        const response = await axios.post("http://localhost:3000/api/login", values);
+        const accessToken = response.data.data.accessToken;
+        const refreshToken = response.data.data.refreshToken;
+
+        if (!accessToken || !refreshToken){
+            throw new Error("Error while signing up");
+        }
+
+        // Store the tokens for authorization purposes
+        localStorage.setItem('accessToken', accessToken);
+        localStorage.setItem('refreshToken', refreshToken);
+
+        // Navigate the user to the dashboard/home page
+        navigate("/dashboard");
     }
 
   return (

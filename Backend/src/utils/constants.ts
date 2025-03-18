@@ -1,7 +1,7 @@
 export enum USER_ROLES {
-    STUDENT = 'STUDENT',
-    ALUMNI = 'ALUMNI',
-    ADMIN = 'ADMIN'
+    STUDENT = 'student',
+    ALUMNI = 'alumni',
+    ADMIN = 'admin'
 };
 
 export enum POST_TYPES {

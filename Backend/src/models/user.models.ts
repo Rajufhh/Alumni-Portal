@@ -1,33 +1,32 @@
-import { Schema, Document, model, Types } from 'mongoose'
+import { Schema, Document, model } from 'mongoose'
 import { USER_ROLES } from '../utils/constants';
 import bcrypt from "bcrypt"
 import jwt from 'jsonwebtoken'
 import crypto from 'crypto'
-import { NextFunction } from 'express';
 import { USER_TEMPORARY_TOKEN_EXPIRY } from '../utils/constants';
 
 interface User extends Document {
     firstName: string;
     lastName?: string;
     email: string;
-    middleName?: string;
     password: string;
-    age: number;
     dob: Date;
     profileImageURL: string;
     role: USER_ROLES;
-    connections: Types.ObjectId[];
-    graduationYear: Date;
-    jobDetails: {
-        company: string,
-        title: string,
-        joiningDate: Date,
-    };
+    batch: Date;
     interests: string[];
     skills: string[];
     bio: string;
-    achievements: [{ title: string, description: string, attachment: string }]
     refreshToken: string;
+    jobDetails: {
+        company: string,
+        title: string,
+    };
+    previousCompanies: string[];
+    internships: string[];
+    location: string;
+    linkedin: string;
+    github: string;
 
     isPasswordCorrect(password: string): Promise<boolean>;
     generateAccessToken(): string;
@@ -38,29 +37,25 @@ interface User extends Document {
 const UserSchema = new Schema<User>({
     email: { type: String, required: true },
     firstName: { type: String, required: true },
-    middleName: { type: String },
     lastName: { type: String },
     password: { type: String, required: true },
-    age: { type: Number, required: true },
-    dob: { type: Date, required: true },
+    dob: { type: Date },
     profileImageURL: { type: String, default: "" },
     role: { type: String, enum: Object.values(USER_ROLES), required: true },
-    connections: [{ type: Schema.Types.ObjectId, ref: "User" }],
-    graduationYear: { type: Date, required: true },
-    jobDetails: {
-        company: { type: String },
-        title: { type: String },
-        joiningDate: { type: Date }
-    },
+    batch: { type: Date, required: true },
     skills: [{ type: String }],
     interests: [{ type: String }],
     bio: { type: String },
-    achievements: [{
-        title: { type: String, required: true },
-        description: { type: String, required: true },
-        attachment: { type: String, required: true }
-    }],
-    refreshToken: { type: String }
+    refreshToken: { type: String },
+    jobDetails: {
+        company: { type: String, default: "" },
+        title: { type: String, default: "" }
+    },
+    location: { type: String, default: "" },
+    previousCompanies: [{ type: String }],
+    internships: [{ type: String }],
+    linkedin: { type: String, required: true },
+    github: { type: String, required: true }
 }, { timestamps: true });
 
 UserSchema.pre("save", async function(next) {

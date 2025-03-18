@@ -7,7 +7,7 @@ export const validate = (req: Request, res: Response, next: NextFunction) => {
 
     if (errors.isEmpty()) return next();
 
-    const extractedErrors = [];
+    const extractedErrors: { [key: string]: string }[] = [];
     errors.array().map((err) => extractedErrors.push({ [err.type]: err.msg }));
 
     throw new APIError(422, "Invalid data received", extractedErrors);

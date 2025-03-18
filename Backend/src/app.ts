@@ -16,8 +16,8 @@ app.use(express.json({ limit: "16kb" }));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-app.get("/", (req, res) => {
-    res.send("Hi there!");
-})
+import userRouter from './routes/user.routes'
+
+app.use("/api", userRouter);
 
 export default app;

@@ -13,6 +13,8 @@ import {
 } from '@/components/ui/form'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from './ui/button'
+import axios from 'axios'
+import { useNavigate } from 'react-router'
 
 const formSchema = z.object({
   firstName: z.string(),
@@ -33,6 +35,9 @@ const formSchema = z.object({
 // })
 
 export const SignupForm = () => {
+
+  const navigate = useNavigate();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -50,6 +55,30 @@ export const SignupForm = () => {
 
   const submitForm = async (values: z.infer<typeof formSchema>) => {
     console.log(values);
+    try {
+      const response = await axios.post("http://localhost:3000/api/signup", values);
+      const accessToken = response.data.data.accessToken;
+      const refreshToken = response.data.data.refreshToken;
+
+      console.log(response.data);
+      console.log(accessToken);
+      console.log(refreshToken);
+
+      if (!accessToken || !refreshToken){
+        throw new Error("Error while signing up");
+      }
+
+      // Store the tokens for authorization purposes
+      localStorage.setItem('accessToken', accessToken);
+      localStorage.setItem('refreshToken', refreshToken);
+
+      // Navigate the user to the dashboard/home page
+      navigate("/dashboard");
+
+    }
+    catch(error){
+      console.error("SIGNUP_ERROR", error);
+    }
   }
 
   return (
@@ -155,7 +184,7 @@ export const SignupForm = () => {
           name='dob'
           render={({field}) => (
             <FormItem>
-                <FormLabel>DOB</FormLabel>
+                <FormLabel>dob</FormLabel>
                 <FormControl>
                   <Input type='text' className='w-56' placeholder='DD/MM/YYYY' {...field}/>
                 </FormControl>

@@ -57,7 +57,7 @@ export const handleUserLogin = asyncHandler(async (req: Request, res: Response) 
 });
 
 export const handleUserSignUp = asyncHandler(async (req: Request, res: Response) => {
-    const { firstName, lastName, email, password, role } = req.body;
+    const { firstName, lastName, email, password, role, dob, batch, linkedin, github } = req.body;
 
     const existingUser = await User.findOne({ email: email });
 
@@ -65,12 +65,19 @@ export const handleUserSignUp = asyncHandler(async (req: Request, res: Response)
         throw new APIError(400, "User already exists");
     }   
 
+    const [ day, month, year ] = dob.split("/").map(Number);
+    const DOB = new Date(year, month - 1, day);
+
     const user = await User.create({
         firstName,
         lastName,
         email,
         password,
-        role
+        role,
+        dob: DOB,
+        batch,
+        linkedin,
+        github
     });
 
     if (!user){
@@ -94,14 +101,14 @@ export const handleUserSignUp = asyncHandler(async (req: Request, res: Response)
 export const handleUserLogout = asyncHandler(async (req: Request, res: Response) => {
 
     // Search up the user, delete the stored refresh token
-    await User.findByIdAndUpdate(
-        req.user?._id,
-        {
-            $unset: {
-                refreshToken: 1
-            }
-        }
-    );
+    // await User.findByIdAndUpdate(
+    //     req.user?._id,
+    //     {
+    //         $unset: {
+    //             refreshToken: 1
+    //         }
+    //     }
+    // );
 
     const options = {
         httpOnly: true,
