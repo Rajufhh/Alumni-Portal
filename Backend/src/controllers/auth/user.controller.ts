@@ -38,21 +38,14 @@ export const handleUserLogin = asyncHandler(async (req: Request, res: Response) 
         secure: true
     };
 
-    // const data = {
-    //     firstName: user.firstName,
-    //     lastName: user.lastName,
-    //     email: user.email,
-    //     refreshToken,
-    //     accessToken,
-    //     profileImageURL: user.profileImageURL ?? "",
-    //     _id: user._id
-    // };
-
-
+    const data = await User.findOne({ email: email }).select(
+        "-password -refreshToken"
+    ); 
+    
     res.status(200)
         .cookie("accessToken", accessToken, options)
         .cookie("refreshToken", refreshToken, options)
-        .json(new APIResponse(200, { accessToken, refreshToken }, "User Logged In successfully!"))
+        .json(new APIResponse(200, { accessToken, refreshToken, user: data }, "User Logged In successfully!"))
 
 });
 
@@ -68,7 +61,7 @@ export const handleUserSignUp = asyncHandler(async (req: Request, res: Response)
     const [ day, month, year ] = dob.split("/").map(Number);
     const DOB = new Date(year, month - 1, day);
 
-    const user = await User.create({
+    await User.create({
         firstName,
         lastName,
         email,
@@ -80,11 +73,16 @@ export const handleUserSignUp = asyncHandler(async (req: Request, res: Response)
         github
     });
 
+    const user = await User.findOne({ email: email }).select(
+        "-password -refreshToken"
+    ); 
+
     if (!user){
         throw new APIError(400, "Error Signing Up");
     }
 
     const { accessToken, refreshToken } = generateAccessAndRefreshToken(user);
+
 
     const options = {
         httpOnly: true,
@@ -95,7 +93,7 @@ export const handleUserSignUp = asyncHandler(async (req: Request, res: Response)
         .status(201)
         .cookie("accessToken", accessToken, options)
         .cookie("refreshToken", refreshToken, options)
-        .json(new APIResponse(201, { accessToken, refreshToken }, "User Signed Up successfully!"));
+        .json(new APIResponse(201, { accessToken, refreshToken, user }, "User Signed Up successfully!"));
 });
 
 export const handleUserLogout = asyncHandler(async (req: Request, res: Response) => {

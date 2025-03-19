@@ -15,6 +15,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Button } from './ui/button'
 import axios from 'axios'
 import { useNavigate } from 'react-router'
+import { useDispatch } from 'react-redux'
+import { setUser } from '@/store/userSlice'
 
 const formSchema = z.object({
   firstName: z.string(),
@@ -37,6 +39,9 @@ const formSchema = z.object({
 export const SignupForm = () => {
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  // const { setUser } = useSelector((state: RootState) => state.user);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -56,13 +61,12 @@ export const SignupForm = () => {
   const submitForm = async (values: z.infer<typeof formSchema>) => {
     console.log(values);
     try {
-      const response = await axios.post("http://localhost:3000/api/signup", values);
+      const response = await axios.post("http://localhost:3000/api/signup", values, { withCredentials: true });
       const accessToken = response.data.data.accessToken;
       const refreshToken = response.data.data.refreshToken;
+      const user = response.data.data.user;
 
-      console.log(response.data);
-      console.log(accessToken);
-      console.log(refreshToken);
+      dispatch(setUser(user));
 
       if (!accessToken || !refreshToken){
         throw new Error("Error while signing up");
@@ -73,7 +77,7 @@ export const SignupForm = () => {
       localStorage.setItem('refreshToken', refreshToken);
 
       // Navigate the user to the dashboard/home page
-      navigate("/dashboard");
+      navigate("/home");
 
     }
     catch(error){

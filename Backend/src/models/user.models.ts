@@ -27,6 +27,7 @@ interface User extends Document {
     location: string;
     linkedin: string;
     github: string;
+    availableForMentorship: boolean;
 
     isPasswordCorrect(password: string): Promise<boolean>;
     generateAccessToken(): string;
@@ -55,7 +56,8 @@ const UserSchema = new Schema<User>({
     previousCompanies: [{ type: String }],
     internships: [{ type: String }],
     linkedin: { type: String, required: true },
-    github: { type: String, required: true }
+    github: { type: String, required: true },
+    availableForMentorship: { type: Boolean, default: false },
 }, { timestamps: true });
 
 UserSchema.pre("save", async function(next) {
@@ -89,10 +91,7 @@ UserSchema.methods.generateAccessToken = function () {
 
     const payload = {
         _id: this._id,
-        firstName: this.firstName,
-        lastName: this.lastName,
         role: this.role,
-        email: this.email,
     }
 
     return jwt.sign(payload, secretKey, { expiresIn: tokenExpiry });

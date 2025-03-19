@@ -14,6 +14,8 @@ import {
 import { Button } from './ui/button'
 import { useNavigate } from 'react-router'
 import axios from 'axios'
+import { useDispatch } from 'react-redux'
+import { setUser } from '@/store/userSlice'
 
 const formSchema = z.object({
     email: z.string().email("Invalid email address"),
@@ -23,6 +25,7 @@ const formSchema = z.object({
 export const LoginForm = () => {
 
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -35,9 +38,12 @@ export const LoginForm = () => {
     const submitForm = async (values: z.infer<typeof formSchema>) => {
         console.log(values);
 
-        const response = await axios.post("http://localhost:3000/api/login", values);
+        const response = await axios.post("http://localhost:3000/api/login", values, { withCredentials: true });
         const accessToken = response.data.data.accessToken;
         const refreshToken = response.data.data.refreshToken;
+        const user = response.data.data.user;
+
+        dispatch(setUser(user));
 
         if (!accessToken || !refreshToken){
             throw new Error("Error while signing up");
@@ -48,7 +54,7 @@ export const LoginForm = () => {
         localStorage.setItem('refreshToken', refreshToken);
 
         // Navigate the user to the dashboard/home page
-        navigate("/dashboard");
+        navigate("/home");
     }
 
   return (
