@@ -2,7 +2,7 @@
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
-import { Input } from './ui/input'
+import { Input } from '../../ui/input'
 import {
     Form,
     FormControl,
@@ -10,8 +10,8 @@ import {
     FormItem,
     FormLabel,
     FormMessage
-} from './ui/form'
-import { Button } from './ui/button'
+} from '../../ui/form'
+import { Button } from '../../ui/button'
 import { useNavigate } from 'react-router'
 import axios from 'axios'
 import { useDispatch } from 'react-redux'

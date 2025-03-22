@@ -2,7 +2,7 @@
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
-import { Input } from './ui/input'
+import { Input } from '../../ui/input'
 import {
     Form,
     FormControl,
@@ -12,7 +12,7 @@ import {
     FormMessage
 } from '@/components/ui/form'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Button } from './ui/button'
+import { Button } from '../../ui/button'
 import axios from 'axios'
 import { useNavigate } from 'react-router'
 import { useDispatch } from 'react-redux'

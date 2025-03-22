@@ -1,0 +1,4008 @@
+[
+    {
+        "email": "user0@example.com",
+        "firstName": "User0",
+        "lastName": "Test0",
+        "password": "hashedpassword",
+        "dob": "1998-02-22",
+        "profileImageURL": "",
+        "role": "student",
+        "batch": 2015,
+        "skills": [
+            "Kubernetes",
+            "AWS",
+            "SQL"
+        ],
+        "interests": [
+            "Database Management",
+            "Infrastructure",
+            "Cloud Computing",
+            "DevOps",
+            "Data Analysis"
+        ],
+        "bio": "User0 is passionate about Database Management, Infrastructure, Cloud Computing, DevOps, Data Analysis.",
+        "refreshToken": "",
+        "jobDetails": {},
+        "location": "City7",
+        "previousCompanies": [],
+        "internships": [],
+        "linkedin": "https://www.linkedin.com/in/user0",
+        "github": "https://github.com/user0",
+        "availableForMentorship": false,
+        "projects": [
+            "Serverless Web App",
+            "CI/CD Pipeline",
+            "Scalable Web Service"
+        ]
+    },
+    {
+        "email": "user1@example.com",
+        "firstName": "User1",
+        "lastName": "Test1",
+        "password": "hashedpassword",
+        "dob": "2001-12-06",
+        "profileImageURL": "",
+        "role": "student",
+        "batch": 2016,
+        "skills": [
+            "Django",
+            "Kubernetes",
+            "Blockchain"
+        ],
+        "interests": [
+            "Cloud Computing",
+            "Web Development",
+            "DevOps",
+            "Decentralized Systems",
+            "Cryptocurrency",
+            "Backend Development"
+        ],
+        "bio": "User1 is passionate about Cloud Computing, Web Development, DevOps, Decentralized Systems, Cryptocurrency, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {},
+        "location": "City9",
+        "previousCompanies": [],
+        "internships": [],
+        "linkedin": "https://www.linkedin.com/in/user1",
+        "github": "https://github.com/user1",
+        "availableForMentorship": false,
+        "projects": [
+            "Cryptocurrency Wallet",
+            "CI/CD Pipeline",
+            "Scalable Web Service"
+        ]
+    },
+    {
+        "email": "user2@example.com",
+        "firstName": "User2",
+        "lastName": "Test2",
+        "password": "hashedpassword",
+        "dob": "1990-04-24",
+        "profileImageURL": "",
+        "role": "student",
+        "batch": 2020,
+        "skills": [
+            "AWS",
+            "Cybersecurity",
+            "JavaScript"
+        ],
+        "interests": [
+            "UI/UX",
+            "Infrastructure",
+            "Web Development",
+            "Cloud Computing",
+            "Ethical Hacking",
+            "Frontend Development",
+            "Network Security"
+        ],
+        "bio": "User2 is passionate about UI/UX, Infrastructure, Web Development, Cloud Computing, Ethical Hacking, Frontend Development, Network Security.",
+        "refreshToken": "",
+        "jobDetails": {},
+        "location": "City4",
+        "previousCompanies": [],
+        "internships": [],
+        "linkedin": "https://www.linkedin.com/in/user2",
+        "github": "https://github.com/user2",
+        "availableForMentorship": false,
+        "projects": [
+            "Weather App",
+            "Serverless Web App",
+            "Portfolio Website"
+        ]
+    },
+    {
+        "email": "user3@example.com",
+        "firstName": "User3",
+        "lastName": "Test3",
+        "password": "hashedpassword",
+        "dob": "1991-07-28",
+        "profileImageURL": "",
+        "role": "alumni",
+        "batch": 2020,
+        "skills": [
+            "C++",
+            "JavaScript",
+            "IoT"
+        ],
+        "interests": [
+            "UI/UX",
+            "Connected Devices",
+            "Frontend Development",
+            "Web Development",
+            "System Design",
+            "Embedded Systems",
+            "Competitive Programming"
+        ],
+        "bio": "User3 is passionate about UI/UX, Connected Devices, Frontend Development, Web Development, System Design, Embedded Systems, Competitive Programming.",
+        "refreshToken": "",
+        "jobDetails": {
+            "company": "Company26",
+            "title": "Data Scientist"
+        },
+        "location": "City10",
+        "previousCompanies": [
+            "Company83"
+        ],
+        "internships": [
+            "Internship at Kubernetes"
+        ],
+        "linkedin": "https://www.linkedin.com/in/user3",
+        "github": "https://github.com/user3",
+        "availableForMentorship": false,
+        "projects": [
+            "Weather App",
+            "Portfolio Website",
+            "IoT Weather Station"
+        ]
+    },
+    {
+        "email": "user4@example.com",
+        "firstName": "User4",
+        "lastName": "Test4",
+        "password": "hashedpassword",
+        "dob": "1998-02-21",
+        "profileImageURL": "",
+        "role": "alumni",
+        "batch": 2018,
+        "skills": [
+            "Cybersecurity",
+            "React",
+            "Java"
+        ],
+        "interests": [
+            "Android Development",
+            "Frontend Development",
+            "Web Development",
+            "Ethical Hacking",
+            "Network Security",
+            "Backend Development"
+        ],
+        "bio": "User4 is passionate about Android Development, Frontend Development, Web Development, Ethical Hacking, Network Security, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {
+            "company": "Company1",
+            "title": "Software Engineer"
+        },
+        "location": "City4",
+        "previousCompanies": [
+            "Company69"
+        ],
+        "internships": [
+            "Internship at SQL"
+        ],
+        "linkedin": "https://www.linkedin.com/in/user4",
+        "github": "https://github.com/user4",
+        "availableForMentorship": false,
+        "projects": [
+            "Android App",
+            "Spring Boot Microservice",
+            "Social Media Dashboard"
+        ]
+    },
+    {
+        "email": "user5@example.com",
+        "firstName": "User5",
+        "lastName": "Test5",
+        "password": "hashedpassword",
+        "dob": "1993-07-16",
+        "profileImageURL": "",
+        "role": "student",
+        "batch": 2017,
+        "skills": [
+            "JavaScript",
+            "Node.js",
+            "AWS"
+        ],
+        "interests": [
+            "API Development",
+            "UI/UX",
+            "Frontend Development",
+            "Web Development",
+            "Cloud Computing",
+            "Infrastructure",
+            "Backend Development"
+        ],
+        "bio": "User5 is passionate about API Development, UI/UX, Frontend Development, Web Development, Cloud Computing, Infrastructure, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {},
+        "location": "City7",
+        "previousCompanies": [],
+        "internships": [],
+        "linkedin": "https://www.linkedin.com/in/user5",
+        "github": "https://github.com/user5",
+        "availableForMentorship": false,
+        "projects": [
+            "Weather App",
+            "Portfolio Website",
+            "Serverless Web App"
+        ]
+    },
+    {
+        "email": "user6@example.com",
+        "firstName": "User6",
+        "lastName": "Test6",
+        "password": "hashedpassword",
+        "dob": "2003-01-23",
+        "profileImageURL": "",
+        "role": "alumni",
+        "batch": 2023,
+        "skills": [
+            "Node.js",
+            "JavaScript",
+            "Blockchain"
+        ],
+        "interests": [
+            "API Development",
+            "UI/UX",
+            "Frontend Development",
+            "Web Development",
+            "Decentralized Systems",
+            "Cryptocurrency",
+            "Backend Development"
+        ],
+        "bio": "User6 is passionate about API Development, UI/UX, Frontend Development, Web Development, Decentralized Systems, Cryptocurrency, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {
+            "company": "Company25",
+            "title": "Data Scientist"
+        },
+        "location": "City7",
+        "previousCompanies": [
+            "Company83"
+        ],
+        "internships": [
+            "Internship at TensorFlow"
+        ],
+        "linkedin": "https://www.linkedin.com/in/user6",
+        "github": "https://github.com/user6",
+        "availableForMentorship": false,
+        "projects": [
+            "Weather App",
+            "Portfolio Website",
+            "Cryptocurrency Wallet"
+        ]
+    },
+    {
+        "email": "user7@example.com",
+        "firstName": "User7",
+        "lastName": "Test7",
+        "password": "hashedpassword",
+        "dob": "1992-08-12",
+        "profileImageURL": "",
+        "role": "student",
+        "batch": 2016,
+        "skills": [
+            "Node.js",
+            "Blockchain",
+            "C++"
+        ],
+        "interests": [
+            "API Development",
+            "System Design",
+            "Competitive Programming",
+            "Decentralized Systems",
+            "Cryptocurrency",
+            "Backend Development"
+        ],
+        "bio": "User7 is passionate about API Development, System Design, Competitive Programming, Decentralized Systems, Cryptocurrency, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {},
+        "location": "City10",
+        "previousCompanies": [],
+        "internships": [],
+        "linkedin": "https://www.linkedin.com/in/user7",
+        "github": "https://github.com/user7",
+        "availableForMentorship": false,
+        "projects": [
+            "Task Scheduler",
+            "Cryptocurrency Wallet",
+            "Real-time Chat App"
+        ]
+    },
+    {
+        "email": "user8@example.com",
+        "firstName": "User8",
+        "lastName": "Test8",
+        "password": "hashedpassword",
+        "dob": "1998-01-01",
+        "profileImageURL": "",
+        "role": "student",
+        "batch": 2023,
+        "skills": [
+            "MongoDB",
+            "Blockchain",
+            "C++"
+        ],
+        "interests": [
+            "NoSQL Databases",
+            "System Design",
+            "Competitive Programming",
+            "Decentralized Systems",
+            "Cryptocurrency",
+            "Backend Development"
+        ],
+        "bio": "User8 is passionate about NoSQL Databases, System Design, Competitive Programming, Decentralized Systems, Cryptocurrency, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {},
+        "location": "City6",
+        "previousCompanies": [],
+        "internships": [],
+        "linkedin": "https://www.linkedin.com/in/user8",
+        "github": "https://github.com/user8",
+        "availableForMentorship": false,
+        "projects": [
+            "Cryptocurrency Wallet",
+            "NFT Marketplace",
+            "User Authentication System"
+        ]
+    },
+    {
+        "email": "user9@example.com",
+        "firstName": "User9",
+        "lastName": "Test9",
+        "password": "hashedpassword",
+        "dob": "1990-10-18",
+        "profileImageURL": "",
+        "role": "alumni",
+        "batch": 2018,
+        "skills": [
+            "MongoDB",
+            "SQL",
+            "Blockchain"
+        ],
+        "interests": [
+            "NoSQL Databases",
+            "Database Management",
+            "Decentralized Systems",
+            "Cryptocurrency",
+            "Data Analysis",
+            "Backend Development"
+        ],
+        "bio": "User9 is passionate about NoSQL Databases, Database Management, Decentralized Systems, Cryptocurrency, Data Analysis, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {
+            "company": "Company2",
+            "title": "DevOps Engineer"
+        },
+        "location": "City1",
+        "previousCompanies": [
+            "Company92"
+        ],
+        "internships": [
+            "Internship at Java"
+        ],
+        "linkedin": "https://www.linkedin.com/in/user9",
+        "github": "https://github.com/user9",
+        "availableForMentorship": true,
+        "projects": [
+            "Cryptocurrency Wallet",
+            "NFT Marketplace",
+            "Decentralized Voting System"
+        ]
+    },
+    {
+        "email": "user10@example.com",
+        "firstName": "User10",
+        "lastName": "Test10",
+        "password": "hashedpassword",
+        "dob": "1994-01-15",
+        "profileImageURL": "",
+        "role": "student",
+        "batch": 2022,
+        "skills": [
+            "SQL",
+            "AWS",
+            "Django"
+        ],
+        "interests": [
+            "Cloud Computing",
+            "Web Development",
+            "Infrastructure",
+            "Database Management",
+            "Data Analysis",
+            "Backend Development"
+        ],
+        "bio": "User10 is passionate about Cloud Computing, Web Development, Infrastructure, Database Management, Data Analysis, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {},
+        "location": "City6",
+        "previousCompanies": [],
+        "internships": [],
+        "linkedin": "https://www.linkedin.com/in/user10",
+        "github": "https://github.com/user10",
+        "availableForMentorship": false,
+        "projects": [
+            "Serverless Web App",
+            "Hospital Management Database",
+            "E-learning Platform"
+        ]
+    },
+    {
+        "email": "user11@example.com",
+        "firstName": "User11",
+        "lastName": "Test11",
+        "password": "hashedpassword",
+        "dob": "2004-10-08",
+        "profileImageURL": "",
+        "role": "student",
+        "batch": 2025,
+        "skills": [
+            "Python",
+            "SQL",
+            "Blockchain"
+        ],
+        "interests": [
+            "Database Management",
+            "Data Science",
+            "Decentralized Systems",
+            "AI",
+            "Cryptocurrency",
+            "Data Analysis",
+            "Backend Development"
+        ],
+        "bio": "User11 is passionate about Database Management, Data Science, Decentralized Systems, AI, Cryptocurrency, Data Analysis, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {},
+        "location": "City1",
+        "previousCompanies": [],
+        "internships": [],
+        "linkedin": "https://www.linkedin.com/in/user11",
+        "github": "https://github.com/user11",
+        "availableForMentorship": false,
+        "projects": [
+            "Cryptocurrency Wallet",
+            "Decentralized Voting System",
+            "Machine Learning Model"
+        ]
+    },
+    {
+        "email": "user12@example.com",
+        "firstName": "User12",
+        "lastName": "Test12",
+        "password": "hashedpassword",
+        "dob": "1994-03-10",
+        "profileImageURL": "",
+        "role": "alumni",
+        "batch": 2019,
+        "skills": [
+            "C++",
+            "Python",
+            "SQL"
+        ],
+        "interests": [
+            "Database Management",
+            "Data Science",
+            "System Design",
+            "Competitive Programming",
+            "AI",
+            "Data Analysis",
+            "Backend Development"
+        ],
+        "bio": "User12 is passionate about Database Management, Data Science, System Design, Competitive Programming, AI, Data Analysis, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {
+            "company": "Company17",
+            "title": "AI Engineer"
+        },
+        "location": "City3",
+        "previousCompanies": [
+            "Company68"
+        ],
+        "internships": [
+            "Internship at C++"
+        ],
+        "linkedin": "https://www.linkedin.com/in/user12",
+        "github": "https://github.com/user12",
+        "availableForMentorship": false,
+        "projects": [
+            "Machine Learning Model",
+            "Hospital Management Database",
+            "Flask API"
+        ]
+    },
+    {
+        "email": "user13@example.com",
+        "firstName": "User13",
+        "lastName": "Test13",
+        "password": "hashedpassword",
+        "dob": "1999-03-06",
+        "profileImageURL": "",
+        "role": "student",
+        "batch": 2019,
+        "skills": [
+            "SQL",
+            "TensorFlow",
+            "Java"
+        ],
+        "interests": [
+            "Android Development",
+            "Database Management",
+            "Deep Learning",
+            "Machine Learning",
+            "Data Analysis",
+            "Backend Development"
+        ],
+        "bio": "User13 is passionate about Android Development, Database Management, Deep Learning, Machine Learning, Data Analysis, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {},
+        "location": "City8",
+        "previousCompanies": [],
+        "internships": [],
+        "linkedin": "https://www.linkedin.com/in/user13",
+        "github": "https://github.com/user13",
+        "availableForMentorship": false,
+        "projects": [
+            "Android App",
+            "Object Detection System",
+            "Spring Boot Microservice"
+        ]
+    },
+    {
+        "email": "user14@example.com",
+        "firstName": "User14",
+        "lastName": "Test14",
+        "password": "hashedpassword",
+        "dob": "1998-12-15",
+        "profileImageURL": "",
+        "role": "student",
+        "batch": 2018,
+        "skills": [
+            "React",
+            "TensorFlow",
+            "JavaScript"
+        ],
+        "interests": [
+            "UI/UX",
+            "Frontend Development",
+            "Web Development",
+            "Deep Learning",
+            "Machine Learning"
+        ],
+        "bio": "User14 is passionate about UI/UX, Frontend Development, Web Development, Deep Learning, Machine Learning.",
+        "refreshToken": "",
+        "jobDetails": {},
+        "location": "City7",
+        "previousCompanies": [],
+        "internships": [],
+        "linkedin": "https://www.linkedin.com/in/user14",
+        "github": "https://github.com/user14",
+        "availableForMentorship": false,
+        "projects": [
+            "Weather App",
+            "Portfolio Website",
+            "Object Detection System"
+        ]
+    },
+    {
+        "email": "user15@example.com",
+        "firstName": "User15",
+        "lastName": "Test15",
+        "password": "hashedpassword",
+        "dob": "2005-09-17",
+        "profileImageURL": "",
+        "role": "alumni",
+        "batch": 2018,
+        "skills": [
+            "Python",
+            "Blockchain",
+            "IoT"
+        ],
+        "interests": [
+            "Connected Devices",
+            "Data Science",
+            "Embedded Systems",
+            "Decentralized Systems",
+            "AI",
+            "Cryptocurrency",
+            "Backend Development"
+        ],
+        "bio": "User15 is passionate about Connected Devices, Data Science, Embedded Systems, Decentralized Systems, AI, Cryptocurrency, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {
+            "company": "Company19",
+            "title": "Data Scientist"
+        },
+        "location": "City4",
+        "previousCompanies": [
+            "Company88"
+        ],
+        "internships": [
+            "Internship at MongoDB"
+        ],
+        "linkedin": "https://www.linkedin.com/in/user15",
+        "github": "https://github.com/user15",
+        "availableForMentorship": false,
+        "projects": [
+            "Cryptocurrency Wallet",
+            "IoT Weather Station",
+            "Connected Vehicle System"
+        ]
+    },
+    {
+        "email": "user16@example.com",
+        "firstName": "User16",
+        "lastName": "Test16",
+        "password": "hashedpassword",
+        "dob": "1998-03-21",
+        "profileImageURL": "",
+        "role": "alumni",
+        "batch": 2021,
+        "skills": [
+            "JavaScript",
+            "Django",
+            "IoT"
+        ],
+        "interests": [
+            "UI/UX",
+            "Connected Devices",
+            "Frontend Development",
+            "Web Development",
+            "Embedded Systems",
+            "Backend Development"
+        ],
+        "bio": "User16 is passionate about UI/UX, Connected Devices, Frontend Development, Web Development, Embedded Systems, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {
+            "company": "Company15",
+            "title": "DevOps Engineer"
+        },
+        "location": "City4",
+        "previousCompanies": [
+            "Company90"
+        ],
+        "internships": [
+            "Internship at Java"
+        ],
+        "linkedin": "https://www.linkedin.com/in/user16",
+        "github": "https://github.com/user16",
+        "availableForMentorship": true,
+        "projects": [
+            "Weather App",
+            "Portfolio Website",
+            "IoT Weather Station"
+        ]
+    },
+    {
+        "email": "user17@example.com",
+        "firstName": "User17",
+        "lastName": "Test17",
+        "password": "hashedpassword",
+        "dob": "1998-06-04",
+        "profileImageURL": "",
+        "role": "alumni",
+        "batch": 2023,
+        "skills": [
+            "Python",
+            "IoT",
+            "Node.js"
+        ],
+        "interests": [
+            "API Development",
+            "Connected Devices",
+            "Data Science",
+            "Embedded Systems",
+            "AI",
+            "Backend Development"
+        ],
+        "bio": "User17 is passionate about API Development, Connected Devices, Data Science, Embedded Systems, AI, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {
+            "company": "Company23",
+            "title": "Data Scientist"
+        },
+        "location": "City7",
+        "previousCompanies": [
+            "Company66"
+        ],
+        "internships": [
+            "Internship at IoT"
+        ],
+        "linkedin": "https://www.linkedin.com/in/user17",
+        "github": "https://github.com/user17",
+        "availableForMentorship": false,
+        "projects": [
+            "IoT Weather Station",
+            "Real-time Chat App",
+            "Connected Vehicle System"
+        ]
+    },
+    {
+        "email": "user18@example.com",
+        "firstName": "User18",
+        "lastName": "Test18",
+        "password": "hashedpassword",
+        "dob": "1996-06-20",
+        "profileImageURL": "",
+        "role": "student",
+        "batch": 2019,
+        "skills": [
+            "Python",
+            "Blockchain",
+            "MongoDB"
+        ],
+        "interests": [
+            "NoSQL Databases",
+            "Data Science",
+            "Decentralized Systems",
+            "AI",
+            "Cryptocurrency",
+            "Backend Development"
+        ],
+        "bio": "User18 is passionate about NoSQL Databases, Data Science, Decentralized Systems, AI, Cryptocurrency, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {},
+        "location": "City3",
+        "previousCompanies": [],
+        "internships": [],
+        "linkedin": "https://www.linkedin.com/in/user18",
+        "github": "https://github.com/user18",
+        "availableForMentorship": false,
+        "projects": [
+            "Cryptocurrency Wallet",
+            "Machine Learning Model",
+            "Data Analysis Dashboard"
+        ]
+    },
+    {
+        "email": "user19@example.com",
+        "firstName": "User19",
+        "lastName": "Test19",
+        "password": "hashedpassword",
+        "dob": "1998-12-11",
+        "profileImageURL": "",
+        "role": "student",
+        "batch": 2021,
+        "skills": [
+            "Django",
+            "Python",
+            "Cybersecurity"
+        ],
+        "interests": [
+            "Web Development",
+            "Data Science",
+            "Ethical Hacking",
+            "AI",
+            "Network Security",
+            "Backend Development"
+        ],
+        "bio": "User19 is passionate about Web Development, Data Science, Ethical Hacking, AI, Network Security, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {},
+        "location": "City4",
+        "previousCompanies": [],
+        "internships": [],
+        "linkedin": "https://www.linkedin.com/in/user19",
+        "github": "https://github.com/user19",
+        "availableForMentorship": false,
+        "projects": [
+            "Machine Learning Model",
+            "Secure File Storage",
+            "Anomaly Detection"
+        ]
+    },
+    {
+        "email": "user20@example.com",
+        "firstName": "User20",
+        "lastName": "Test20",
+        "password": "hashedpassword",
+        "dob": "2000-07-15",
+        "profileImageURL": "",
+        "role": "student",
+        "batch": 2015,
+        "skills": [
+            "Java",
+            "Python",
+            "React"
+        ],
+        "interests": [
+            "Android Development",
+            "Frontend Development",
+            "Data Science",
+            "Web Development",
+            "AI",
+            "Backend Development"
+        ],
+        "bio": "User20 is passionate about Android Development, Frontend Development, Data Science, Web Development, AI, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {},
+        "location": "City7",
+        "previousCompanies": [],
+        "internships": [],
+        "linkedin": "https://www.linkedin.com/in/user20",
+        "github": "https://github.com/user20",
+        "availableForMentorship": false,
+        "projects": [
+            "Android App",
+            "Spring Boot Microservice",
+            "Social Media Dashboard"
+        ]
+    },
+    {
+        "email": "user21@example.com",
+        "firstName": "User21",
+        "lastName": "Test21",
+        "password": "hashedpassword",
+        "dob": "1990-02-10",
+        "profileImageURL": "",
+        "role": "alumni",
+        "batch": 2023,
+        "skills": [
+            "JavaScript",
+            "Django",
+            "TensorFlow"
+        ],
+        "interests": [
+            "UI/UX",
+            "Frontend Development",
+            "Web Development",
+            "Deep Learning",
+            "Machine Learning",
+            "Backend Development"
+        ],
+        "bio": "User21 is passionate about UI/UX, Frontend Development, Web Development, Deep Learning, Machine Learning, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {
+            "company": "Company2",
+            "title": "AI Engineer"
+        },
+        "location": "City1",
+        "previousCompanies": [
+            "Company72"
+        ],
+        "internships": [
+            "Internship at IoT"
+        ],
+        "linkedin": "https://www.linkedin.com/in/user21",
+        "github": "https://github.com/user21",
+        "availableForMentorship": false,
+        "projects": [
+            "Weather App",
+            "Portfolio Website",
+            "Object Detection System"
+        ]
+    },
+    {
+        "email": "user22@example.com",
+        "firstName": "User22",
+        "lastName": "Test22",
+        "password": "hashedpassword",
+        "dob": "1985-12-28",
+        "profileImageURL": "",
+        "role": "student",
+        "batch": 2018,
+        "skills": [
+            "Django",
+            "Kubernetes",
+            "MongoDB"
+        ],
+        "interests": [
+            "NoSQL Databases",
+            "Cloud Computing",
+            "Web Development",
+            "DevOps",
+            "Backend Development"
+        ],
+        "bio": "User22 is passionate about NoSQL Databases, Cloud Computing, Web Development, DevOps, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {},
+        "location": "City9",
+        "previousCompanies": [],
+        "internships": [],
+        "linkedin": "https://www.linkedin.com/in/user22",
+        "github": "https://github.com/user22",
+        "availableForMentorship": false,
+        "projects": [
+            "CI/CD Pipeline",
+            "Scalable Web Service",
+            "E-learning Platform"
+        ]
+    },
+    {
+        "email": "user23@example.com",
+        "firstName": "User23",
+        "lastName": "Test23",
+        "password": "hashedpassword",
+        "dob": "1997-12-11",
+        "profileImageURL": "",
+        "role": "alumni",
+        "batch": 2021,
+        "skills": [
+            "Cybersecurity",
+            "IoT",
+            "TensorFlow"
+        ],
+        "interests": [
+            "Connected Devices",
+            "Embedded Systems",
+            "Ethical Hacking",
+            "Network Security",
+            "Deep Learning",
+            "Machine Learning"
+        ],
+        "bio": "User23 is passionate about Connected Devices, Embedded Systems, Ethical Hacking, Network Security, Deep Learning, Machine Learning.",
+        "refreshToken": "",
+        "jobDetails": {
+            "company": "Company44",
+            "title": "AI Engineer"
+        },
+        "location": "City4",
+        "previousCompanies": [
+            "Company82"
+        ],
+        "internships": [
+            "Internship at Cybersecurity"
+        ],
+        "linkedin": "https://www.linkedin.com/in/user23",
+        "github": "https://github.com/user23",
+        "availableForMentorship": true,
+        "projects": [
+            "Object Detection System",
+            "IoT Weather Station",
+            "Connected Vehicle System"
+        ]
+    },
+    {
+        "email": "user24@example.com",
+        "firstName": "User24",
+        "lastName": "Test24",
+        "password": "hashedpassword",
+        "dob": "1993-11-03",
+        "profileImageURL": "",
+        "role": "alumni",
+        "batch": 2016,
+        "skills": [
+            "MongoDB",
+            "Django",
+            "Cybersecurity"
+        ],
+        "interests": [
+            "NoSQL Databases",
+            "Web Development",
+            "Ethical Hacking",
+            "Network Security",
+            "Backend Development"
+        ],
+        "bio": "User24 is passionate about NoSQL Databases, Web Development, Ethical Hacking, Network Security, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {
+            "company": "Company4",
+            "title": "Data Scientist"
+        },
+        "location": "City4",
+        "previousCompanies": [
+            "Company93"
+        ],
+        "internships": [
+            "Internship at IoT"
+        ],
+        "linkedin": "https://www.linkedin.com/in/user24",
+        "github": "https://github.com/user24",
+        "availableForMentorship": false,
+        "projects": [
+            "Secure File Storage",
+            "Anomaly Detection",
+            "E-learning Platform"
+        ]
+    },
+    {
+        "email": "user25@example.com",
+        "firstName": "User25",
+        "lastName": "Test25",
+        "password": "hashedpassword",
+        "dob": "1993-07-23",
+        "profileImageURL": "",
+        "role": "student",
+        "batch": 2022,
+        "skills": [
+            "MongoDB",
+            "IoT",
+            "Cybersecurity"
+        ],
+        "interests": [
+            "NoSQL Databases",
+            "Connected Devices",
+            "Embedded Systems",
+            "Ethical Hacking",
+            "Network Security",
+            "Backend Development"
+        ],
+        "bio": "User25 is passionate about NoSQL Databases, Connected Devices, Embedded Systems, Ethical Hacking, Network Security, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {},
+        "location": "City5",
+        "previousCompanies": [],
+        "internships": [],
+        "linkedin": "https://www.linkedin.com/in/user25",
+        "github": "https://github.com/user25",
+        "availableForMentorship": false,
+        "projects": [
+            "IoT Weather Station",
+            "Connected Vehicle System",
+            "Secure File Storage"
+        ]
+    },
+    {
+        "email": "user26@example.com",
+        "firstName": "User26",
+        "lastName": "Test26",
+        "password": "hashedpassword",
+        "dob": "1995-08-11",
+        "profileImageURL": "",
+        "role": "alumni",
+        "batch": 2025,
+        "skills": [
+            "AWS",
+            "SQL",
+            "Django"
+        ],
+        "interests": [
+            "Database Management",
+            "Web Development",
+            "Infrastructure",
+            "Cloud Computing",
+            "Data Analysis",
+            "Backend Development"
+        ],
+        "bio": "User26 is passionate about Database Management, Web Development, Infrastructure, Cloud Computing, Data Analysis, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {
+            "company": "Company6",
+            "title": "AI Engineer"
+        },
+        "location": "City1",
+        "previousCompanies": [
+            "Company69"
+        ],
+        "internships": [
+            "Internship at JavaScript"
+        ],
+        "linkedin": "https://www.linkedin.com/in/user26",
+        "github": "https://github.com/user26",
+        "availableForMentorship": false,
+        "projects": [
+            "Serverless Web App",
+            "Hospital Management Database",
+            "E-learning Platform"
+        ]
+    },
+    {
+        "email": "user27@example.com",
+        "firstName": "User27",
+        "lastName": "Test27",
+        "password": "hashedpassword",
+        "dob": "2000-05-06",
+        "profileImageURL": "",
+        "role": "alumni",
+        "batch": 2019,
+        "skills": [
+            "Django",
+            "IoT",
+            "TensorFlow"
+        ],
+        "interests": [
+            "Connected Devices",
+            "Web Development",
+            "Embedded Systems",
+            "Deep Learning",
+            "Machine Learning",
+            "Backend Development"
+        ],
+        "bio": "User27 is passionate about Connected Devices, Web Development, Embedded Systems, Deep Learning, Machine Learning, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {
+            "company": "Company23",
+            "title": "Data Scientist"
+        },
+        "location": "City3",
+        "previousCompanies": [
+            "Company89"
+        ],
+        "internships": [
+            "Internship at React"
+        ],
+        "linkedin": "https://www.linkedin.com/in/user27",
+        "github": "https://github.com/user27",
+        "availableForMentorship": true,
+        "projects": [
+            "Object Detection System",
+            "IoT Weather Station",
+            "Connected Vehicle System"
+        ]
+    },
+    {
+        "email": "user28@example.com",
+        "firstName": "User28",
+        "lastName": "Test28",
+        "password": "hashedpassword",
+        "dob": "2004-08-23",
+        "profileImageURL": "",
+        "role": "student",
+        "batch": 2015,
+        "skills": [
+            "Blockchain",
+            "TensorFlow",
+            "Node.js"
+        ],
+        "interests": [
+            "API Development",
+            "Deep Learning",
+            "Decentralized Systems",
+            "Cryptocurrency",
+            "Machine Learning",
+            "Backend Development"
+        ],
+        "bio": "User28 is passionate about API Development, Deep Learning, Decentralized Systems, Cryptocurrency, Machine Learning, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {},
+        "location": "City8",
+        "previousCompanies": [],
+        "internships": [],
+        "linkedin": "https://www.linkedin.com/in/user28",
+        "github": "https://github.com/user28",
+        "availableForMentorship": false,
+        "projects": [
+            "Task Scheduler",
+            "Cryptocurrency Wallet",
+            "Object Detection System"
+        ]
+    },
+    {
+        "email": "user29@example.com",
+        "firstName": "User29",
+        "lastName": "Test29",
+        "password": "hashedpassword",
+        "dob": "2001-03-08",
+        "profileImageURL": "",
+        "role": "student",
+        "batch": 2021,
+        "skills": [
+            "C++",
+            "Django",
+            "React"
+        ],
+        "interests": [
+            "Frontend Development",
+            "Web Development",
+            "System Design",
+            "Competitive Programming",
+            "Backend Development"
+        ],
+        "bio": "User29 is passionate about Frontend Development, Web Development, System Design, Competitive Programming, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {},
+        "location": "City8",
+        "previousCompanies": [],
+        "internships": [],
+        "linkedin": "https://www.linkedin.com/in/user29",
+        "github": "https://github.com/user29",
+        "availableForMentorship": false,
+        "projects": [
+            "Social Media Dashboard",
+            "E-commerce Platform",
+            "E-learning Platform"
+        ]
+    },
+    {
+        "email": "user30@example.com",
+        "firstName": "User30",
+        "lastName": "Test30",
+        "password": "hashedpassword",
+        "dob": "2003-03-12",
+        "profileImageURL": "",
+        "role": "student",
+        "batch": 2016,
+        "skills": [
+            "IoT",
+            "AWS",
+            "Blockchain"
+        ],
+        "interests": [
+            "Connected Devices",
+            "Infrastructure",
+            "Cloud Computing",
+            "Embedded Systems",
+            "Decentralized Systems",
+            "Cryptocurrency"
+        ],
+        "bio": "User30 is passionate about Connected Devices, Infrastructure, Cloud Computing, Embedded Systems, Decentralized Systems, Cryptocurrency.",
+        "refreshToken": "",
+        "jobDetails": {},
+        "location": "City4",
+        "previousCompanies": [],
+        "internships": [],
+        "linkedin": "https://www.linkedin.com/in/user30",
+        "github": "https://github.com/user30",
+        "availableForMentorship": false,
+        "projects": [
+            "Cryptocurrency Wallet",
+            "Serverless Web App",
+            "IoT Weather Station"
+        ]
+    },
+    {
+        "email": "user31@example.com",
+        "firstName": "User31",
+        "lastName": "Test31",
+        "password": "hashedpassword",
+        "dob": "2004-06-21",
+        "profileImageURL": "",
+        "role": "alumni",
+        "batch": 2020,
+        "skills": [
+            "Java",
+            "Cybersecurity",
+            "TensorFlow"
+        ],
+        "interests": [
+            "Android Development",
+            "Ethical Hacking",
+            "Network Security",
+            "Deep Learning",
+            "Machine Learning",
+            "Backend Development"
+        ],
+        "bio": "User31 is passionate about Android Development, Ethical Hacking, Network Security, Deep Learning, Machine Learning, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {
+            "company": "Company13",
+            "title": "AI Engineer"
+        },
+        "location": "City8",
+        "previousCompanies": [
+            "Company60"
+        ],
+        "internships": [
+            "Internship at TensorFlow"
+        ],
+        "linkedin": "https://www.linkedin.com/in/user31",
+        "github": "https://github.com/user31",
+        "availableForMentorship": false,
+        "projects": [
+            "Android App",
+            "Object Detection System",
+            "Spring Boot Microservice"
+        ]
+    },
+    {
+        "email": "user32@example.com",
+        "firstName": "User32",
+        "lastName": "Test32",
+        "password": "hashedpassword",
+        "dob": "1997-10-03",
+        "profileImageURL": "",
+        "role": "alumni",
+        "batch": 2018,
+        "skills": [
+            "JavaScript",
+            "MongoDB",
+            "Blockchain"
+        ],
+        "interests": [
+            "NoSQL Databases",
+            "UI/UX",
+            "Frontend Development",
+            "Web Development",
+            "Decentralized Systems",
+            "Cryptocurrency",
+            "Backend Development"
+        ],
+        "bio": "User32 is passionate about NoSQL Databases, UI/UX, Frontend Development, Web Development, Decentralized Systems, Cryptocurrency, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {
+            "company": "Company3",
+            "title": "DevOps Engineer"
+        },
+        "location": "City2",
+        "previousCompanies": [
+            "Company62"
+        ],
+        "internships": [
+            "Internship at MongoDB"
+        ],
+        "linkedin": "https://www.linkedin.com/in/user32",
+        "github": "https://github.com/user32",
+        "availableForMentorship": true,
+        "projects": [
+            "Weather App",
+            "Portfolio Website",
+            "Cryptocurrency Wallet"
+        ]
+    },
+    {
+        "email": "user33@example.com",
+        "firstName": "User33",
+        "lastName": "Test33",
+        "password": "hashedpassword",
+        "dob": "2001-10-23",
+        "profileImageURL": "",
+        "role": "student",
+        "batch": 2021,
+        "skills": [
+            "AWS",
+            "Java",
+            "React"
+        ],
+        "interests": [
+            "Android Development",
+            "Infrastructure",
+            "Web Development",
+            "Cloud Computing",
+            "Frontend Development",
+            "Backend Development"
+        ],
+        "bio": "User33 is passionate about Android Development, Infrastructure, Web Development, Cloud Computing, Frontend Development, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {},
+        "location": "City5",
+        "previousCompanies": [],
+        "internships": [],
+        "linkedin": "https://www.linkedin.com/in/user33",
+        "github": "https://github.com/user33",
+        "availableForMentorship": false,
+        "projects": [
+            "Serverless Web App",
+            "Android App",
+            "Spring Boot Microservice"
+        ]
+    },
+    {
+        "email": "user34@example.com",
+        "firstName": "User34",
+        "lastName": "Test34",
+        "password": "hashedpassword",
+        "dob": "2000-10-21",
+        "profileImageURL": "",
+        "role": "alumni",
+        "batch": 2016,
+        "skills": [
+            "JavaScript",
+            "SQL",
+            "C++"
+        ],
+        "interests": [
+            "UI/UX",
+            "Database Management",
+            "Web Development",
+            "Frontend Development",
+            "System Design",
+            "Competitive Programming",
+            "Data Analysis"
+        ],
+        "bio": "User34 is passionate about UI/UX, Database Management, Web Development, Frontend Development, System Design, Competitive Programming, Data Analysis.",
+        "refreshToken": "",
+        "jobDetails": {
+            "company": "Company17",
+            "title": "DevOps Engineer"
+        },
+        "location": "City7",
+        "previousCompanies": [
+            "Company88"
+        ],
+        "internships": [
+            "Internship at Django"
+        ],
+        "linkedin": "https://www.linkedin.com/in/user34",
+        "github": "https://github.com/user34",
+        "availableForMentorship": false,
+        "projects": [
+            "Weather App",
+            "Portfolio Website",
+            "To-Do App"
+        ]
+    },
+    {
+        "email": "user35@example.com",
+        "firstName": "User35",
+        "lastName": "Test35",
+        "password": "hashedpassword",
+        "dob": "1989-09-13",
+        "profileImageURL": "",
+        "role": "alumni",
+        "batch": 2015,
+        "skills": [
+            "Node.js",
+            "TensorFlow",
+            "Java"
+        ],
+        "interests": [
+            "API Development",
+            "Android Development",
+            "Deep Learning",
+            "Machine Learning",
+            "Backend Development"
+        ],
+        "bio": "User35 is passionate about API Development, Android Development, Deep Learning, Machine Learning, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {
+            "company": "Company31",
+            "title": "Data Scientist"
+        },
+        "location": "City9",
+        "previousCompanies": [
+            "Company60"
+        ],
+        "internships": [
+            "Internship at MongoDB"
+        ],
+        "linkedin": "https://www.linkedin.com/in/user35",
+        "github": "https://github.com/user35",
+        "availableForMentorship": true,
+        "projects": [
+            "Android App",
+            "Object Detection System",
+            "Real-time Chat App"
+        ]
+    },
+    {
+        "email": "user36@example.com",
+        "firstName": "User36",
+        "lastName": "Test36",
+        "password": "hashedpassword",
+        "dob": "1989-03-15",
+        "profileImageURL": "",
+        "role": "student",
+        "batch": 2020,
+        "skills": [
+            "Cybersecurity",
+            "IoT",
+            "Kubernetes"
+        ],
+        "interests": [
+            "Connected Devices",
+            "Cloud Computing",
+            "Embedded Systems",
+            "Ethical Hacking",
+            "DevOps",
+            "Network Security"
+        ],
+        "bio": "User36 is passionate about Connected Devices, Cloud Computing, Embedded Systems, Ethical Hacking, DevOps, Network Security.",
+        "refreshToken": "",
+        "jobDetails": {},
+        "location": "City5",
+        "previousCompanies": [],
+        "internships": [],
+        "linkedin": "https://www.linkedin.com/in/user36",
+        "github": "https://github.com/user36",
+        "availableForMentorship": false,
+        "projects": [
+            "IoT Weather Station",
+            "Connected Vehicle System",
+            "CI/CD Pipeline"
+        ]
+    },
+    {
+        "email": "user37@example.com",
+        "firstName": "User37",
+        "lastName": "Test37",
+        "password": "hashedpassword",
+        "dob": "1990-08-02",
+        "profileImageURL": "",
+        "role": "alumni",
+        "batch": 2017,
+        "skills": [
+            "Cybersecurity",
+            "Java",
+            "React"
+        ],
+        "interests": [
+            "Android Development",
+            "Frontend Development",
+            "Web Development",
+            "Ethical Hacking",
+            "Network Security",
+            "Backend Development"
+        ],
+        "bio": "User37 is passionate about Android Development, Frontend Development, Web Development, Ethical Hacking, Network Security, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {
+            "company": "Company37",
+            "title": "DevOps Engineer"
+        },
+        "location": "City7",
+        "previousCompanies": [
+            "Company53"
+        ],
+        "internships": [
+            "Internship at C++"
+        ],
+        "linkedin": "https://www.linkedin.com/in/user37",
+        "github": "https://github.com/user37",
+        "availableForMentorship": false,
+        "projects": [
+            "Android App",
+            "Spring Boot Microservice",
+            "Social Media Dashboard"
+        ]
+    },
+    {
+        "email": "user38@example.com",
+        "firstName": "User38",
+        "lastName": "Test38",
+        "password": "hashedpassword",
+        "dob": "1988-12-10",
+        "profileImageURL": "",
+        "role": "student",
+        "batch": 2025,
+        "skills": [
+            "Node.js",
+            "MongoDB",
+            "AWS"
+        ],
+        "interests": [
+            "API Development",
+            "NoSQL Databases",
+            "Infrastructure",
+            "Cloud Computing",
+            "Backend Development"
+        ],
+        "bio": "User38 is passionate about API Development, NoSQL Databases, Infrastructure, Cloud Computing, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {},
+        "location": "City4",
+        "previousCompanies": [],
+        "internships": [],
+        "linkedin": "https://www.linkedin.com/in/user38",
+        "github": "https://github.com/user38",
+        "availableForMentorship": false,
+        "projects": [
+            "Task Scheduler",
+            "Serverless Web App",
+            "Real-time Chat App"
+        ]
+    },
+    {
+        "email": "user39@example.com",
+        "firstName": "User39",
+        "lastName": "Test39",
+        "password": "hashedpassword",
+        "dob": "2001-11-27",
+        "profileImageURL": "",
+        "role": "alumni",
+        "batch": 2017,
+        "skills": [
+            "Kubernetes",
+            "Python",
+            "Node.js"
+        ],
+        "interests": [
+            "API Development",
+            "Cloud Computing",
+            "Data Science",
+            "DevOps",
+            "AI",
+            "Backend Development"
+        ],
+        "bio": "User39 is passionate about API Development, Cloud Computing, Data Science, DevOps, AI, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {
+            "company": "Company21",
+            "title": "Software Engineer"
+        },
+        "location": "City10",
+        "previousCompanies": [
+            "Company87"
+        ],
+        "internships": [
+            "Internship at Cybersecurity"
+        ],
+        "linkedin": "https://www.linkedin.com/in/user39",
+        "github": "https://github.com/user39",
+        "availableForMentorship": true,
+        "projects": [
+            "Real-time Chat App",
+            "CI/CD Pipeline",
+            "Scalable Web Service"
+        ]
+    },
+    {
+        "email": "user40@example.com",
+        "firstName": "User40",
+        "lastName": "Test40",
+        "password": "hashedpassword",
+        "dob": "1988-12-27",
+        "profileImageURL": "",
+        "role": "student",
+        "batch": 2015,
+        "skills": [
+            "Node.js",
+            "Python",
+            "AWS"
+        ],
+        "interests": [
+            "API Development",
+            "Cloud Computing",
+            "Data Science",
+            "Infrastructure",
+            "AI",
+            "Backend Development"
+        ],
+        "bio": "User40 is passionate about API Development, Cloud Computing, Data Science, Infrastructure, AI, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {},
+        "location": "City5",
+        "previousCompanies": [],
+        "internships": [],
+        "linkedin": "https://www.linkedin.com/in/user40",
+        "github": "https://github.com/user40",
+        "availableForMentorship": false,
+        "projects": [
+            "Serverless Web App",
+            "Real-time Chat App",
+            "Machine Learning Model"
+        ]
+    },
+    {
+        "email": "user41@example.com",
+        "firstName": "User41",
+        "lastName": "Test41",
+        "password": "hashedpassword",
+        "dob": "1999-12-21",
+        "profileImageURL": "",
+        "role": "student",
+        "batch": 2023,
+        "skills": [
+            "Java",
+            "Cybersecurity",
+            "Python"
+        ],
+        "interests": [
+            "Android Development",
+            "Data Science",
+            "Ethical Hacking",
+            "Network Security",
+            "AI",
+            "Backend Development"
+        ],
+        "bio": "User41 is passionate about Android Development, Data Science, Ethical Hacking, Network Security, AI, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {},
+        "location": "City2",
+        "previousCompanies": [],
+        "internships": [],
+        "linkedin": "https://www.linkedin.com/in/user41",
+        "github": "https://github.com/user41",
+        "availableForMentorship": false,
+        "projects": [
+            "Android App",
+            "Spring Boot Microservice",
+            "Machine Learning Model"
+        ]
+    },
+    {
+        "email": "user42@example.com",
+        "firstName": "User42",
+        "lastName": "Test42",
+        "password": "hashedpassword",
+        "dob": "1986-03-01",
+        "profileImageURL": "",
+        "role": "student",
+        "batch": 2015,
+        "skills": [
+            "Django",
+            "JavaScript",
+            "TensorFlow"
+        ],
+        "interests": [
+            "UI/UX",
+            "Frontend Development",
+            "Web Development",
+            "Deep Learning",
+            "Machine Learning",
+            "Backend Development"
+        ],
+        "bio": "User42 is passionate about UI/UX, Frontend Development, Web Development, Deep Learning, Machine Learning, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {},
+        "location": "City9",
+        "previousCompanies": [],
+        "internships": [],
+        "linkedin": "https://www.linkedin.com/in/user42",
+        "github": "https://github.com/user42",
+        "availableForMentorship": false,
+        "projects": [
+            "Weather App",
+            "Portfolio Website",
+            "Object Detection System"
+        ]
+    },
+    {
+        "email": "user43@example.com",
+        "firstName": "User43",
+        "lastName": "Test43",
+        "password": "hashedpassword",
+        "dob": "2003-12-02",
+        "profileImageURL": "",
+        "role": "student",
+        "batch": 2025,
+        "skills": [
+            "Django",
+            "IoT",
+            "JavaScript"
+        ],
+        "interests": [
+            "UI/UX",
+            "Connected Devices",
+            "Frontend Development",
+            "Web Development",
+            "Embedded Systems",
+            "Backend Development"
+        ],
+        "bio": "User43 is passionate about UI/UX, Connected Devices, Frontend Development, Web Development, Embedded Systems, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {},
+        "location": "City1",
+        "previousCompanies": [],
+        "internships": [],
+        "linkedin": "https://www.linkedin.com/in/user43",
+        "github": "https://github.com/user43",
+        "availableForMentorship": false,
+        "projects": [
+            "Weather App",
+            "Portfolio Website",
+            "IoT Weather Station"
+        ]
+    },
+    {
+        "email": "user44@example.com",
+        "firstName": "User44",
+        "lastName": "Test44",
+        "password": "hashedpassword",
+        "dob": "1995-06-04",
+        "profileImageURL": "",
+        "role": "student",
+        "batch": 2015,
+        "skills": [
+            "Node.js",
+            "AWS",
+            "Java"
+        ],
+        "interests": [
+            "API Development",
+            "Android Development",
+            "Infrastructure",
+            "Cloud Computing",
+            "Backend Development"
+        ],
+        "bio": "User44 is passionate about API Development, Android Development, Infrastructure, Cloud Computing, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {},
+        "location": "City3",
+        "previousCompanies": [],
+        "internships": [],
+        "linkedin": "https://www.linkedin.com/in/user44",
+        "github": "https://github.com/user44",
+        "availableForMentorship": false,
+        "projects": [
+            "Serverless Web App",
+            "Android App",
+            "Real-time Chat App"
+        ]
+    },
+    {
+        "email": "user45@example.com",
+        "firstName": "User45",
+        "lastName": "Test45",
+        "password": "hashedpassword",
+        "dob": "1995-08-10",
+        "profileImageURL": "",
+        "role": "student",
+        "batch": 2021,
+        "skills": [
+            "Kubernetes",
+            "JavaScript",
+            "C++"
+        ],
+        "interests": [
+            "UI/UX",
+            "Frontend Development",
+            "Web Development",
+            "Cloud Computing",
+            "System Design",
+            "Competitive Programming",
+            "DevOps"
+        ],
+        "bio": "User45 is passionate about UI/UX, Frontend Development, Web Development, Cloud Computing, System Design, Competitive Programming, DevOps.",
+        "refreshToken": "",
+        "jobDetails": {},
+        "location": "City6",
+        "previousCompanies": [],
+        "internships": [],
+        "linkedin": "https://www.linkedin.com/in/user45",
+        "github": "https://github.com/user45",
+        "availableForMentorship": false,
+        "projects": [
+            "Weather App",
+            "Portfolio Website",
+            "To-Do App"
+        ]
+    },
+    {
+        "email": "user46@example.com",
+        "firstName": "User46",
+        "lastName": "Test46",
+        "password": "hashedpassword",
+        "dob": "1994-08-01",
+        "profileImageURL": "",
+        "role": "student",
+        "batch": 2016,
+        "skills": [
+            "AWS",
+            "IoT",
+            "Node.js"
+        ],
+        "interests": [
+            "API Development",
+            "Connected Devices",
+            "Infrastructure",
+            "Cloud Computing",
+            "Embedded Systems",
+            "Backend Development"
+        ],
+        "bio": "User46 is passionate about API Development, Connected Devices, Infrastructure, Cloud Computing, Embedded Systems, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {},
+        "location": "City3",
+        "previousCompanies": [],
+        "internships": [],
+        "linkedin": "https://www.linkedin.com/in/user46",
+        "github": "https://github.com/user46",
+        "availableForMentorship": false,
+        "projects": [
+            "Serverless Web App",
+            "IoT Weather Station",
+            "Real-time Chat App"
+        ]
+    },
+    {
+        "email": "user47@example.com",
+        "firstName": "User47",
+        "lastName": "Test47",
+        "password": "hashedpassword",
+        "dob": "1999-07-19",
+        "profileImageURL": "",
+        "role": "alumni",
+        "batch": 2016,
+        "skills": [
+            "MongoDB",
+            "Kubernetes",
+            "Cybersecurity"
+        ],
+        "interests": [
+            "NoSQL Databases",
+            "Cloud Computing",
+            "Ethical Hacking",
+            "DevOps",
+            "Network Security",
+            "Backend Development"
+        ],
+        "bio": "User47 is passionate about NoSQL Databases, Cloud Computing, Ethical Hacking, DevOps, Network Security, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {
+            "company": "Company22",
+            "title": "Data Scientist"
+        },
+        "location": "City8",
+        "previousCompanies": [
+            "Company64"
+        ],
+        "internships": [
+            "Internship at Node.js"
+        ],
+        "linkedin": "https://www.linkedin.com/in/user47",
+        "github": "https://github.com/user47",
+        "availableForMentorship": true,
+        "projects": [
+            "CI/CD Pipeline",
+            "Scalable Web Service",
+            "Secure File Storage"
+        ]
+    },
+    {
+        "email": "user48@example.com",
+        "firstName": "User48",
+        "lastName": "Test48",
+        "password": "hashedpassword",
+        "dob": "1985-02-12",
+        "profileImageURL": "",
+        "role": "alumni",
+        "batch": 2019,
+        "skills": [
+            "JavaScript",
+            "Node.js",
+            "MongoDB"
+        ],
+        "interests": [
+            "API Development",
+            "NoSQL Databases",
+            "UI/UX",
+            "Frontend Development",
+            "Web Development",
+            "Backend Development"
+        ],
+        "bio": "User48 is passionate about API Development, NoSQL Databases, UI/UX, Frontend Development, Web Development, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {
+            "company": "Company42",
+            "title": "DevOps Engineer"
+        },
+        "location": "City1",
+        "previousCompanies": [
+            "Company88"
+        ],
+        "internships": [
+            "Internship at AWS"
+        ],
+        "linkedin": "https://www.linkedin.com/in/user48",
+        "github": "https://github.com/user48",
+        "availableForMentorship": false,
+        "projects": [
+            "Weather App",
+            "Portfolio Website",
+            "To-Do App"
+        ]
+    },
+    {
+        "email": "user49@example.com",
+        "firstName": "User49",
+        "lastName": "Test49",
+        "password": "hashedpassword",
+        "dob": "1988-07-03",
+        "profileImageURL": "",
+        "role": "alumni",
+        "batch": 2018,
+        "skills": [
+            "React",
+            "JavaScript",
+            "Kubernetes"
+        ],
+        "interests": [
+            "UI/UX",
+            "Cloud Computing",
+            "Web Development",
+            "Frontend Development",
+            "DevOps"
+        ],
+        "bio": "User49 is passionate about UI/UX, Cloud Computing, Web Development, Frontend Development, DevOps.",
+        "refreshToken": "",
+        "jobDetails": {
+            "company": "Company17",
+            "title": "Software Engineer"
+        },
+        "location": "City8",
+        "previousCompanies": [
+            "Company66"
+        ],
+        "internships": [
+            "Internship at Node.js"
+        ],
+        "linkedin": "https://www.linkedin.com/in/user49",
+        "github": "https://github.com/user49",
+        "availableForMentorship": false,
+        "projects": [
+            "Weather App",
+            "Portfolio Website",
+            "To-Do App"
+        ]
+    },
+    {
+        "email": "user50@example.com",
+        "firstName": "User50",
+        "lastName": "Test50",
+        "password": "hashedpassword",
+        "dob": "1999-10-05",
+        "profileImageURL": "",
+        "role": "alumni",
+        "batch": 2020,
+        "skills": [
+            "JavaScript",
+            "Java",
+            "Django"
+        ],
+        "interests": [
+            "UI/UX",
+            "Android Development",
+            "Frontend Development",
+            "Web Development",
+            "Backend Development"
+        ],
+        "bio": "User50 is passionate about UI/UX, Android Development, Frontend Development, Web Development, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {
+            "company": "Company27",
+            "title": "AI Engineer"
+        },
+        "location": "City10",
+        "previousCompanies": [
+            "Company86"
+        ],
+        "internships": [
+            "Internship at Java"
+        ],
+        "linkedin": "https://www.linkedin.com/in/user50",
+        "github": "https://github.com/user50",
+        "availableForMentorship": true,
+        "projects": [
+            "Weather App",
+            "Portfolio Website",
+            "Android App"
+        ]
+    },
+    {
+        "email": "user51@example.com",
+        "firstName": "User51",
+        "lastName": "Test51",
+        "password": "hashedpassword",
+        "dob": "1986-03-01",
+        "profileImageURL": "",
+        "role": "student",
+        "batch": 2020,
+        "skills": [
+            "Django",
+            "MongoDB",
+            "Node.js"
+        ],
+        "interests": [
+            "Web Development",
+            "API Development",
+            "NoSQL Databases",
+            "Backend Development"
+        ],
+        "bio": "User51 is passionate about Web Development, API Development, NoSQL Databases, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {},
+        "location": "City10",
+        "previousCompanies": [],
+        "internships": [],
+        "linkedin": "https://www.linkedin.com/in/user51",
+        "github": "https://github.com/user51",
+        "availableForMentorship": false,
+        "projects": [
+            "Task Scheduler",
+            "Real-time Chat App",
+            "E-learning Platform"
+        ]
+    },
+    {
+        "email": "user52@example.com",
+        "firstName": "User52",
+        "lastName": "Test52",
+        "password": "hashedpassword",
+        "dob": "1999-06-25",
+        "profileImageURL": "",
+        "role": "alumni",
+        "batch": 2024,
+        "skills": [
+            "TensorFlow",
+            "Django",
+            "React"
+        ],
+        "interests": [
+            "Frontend Development",
+            "Web Development",
+            "Deep Learning",
+            "Machine Learning",
+            "Backend Development"
+        ],
+        "bio": "User52 is passionate about Frontend Development, Web Development, Deep Learning, Machine Learning, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {
+            "company": "Company18",
+            "title": "Data Scientist"
+        },
+        "location": "City4",
+        "previousCompanies": [
+            "Company58"
+        ],
+        "internships": [
+            "Internship at Node.js"
+        ],
+        "linkedin": "https://www.linkedin.com/in/user52",
+        "github": "https://github.com/user52",
+        "availableForMentorship": true,
+        "projects": [
+            "Object Detection System",
+            "Social Media Dashboard",
+            "Image Classification Model"
+        ]
+    },
+    {
+        "email": "user53@example.com",
+        "firstName": "User53",
+        "lastName": "Test53",
+        "password": "hashedpassword",
+        "dob": "1985-11-01",
+        "profileImageURL": "",
+        "role": "student",
+        "batch": 2016,
+        "skills": [
+            "JavaScript",
+            "Django",
+            "React"
+        ],
+        "interests": [
+            "Web Development",
+            "UI/UX",
+            "Backend Development",
+            "Frontend Development"
+        ],
+        "bio": "User53 is passionate about Web Development, UI/UX, Backend Development, Frontend Development.",
+        "refreshToken": "",
+        "jobDetails": {},
+        "location": "City4",
+        "previousCompanies": [],
+        "internships": [],
+        "linkedin": "https://www.linkedin.com/in/user53",
+        "github": "https://github.com/user53",
+        "availableForMentorship": false,
+        "projects": [
+            "Weather App",
+            "Portfolio Website",
+            "To-Do App"
+        ]
+    },
+    {
+        "email": "user54@example.com",
+        "firstName": "User54",
+        "lastName": "Test54",
+        "password": "hashedpassword",
+        "dob": "1990-03-05",
+        "profileImageURL": "",
+        "role": "student",
+        "batch": 2015,
+        "skills": [
+            "Blockchain",
+            "React",
+            "IoT"
+        ],
+        "interests": [
+            "Connected Devices",
+            "Frontend Development",
+            "Web Development",
+            "Embedded Systems",
+            "Decentralized Systems",
+            "Cryptocurrency"
+        ],
+        "bio": "User54 is passionate about Connected Devices, Frontend Development, Web Development, Embedded Systems, Decentralized Systems, Cryptocurrency.",
+        "refreshToken": "",
+        "jobDetails": {},
+        "location": "City9",
+        "previousCompanies": [],
+        "internships": [],
+        "linkedin": "https://www.linkedin.com/in/user54",
+        "github": "https://github.com/user54",
+        "availableForMentorship": false,
+        "projects": [
+            "Cryptocurrency Wallet",
+            "IoT Weather Station",
+            "Social Media Dashboard"
+        ]
+    },
+    {
+        "email": "user55@example.com",
+        "firstName": "User55",
+        "lastName": "Test55",
+        "password": "hashedpassword",
+        "dob": "1997-02-06",
+        "profileImageURL": "",
+        "role": "alumni",
+        "batch": 2021,
+        "skills": [
+            "React",
+            "TensorFlow",
+            "Kubernetes"
+        ],
+        "interests": [
+            "Cloud Computing",
+            "Web Development",
+            "Frontend Development",
+            "DevOps",
+            "Deep Learning",
+            "Machine Learning"
+        ],
+        "bio": "User55 is passionate about Cloud Computing, Web Development, Frontend Development, DevOps, Deep Learning, Machine Learning.",
+        "refreshToken": "",
+        "jobDetails": {
+            "company": "Company30",
+            "title": "Software Engineer"
+        },
+        "location": "City5",
+        "previousCompanies": [
+            "Company89"
+        ],
+        "internships": [
+            "Internship at Java"
+        ],
+        "linkedin": "https://www.linkedin.com/in/user55",
+        "github": "https://github.com/user55",
+        "availableForMentorship": true,
+        "projects": [
+            "Object Detection System",
+            "Social Media Dashboard",
+            "CI/CD Pipeline"
+        ]
+    },
+    {
+        "email": "user56@example.com",
+        "firstName": "User56",
+        "lastName": "Test56",
+        "password": "hashedpassword",
+        "dob": "1989-03-09",
+        "profileImageURL": "",
+        "role": "student",
+        "batch": 2025,
+        "skills": [
+            "Java",
+            "TensorFlow",
+            "Kubernetes"
+        ],
+        "interests": [
+            "Android Development",
+            "Cloud Computing",
+            "DevOps",
+            "Deep Learning",
+            "Machine Learning",
+            "Backend Development"
+        ],
+        "bio": "User56 is passionate about Android Development, Cloud Computing, DevOps, Deep Learning, Machine Learning, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {},
+        "location": "City6",
+        "previousCompanies": [],
+        "internships": [],
+        "linkedin": "https://www.linkedin.com/in/user56",
+        "github": "https://github.com/user56",
+        "availableForMentorship": false,
+        "projects": [
+            "Android App",
+            "Object Detection System",
+            "Spring Boot Microservice"
+        ]
+    },
+    {
+        "email": "user57@example.com",
+        "firstName": "User57",
+        "lastName": "Test57",
+        "password": "hashedpassword",
+        "dob": "2002-11-02",
+        "profileImageURL": "",
+        "role": "alumni",
+        "batch": 2016,
+        "skills": [
+            "MongoDB",
+            "IoT",
+            "TensorFlow"
+        ],
+        "interests": [
+            "NoSQL Databases",
+            "Connected Devices",
+            "Embedded Systems",
+            "Deep Learning",
+            "Machine Learning",
+            "Backend Development"
+        ],
+        "bio": "User57 is passionate about NoSQL Databases, Connected Devices, Embedded Systems, Deep Learning, Machine Learning, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {
+            "company": "Company44",
+            "title": "AI Engineer"
+        },
+        "location": "City10",
+        "previousCompanies": [
+            "Company91"
+        ],
+        "internships": [
+            "Internship at Java"
+        ],
+        "linkedin": "https://www.linkedin.com/in/user57",
+        "github": "https://github.com/user57",
+        "availableForMentorship": false,
+        "projects": [
+            "Object Detection System",
+            "IoT Weather Station",
+            "Connected Vehicle System"
+        ]
+    },
+    {
+        "email": "user58@example.com",
+        "firstName": "User58",
+        "lastName": "Test58",
+        "password": "hashedpassword",
+        "dob": "1990-07-23",
+        "profileImageURL": "",
+        "role": "student",
+        "batch": 2024,
+        "skills": [
+            "MongoDB",
+            "Node.js",
+            "Java"
+        ],
+        "interests": [
+            "API Development",
+            "NoSQL Databases",
+            "Android Development",
+            "Backend Development"
+        ],
+        "bio": "User58 is passionate about API Development, NoSQL Databases, Android Development, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {},
+        "location": "City7",
+        "previousCompanies": [],
+        "internships": [],
+        "linkedin": "https://www.linkedin.com/in/user58",
+        "github": "https://github.com/user58",
+        "availableForMentorship": false,
+        "projects": [
+            "Task Scheduler",
+            "Android App",
+            "Real-time Chat App"
+        ]
+    },
+    {
+        "email": "user59@example.com",
+        "firstName": "User59",
+        "lastName": "Test59",
+        "password": "hashedpassword",
+        "dob": "1989-08-14",
+        "profileImageURL": "",
+        "role": "alumni",
+        "batch": 2017,
+        "skills": [
+            "Kubernetes",
+            "SQL",
+            "Cybersecurity"
+        ],
+        "interests": [
+            "Database Management",
+            "Cloud Computing",
+            "Ethical Hacking",
+            "DevOps",
+            "Network Security",
+            "Data Analysis"
+        ],
+        "bio": "User59 is passionate about Database Management, Cloud Computing, Ethical Hacking, DevOps, Network Security, Data Analysis.",
+        "refreshToken": "",
+        "jobDetails": {
+            "company": "Company7",
+            "title": "Software Engineer"
+        },
+        "location": "City6",
+        "previousCompanies": [
+            "Company54"
+        ],
+        "internships": [
+            "Internship at MongoDB"
+        ],
+        "linkedin": "https://www.linkedin.com/in/user59",
+        "github": "https://github.com/user59",
+        "availableForMentorship": true,
+        "projects": [
+            "CI/CD Pipeline",
+            "Scalable Web Service",
+            "Hospital Management Database"
+        ]
+    },
+    {
+        "email": "user60@example.com",
+        "firstName": "User60",
+        "lastName": "Test60",
+        "password": "hashedpassword",
+        "dob": "2001-03-16",
+        "profileImageURL": "",
+        "role": "alumni",
+        "batch": 2015,
+        "skills": [
+            "React",
+            "JavaScript",
+            "AWS"
+        ],
+        "interests": [
+            "UI/UX",
+            "Cloud Computing",
+            "Web Development",
+            "Infrastructure",
+            "Frontend Development"
+        ],
+        "bio": "User60 is passionate about UI/UX, Cloud Computing, Web Development, Infrastructure, Frontend Development.",
+        "refreshToken": "",
+        "jobDetails": {
+            "company": "Company9",
+            "title": "Software Engineer"
+        },
+        "location": "City7",
+        "previousCompanies": [
+            "Company71"
+        ],
+        "internships": [
+            "Internship at MongoDB"
+        ],
+        "linkedin": "https://www.linkedin.com/in/user60",
+        "github": "https://github.com/user60",
+        "availableForMentorship": true,
+        "projects": [
+            "Weather App",
+            "Portfolio Website",
+            "Serverless Web App"
+        ]
+    },
+    {
+        "email": "user61@example.com",
+        "firstName": "User61",
+        "lastName": "Test61",
+        "password": "hashedpassword",
+        "dob": "2000-09-19",
+        "profileImageURL": "",
+        "role": "student",
+        "batch": 2019,
+        "skills": [
+            "Cybersecurity",
+            "React",
+            "Kubernetes"
+        ],
+        "interests": [
+            "Cloud Computing",
+            "Web Development",
+            "Frontend Development",
+            "Ethical Hacking",
+            "DevOps",
+            "Network Security"
+        ],
+        "bio": "User61 is passionate about Cloud Computing, Web Development, Frontend Development, Ethical Hacking, DevOps, Network Security.",
+        "refreshToken": "",
+        "jobDetails": {},
+        "location": "City3",
+        "previousCompanies": [],
+        "internships": [],
+        "linkedin": "https://www.linkedin.com/in/user61",
+        "github": "https://github.com/user61",
+        "availableForMentorship": false,
+        "projects": [
+            "Social Media Dashboard",
+            "CI/CD Pipeline",
+            "Secure File Storage"
+        ]
+    },
+    {
+        "email": "user62@example.com",
+        "firstName": "User62",
+        "lastName": "Test62",
+        "password": "hashedpassword",
+        "dob": "2001-06-19",
+        "profileImageURL": "",
+        "role": "student",
+        "batch": 2015,
+        "skills": [
+            "Blockchain",
+            "TensorFlow",
+            "SQL"
+        ],
+        "interests": [
+            "Database Management",
+            "Deep Learning",
+            "Decentralized Systems",
+            "Cryptocurrency",
+            "Machine Learning",
+            "Data Analysis"
+        ],
+        "bio": "User62 is passionate about Database Management, Deep Learning, Decentralized Systems, Cryptocurrency, Machine Learning, Data Analysis.",
+        "refreshToken": "",
+        "jobDetails": {},
+        "location": "City6",
+        "previousCompanies": [],
+        "internships": [],
+        "linkedin": "https://www.linkedin.com/in/user62",
+        "github": "https://github.com/user62",
+        "availableForMentorship": false,
+        "projects": [
+            "Cryptocurrency Wallet",
+            "Object Detection System",
+            "Image Classification Model"
+        ]
+    },
+    {
+        "email": "user63@example.com",
+        "firstName": "User63",
+        "lastName": "Test63",
+        "password": "hashedpassword",
+        "dob": "1995-05-18",
+        "profileImageURL": "",
+        "role": "alumni",
+        "batch": 2017,
+        "skills": [
+            "TensorFlow",
+            "Kubernetes",
+            "SQL"
+        ],
+        "interests": [
+            "Database Management",
+            "Cloud Computing",
+            "DevOps",
+            "Deep Learning",
+            "Machine Learning",
+            "Data Analysis"
+        ],
+        "bio": "User63 is passionate about Database Management, Cloud Computing, DevOps, Deep Learning, Machine Learning, Data Analysis.",
+        "refreshToken": "",
+        "jobDetails": {
+            "company": "Company44",
+            "title": "AI Engineer"
+        },
+        "location": "City7",
+        "previousCompanies": [
+            "Company98"
+        ],
+        "internships": [
+            "Internship at TensorFlow"
+        ],
+        "linkedin": "https://www.linkedin.com/in/user63",
+        "github": "https://github.com/user63",
+        "availableForMentorship": false,
+        "projects": [
+            "Object Detection System",
+            "CI/CD Pipeline",
+            "Scalable Web Service"
+        ]
+    },
+    {
+        "email": "user64@example.com",
+        "firstName": "User64",
+        "lastName": "Test64",
+        "password": "hashedpassword",
+        "dob": "1993-06-16",
+        "profileImageURL": "",
+        "role": "alumni",
+        "batch": 2022,
+        "skills": [
+            "Node.js",
+            "MongoDB",
+            "IoT"
+        ],
+        "interests": [
+            "API Development",
+            "NoSQL Databases",
+            "Connected Devices",
+            "Embedded Systems",
+            "Backend Development"
+        ],
+        "bio": "User64 is passionate about API Development, NoSQL Databases, Connected Devices, Embedded Systems, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {
+            "company": "Company26",
+            "title": "Data Scientist"
+        },
+        "location": "City10",
+        "previousCompanies": [
+            "Company75"
+        ],
+        "internships": [
+            "Internship at AWS"
+        ],
+        "linkedin": "https://www.linkedin.com/in/user64",
+        "github": "https://github.com/user64",
+        "availableForMentorship": true,
+        "projects": [
+            "Task Scheduler",
+            "IoT Weather Station",
+            "Real-time Chat App"
+        ]
+    },
+    {
+        "email": "user65@example.com",
+        "firstName": "User65",
+        "lastName": "Test65",
+        "password": "hashedpassword",
+        "dob": "2001-06-05",
+        "profileImageURL": "",
+        "role": "alumni",
+        "batch": 2018,
+        "skills": [
+            "C++",
+            "SQL",
+            "TensorFlow"
+        ],
+        "interests": [
+            "Database Management",
+            "System Design",
+            "Competitive Programming",
+            "Deep Learning",
+            "Machine Learning",
+            "Data Analysis"
+        ],
+        "bio": "User65 is passionate about Database Management, System Design, Competitive Programming, Deep Learning, Machine Learning, Data Analysis.",
+        "refreshToken": "",
+        "jobDetails": {
+            "company": "Company37",
+            "title": "DevOps Engineer"
+        },
+        "location": "City1",
+        "previousCompanies": [
+            "Company96"
+        ],
+        "internships": [
+            "Internship at AWS"
+        ],
+        "linkedin": "https://www.linkedin.com/in/user65",
+        "github": "https://github.com/user65",
+        "availableForMentorship": true,
+        "projects": [
+            "Object Detection System",
+            "Hospital Management Database",
+            "Image Classification Model"
+        ]
+    },
+    {
+        "email": "user66@example.com",
+        "firstName": "User66",
+        "lastName": "Test66",
+        "password": "hashedpassword",
+        "dob": "2000-12-15",
+        "profileImageURL": "",
+        "role": "student",
+        "batch": 2019,
+        "skills": [
+            "TensorFlow",
+            "SQL",
+            "Cybersecurity"
+        ],
+        "interests": [
+            "Database Management",
+            "Ethical Hacking",
+            "Network Security",
+            "Deep Learning",
+            "Machine Learning",
+            "Data Analysis"
+        ],
+        "bio": "User66 is passionate about Database Management, Ethical Hacking, Network Security, Deep Learning, Machine Learning, Data Analysis.",
+        "refreshToken": "",
+        "jobDetails": {},
+        "location": "City8",
+        "previousCompanies": [],
+        "internships": [],
+        "linkedin": "https://www.linkedin.com/in/user66",
+        "github": "https://github.com/user66",
+        "availableForMentorship": false,
+        "projects": [
+            "Object Detection System",
+            "Image Classification Model",
+            "Hospital Management Database"
+        ]
+    },
+    {
+        "email": "user67@example.com",
+        "firstName": "User67",
+        "lastName": "Test67",
+        "password": "hashedpassword",
+        "dob": "1992-09-10",
+        "profileImageURL": "",
+        "role": "student",
+        "batch": 2023,
+        "skills": [
+            "AWS",
+            "Cybersecurity",
+            "Django"
+        ],
+        "interests": [
+            "Infrastructure",
+            "Web Development",
+            "Cloud Computing",
+            "Ethical Hacking",
+            "Network Security",
+            "Backend Development"
+        ],
+        "bio": "User67 is passionate about Infrastructure, Web Development, Cloud Computing, Ethical Hacking, Network Security, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {},
+        "location": "City3",
+        "previousCompanies": [],
+        "internships": [],
+        "linkedin": "https://www.linkedin.com/in/user67",
+        "github": "https://github.com/user67",
+        "availableForMentorship": false,
+        "projects": [
+            "Serverless Web App",
+            "Secure File Storage",
+            "Anomaly Detection"
+        ]
+    },
+    {
+        "email": "user68@example.com",
+        "firstName": "User68",
+        "lastName": "Test68",
+        "password": "hashedpassword",
+        "dob": "1992-01-02",
+        "profileImageURL": "",
+        "role": "alumni",
+        "batch": 2022,
+        "skills": [
+            "Kubernetes",
+            "Blockchain",
+            "SQL"
+        ],
+        "interests": [
+            "Database Management",
+            "Cloud Computing",
+            "DevOps",
+            "Decentralized Systems",
+            "Cryptocurrency",
+            "Data Analysis"
+        ],
+        "bio": "User68 is passionate about Database Management, Cloud Computing, DevOps, Decentralized Systems, Cryptocurrency, Data Analysis.",
+        "refreshToken": "",
+        "jobDetails": {
+            "company": "Company24",
+            "title": "AI Engineer"
+        },
+        "location": "City9",
+        "previousCompanies": [
+            "Company80"
+        ],
+        "internships": [
+            "Internship at SQL"
+        ],
+        "linkedin": "https://www.linkedin.com/in/user68",
+        "github": "https://github.com/user68",
+        "availableForMentorship": false,
+        "projects": [
+            "Cryptocurrency Wallet",
+            "CI/CD Pipeline",
+            "Scalable Web Service"
+        ]
+    },
+    {
+        "email": "user69@example.com",
+        "firstName": "User69",
+        "lastName": "Test69",
+        "password": "hashedpassword",
+        "dob": "2003-01-25",
+        "profileImageURL": "",
+        "role": "alumni",
+        "batch": 2022,
+        "skills": [
+            "C++",
+            "AWS",
+            "Django"
+        ],
+        "interests": [
+            "Infrastructure",
+            "Web Development",
+            "System Design",
+            "Cloud Computing",
+            "Competitive Programming",
+            "Backend Development"
+        ],
+        "bio": "User69 is passionate about Infrastructure, Web Development, System Design, Cloud Computing, Competitive Programming, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {
+            "company": "Company1",
+            "title": "Software Engineer"
+        },
+        "location": "City5",
+        "previousCompanies": [
+            "Company85"
+        ],
+        "internships": [
+            "Internship at Blockchain"
+        ],
+        "linkedin": "https://www.linkedin.com/in/user69",
+        "github": "https://github.com/user69",
+        "availableForMentorship": false,
+        "projects": [
+            "Serverless Web App",
+            "E-learning Platform",
+            "Personal Finance Tracker"
+        ]
+    },
+    {
+        "email": "user70@example.com",
+        "firstName": "User70",
+        "lastName": "Test70",
+        "password": "hashedpassword",
+        "dob": "1987-04-07",
+        "profileImageURL": "",
+        "role": "student",
+        "batch": 2015,
+        "skills": [
+            "Node.js",
+            "C++",
+            "Django"
+        ],
+        "interests": [
+            "API Development",
+            "Web Development",
+            "System Design",
+            "Competitive Programming",
+            "Backend Development"
+        ],
+        "bio": "User70 is passionate about API Development, Web Development, System Design, Competitive Programming, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {},
+        "location": "City2",
+        "previousCompanies": [],
+        "internships": [],
+        "linkedin": "https://www.linkedin.com/in/user70",
+        "github": "https://github.com/user70",
+        "availableForMentorship": false,
+        "projects": [
+            "Real-time Chat App",
+            "E-learning Platform",
+            "API Gateway"
+        ]
+    },
+    {
+        "email": "user71@example.com",
+        "firstName": "User71",
+        "lastName": "Test71",
+        "password": "hashedpassword",
+        "dob": "1992-06-22",
+        "profileImageURL": "",
+        "role": "alumni",
+        "batch": 2022,
+        "skills": [
+            "Java",
+            "C++",
+            "Python"
+        ],
+        "interests": [
+            "Android Development",
+            "Data Science",
+            "System Design",
+            "Competitive Programming",
+            "AI",
+            "Backend Development"
+        ],
+        "bio": "User71 is passionate about Android Development, Data Science, System Design, Competitive Programming, AI, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {
+            "company": "Company44",
+            "title": "DevOps Engineer"
+        },
+        "location": "City8",
+        "previousCompanies": [
+            "Company60"
+        ],
+        "internships": [
+            "Internship at Node.js"
+        ],
+        "linkedin": "https://www.linkedin.com/in/user71",
+        "github": "https://github.com/user71",
+        "availableForMentorship": false,
+        "projects": [
+            "Android App",
+            "Spring Boot Microservice",
+            "Machine Learning Model"
+        ]
+    },
+    {
+        "email": "user72@example.com",
+        "firstName": "User72",
+        "lastName": "Test72",
+        "password": "hashedpassword",
+        "dob": "1992-02-11",
+        "profileImageURL": "",
+        "role": "alumni",
+        "batch": 2024,
+        "skills": [
+            "AWS",
+            "Node.js",
+            "JavaScript"
+        ],
+        "interests": [
+            "API Development",
+            "UI/UX",
+            "Infrastructure",
+            "Web Development",
+            "Cloud Computing",
+            "Frontend Development",
+            "Backend Development"
+        ],
+        "bio": "User72 is passionate about API Development, UI/UX, Infrastructure, Web Development, Cloud Computing, Frontend Development, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {
+            "company": "Company14",
+            "title": "Data Scientist"
+        },
+        "location": "City3",
+        "previousCompanies": [
+            "Company74"
+        ],
+        "internships": [
+            "Internship at TensorFlow"
+        ],
+        "linkedin": "https://www.linkedin.com/in/user72",
+        "github": "https://github.com/user72",
+        "availableForMentorship": false,
+        "projects": [
+            "Weather App",
+            "Serverless Web App",
+            "Portfolio Website"
+        ]
+    },
+    {
+        "email": "user73@example.com",
+        "firstName": "User73",
+        "lastName": "Test73",
+        "password": "hashedpassword",
+        "dob": "1987-06-21",
+        "profileImageURL": "",
+        "role": "student",
+        "batch": 2021,
+        "skills": [
+            "C++",
+            "IoT",
+            "Node.js"
+        ],
+        "interests": [
+            "API Development",
+            "Connected Devices",
+            "System Design",
+            "Embedded Systems",
+            "Competitive Programming",
+            "Backend Development"
+        ],
+        "bio": "User73 is passionate about API Development, Connected Devices, System Design, Embedded Systems, Competitive Programming, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {},
+        "location": "City7",
+        "previousCompanies": [],
+        "internships": [],
+        "linkedin": "https://www.linkedin.com/in/user73",
+        "github": "https://github.com/user73",
+        "availableForMentorship": false,
+        "projects": [
+            "IoT Weather Station",
+            "Real-time Chat App",
+            "Connected Vehicle System"
+        ]
+    },
+    {
+        "email": "user74@example.com",
+        "firstName": "User74",
+        "lastName": "Test74",
+        "password": "hashedpassword",
+        "dob": "1986-06-01",
+        "profileImageURL": "",
+        "role": "student",
+        "batch": 2022,
+        "skills": [
+            "Kubernetes",
+            "Cybersecurity",
+            "IoT"
+        ],
+        "interests": [
+            "Connected Devices",
+            "Cloud Computing",
+            "Ethical Hacking",
+            "Embedded Systems",
+            "DevOps",
+            "Network Security"
+        ],
+        "bio": "User74 is passionate about Connected Devices, Cloud Computing, Ethical Hacking, Embedded Systems, DevOps, Network Security.",
+        "refreshToken": "",
+        "jobDetails": {},
+        "location": "City7",
+        "previousCompanies": [],
+        "internships": [],
+        "linkedin": "https://www.linkedin.com/in/user74",
+        "github": "https://github.com/user74",
+        "availableForMentorship": false,
+        "projects": [
+            "IoT Weather Station",
+            "CI/CD Pipeline",
+            "Scalable Web Service"
+        ]
+    },
+    {
+        "email": "user75@example.com",
+        "firstName": "User75",
+        "lastName": "Test75",
+        "password": "hashedpassword",
+        "dob": "1997-01-24",
+        "profileImageURL": "",
+        "role": "alumni",
+        "batch": 2022,
+        "skills": [
+            "Node.js",
+            "Python",
+            "Kubernetes"
+        ],
+        "interests": [
+            "API Development",
+            "Cloud Computing",
+            "Data Science",
+            "DevOps",
+            "AI",
+            "Backend Development"
+        ],
+        "bio": "User75 is passionate about API Development, Cloud Computing, Data Science, DevOps, AI, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {
+            "company": "Company5",
+            "title": "Data Scientist"
+        },
+        "location": "City3",
+        "previousCompanies": [
+            "Company98"
+        ],
+        "internships": [
+            "Internship at MongoDB"
+        ],
+        "linkedin": "https://www.linkedin.com/in/user75",
+        "github": "https://github.com/user75",
+        "availableForMentorship": false,
+        "projects": [
+            "Real-time Chat App",
+            "CI/CD Pipeline",
+            "Machine Learning Model"
+        ]
+    },
+    {
+        "email": "user76@example.com",
+        "firstName": "User76",
+        "lastName": "Test76",
+        "password": "hashedpassword",
+        "dob": "1995-11-15",
+        "profileImageURL": "",
+        "role": "student",
+        "batch": 2015,
+        "skills": [
+            "Cybersecurity",
+            "MongoDB",
+            "TensorFlow"
+        ],
+        "interests": [
+            "NoSQL Databases",
+            "Ethical Hacking",
+            "Network Security",
+            "Deep Learning",
+            "Machine Learning",
+            "Backend Development"
+        ],
+        "bio": "User76 is passionate about NoSQL Databases, Ethical Hacking, Network Security, Deep Learning, Machine Learning, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {},
+        "location": "City3",
+        "previousCompanies": [],
+        "internships": [],
+        "linkedin": "https://www.linkedin.com/in/user76",
+        "github": "https://github.com/user76",
+        "availableForMentorship": false,
+        "projects": [
+            "Object Detection System",
+            "Secure File Storage",
+            "Image Classification Model"
+        ]
+    },
+    {
+        "email": "user77@example.com",
+        "firstName": "User77",
+        "lastName": "Test77",
+        "password": "hashedpassword",
+        "dob": "1991-02-09",
+        "profileImageURL": "",
+        "role": "student",
+        "batch": 2025,
+        "skills": [
+            "IoT",
+            "Node.js",
+            "JavaScript"
+        ],
+        "interests": [
+            "API Development",
+            "UI/UX",
+            "Connected Devices",
+            "Frontend Development",
+            "Web Development",
+            "Embedded Systems",
+            "Backend Development"
+        ],
+        "bio": "User77 is passionate about API Development, UI/UX, Connected Devices, Frontend Development, Web Development, Embedded Systems, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {},
+        "location": "City7",
+        "previousCompanies": [],
+        "internships": [],
+        "linkedin": "https://www.linkedin.com/in/user77",
+        "github": "https://github.com/user77",
+        "availableForMentorship": false,
+        "projects": [
+            "Weather App",
+            "Portfolio Website",
+            "IoT Weather Station"
+        ]
+    },
+    {
+        "email": "user78@example.com",
+        "firstName": "User78",
+        "lastName": "Test78",
+        "password": "hashedpassword",
+        "dob": "1990-11-06",
+        "profileImageURL": "",
+        "role": "alumni",
+        "batch": 2022,
+        "skills": [
+            "MongoDB",
+            "Java",
+            "Kubernetes"
+        ],
+        "interests": [
+            "NoSQL Databases",
+            "Android Development",
+            "Cloud Computing",
+            "DevOps",
+            "Backend Development"
+        ],
+        "bio": "User78 is passionate about NoSQL Databases, Android Development, Cloud Computing, DevOps, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {
+            "company": "Company46",
+            "title": "DevOps Engineer"
+        },
+        "location": "City3",
+        "previousCompanies": [
+            "Company69"
+        ],
+        "internships": [
+            "Internship at Blockchain"
+        ],
+        "linkedin": "https://www.linkedin.com/in/user78",
+        "github": "https://github.com/user78",
+        "availableForMentorship": false,
+        "projects": [
+            "Android App",
+            "Spring Boot Microservice",
+            "CI/CD Pipeline"
+        ]
+    },
+    {
+        "email": "user79@example.com",
+        "firstName": "User79",
+        "lastName": "Test79",
+        "password": "hashedpassword",
+        "dob": "1985-03-25",
+        "profileImageURL": "",
+        "role": "alumni",
+        "batch": 2019,
+        "skills": [
+            "Django",
+            "SQL",
+            "MongoDB"
+        ],
+        "interests": [
+            "NoSQL Databases",
+            "Database Management",
+            "Web Development",
+            "Data Analysis",
+            "Backend Development"
+        ],
+        "bio": "User79 is passionate about NoSQL Databases, Database Management, Web Development, Data Analysis, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {
+            "company": "Company1",
+            "title": "Software Engineer"
+        },
+        "location": "City10",
+        "previousCompanies": [
+            "Company88"
+        ],
+        "internships": [
+            "Internship at JavaScript"
+        ],
+        "linkedin": "https://www.linkedin.com/in/user79",
+        "github": "https://github.com/user79",
+        "availableForMentorship": false,
+        "projects": [
+            "Hospital Management Database",
+            "E-learning Platform",
+            "Personal Finance Tracker"
+        ]
+    },
+    {
+        "email": "user80@example.com",
+        "firstName": "User80",
+        "lastName": "Test80",
+        "password": "hashedpassword",
+        "dob": "1998-10-01",
+        "profileImageURL": "",
+        "role": "student",
+        "batch": 2017,
+        "skills": [
+            "JavaScript",
+            "Django",
+            "MongoDB"
+        ],
+        "interests": [
+            "NoSQL Databases",
+            "UI/UX",
+            "Frontend Development",
+            "Web Development",
+            "Backend Development"
+        ],
+        "bio": "User80 is passionate about NoSQL Databases, UI/UX, Frontend Development, Web Development, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {},
+        "location": "City7",
+        "previousCompanies": [],
+        "internships": [],
+        "linkedin": "https://www.linkedin.com/in/user80",
+        "github": "https://github.com/user80",
+        "availableForMentorship": false,
+        "projects": [
+            "Weather App",
+            "Portfolio Website",
+            "To-Do App"
+        ]
+    },
+    {
+        "email": "user81@example.com",
+        "firstName": "User81",
+        "lastName": "Test81",
+        "password": "hashedpassword",
+        "dob": "1994-08-01",
+        "profileImageURL": "",
+        "role": "student",
+        "batch": 2025,
+        "skills": [
+            "IoT",
+            "Python",
+            "MongoDB"
+        ],
+        "interests": [
+            "NoSQL Databases",
+            "Connected Devices",
+            "Data Science",
+            "Embedded Systems",
+            "AI",
+            "Backend Development"
+        ],
+        "bio": "User81 is passionate about NoSQL Databases, Connected Devices, Data Science, Embedded Systems, AI, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {},
+        "location": "City5",
+        "previousCompanies": [],
+        "internships": [],
+        "linkedin": "https://www.linkedin.com/in/user81",
+        "github": "https://github.com/user81",
+        "availableForMentorship": false,
+        "projects": [
+            "IoT Weather Station",
+            "Connected Vehicle System",
+            "Machine Learning Model"
+        ]
+    },
+    {
+        "email": "user82@example.com",
+        "firstName": "User82",
+        "lastName": "Test82",
+        "password": "hashedpassword",
+        "dob": "2000-03-01",
+        "profileImageURL": "",
+        "role": "student",
+        "batch": 2022,
+        "skills": [
+            "AWS",
+            "MongoDB",
+            "React"
+        ],
+        "interests": [
+            "NoSQL Databases",
+            "Infrastructure",
+            "Web Development",
+            "Cloud Computing",
+            "Frontend Development",
+            "Backend Development"
+        ],
+        "bio": "User82 is passionate about NoSQL Databases, Infrastructure, Web Development, Cloud Computing, Frontend Development, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {},
+        "location": "City6",
+        "previousCompanies": [],
+        "internships": [],
+        "linkedin": "https://www.linkedin.com/in/user82",
+        "github": "https://github.com/user82",
+        "availableForMentorship": false,
+        "projects": [
+            "Serverless Web App",
+            "Social Media Dashboard",
+            "E-commerce Platform"
+        ]
+    },
+    {
+        "email": "user83@example.com",
+        "firstName": "User83",
+        "lastName": "Test83",
+        "password": "hashedpassword",
+        "dob": "1996-06-27",
+        "profileImageURL": "",
+        "role": "alumni",
+        "batch": 2015,
+        "skills": [
+            "Node.js",
+            "JavaScript",
+            "TensorFlow"
+        ],
+        "interests": [
+            "API Development",
+            "UI/UX",
+            "Frontend Development",
+            "Web Development",
+            "Deep Learning",
+            "Machine Learning",
+            "Backend Development"
+        ],
+        "bio": "User83 is passionate about API Development, UI/UX, Frontend Development, Web Development, Deep Learning, Machine Learning, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {
+            "company": "Company10",
+            "title": "Data Scientist"
+        },
+        "location": "City2",
+        "previousCompanies": [
+            "Company76"
+        ],
+        "internships": [
+            "Internship at React"
+        ],
+        "linkedin": "https://www.linkedin.com/in/user83",
+        "github": "https://github.com/user83",
+        "availableForMentorship": true,
+        "projects": [
+            "Weather App",
+            "Portfolio Website",
+            "Object Detection System"
+        ]
+    },
+    {
+        "email": "user84@example.com",
+        "firstName": "User84",
+        "lastName": "Test84",
+        "password": "hashedpassword",
+        "dob": "1990-02-03",
+        "profileImageURL": "",
+        "role": "alumni",
+        "batch": 2025,
+        "skills": [
+            "TensorFlow",
+            "React",
+            "SQL"
+        ],
+        "interests": [
+            "Database Management",
+            "Web Development",
+            "Frontend Development",
+            "Deep Learning",
+            "Machine Learning",
+            "Data Analysis"
+        ],
+        "bio": "User84 is passionate about Database Management, Web Development, Frontend Development, Deep Learning, Machine Learning, Data Analysis.",
+        "refreshToken": "",
+        "jobDetails": {
+            "company": "Company29",
+            "title": "AI Engineer"
+        },
+        "location": "City2",
+        "previousCompanies": [
+            "Company64"
+        ],
+        "internships": [
+            "Internship at Node.js"
+        ],
+        "linkedin": "https://www.linkedin.com/in/user84",
+        "github": "https://github.com/user84",
+        "availableForMentorship": false,
+        "projects": [
+            "Object Detection System",
+            "Social Media Dashboard",
+            "Image Classification Model"
+        ]
+    },
+    {
+        "email": "user85@example.com",
+        "firstName": "User85",
+        "lastName": "Test85",
+        "password": "hashedpassword",
+        "dob": "1996-02-17",
+        "profileImageURL": "",
+        "role": "student",
+        "batch": 2018,
+        "skills": [
+            "AWS",
+            "TensorFlow",
+            "React"
+        ],
+        "interests": [
+            "Infrastructure",
+            "Web Development",
+            "Cloud Computing",
+            "Frontend Development",
+            "Deep Learning",
+            "Machine Learning"
+        ],
+        "bio": "User85 is passionate about Infrastructure, Web Development, Cloud Computing, Frontend Development, Deep Learning, Machine Learning.",
+        "refreshToken": "",
+        "jobDetails": {},
+        "location": "City10",
+        "previousCompanies": [],
+        "internships": [],
+        "linkedin": "https://www.linkedin.com/in/user85",
+        "github": "https://github.com/user85",
+        "availableForMentorship": false,
+        "projects": [
+            "Serverless Web App",
+            "Object Detection System",
+            "Social Media Dashboard"
+        ]
+    },
+    {
+        "email": "user86@example.com",
+        "firstName": "User86",
+        "lastName": "Test86",
+        "password": "hashedpassword",
+        "dob": "1987-07-21",
+        "profileImageURL": "",
+        "role": "alumni",
+        "batch": 2015,
+        "skills": [
+            "JavaScript",
+            "IoT",
+            "Node.js"
+        ],
+        "interests": [
+            "API Development",
+            "UI/UX",
+            "Connected Devices",
+            "Frontend Development",
+            "Web Development",
+            "Embedded Systems",
+            "Backend Development"
+        ],
+        "bio": "User86 is passionate about API Development, UI/UX, Connected Devices, Frontend Development, Web Development, Embedded Systems, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {
+            "company": "Company3",
+            "title": "DevOps Engineer"
+        },
+        "location": "City7",
+        "previousCompanies": [
+            "Company77"
+        ],
+        "internships": [
+            "Internship at Node.js"
+        ],
+        "linkedin": "https://www.linkedin.com/in/user86",
+        "github": "https://github.com/user86",
+        "availableForMentorship": true,
+        "projects": [
+            "Weather App",
+            "Portfolio Website",
+            "IoT Weather Station"
+        ]
+    },
+    {
+        "email": "user87@example.com",
+        "firstName": "User87",
+        "lastName": "Test87",
+        "password": "hashedpassword",
+        "dob": "1993-06-27",
+        "profileImageURL": "",
+        "role": "student",
+        "batch": 2023,
+        "skills": [
+            "Kubernetes",
+            "AWS",
+            "Java"
+        ],
+        "interests": [
+            "Android Development",
+            "Infrastructure",
+            "Cloud Computing",
+            "DevOps",
+            "Backend Development"
+        ],
+        "bio": "User87 is passionate about Android Development, Infrastructure, Cloud Computing, DevOps, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {},
+        "location": "City6",
+        "previousCompanies": [],
+        "internships": [],
+        "linkedin": "https://www.linkedin.com/in/user87",
+        "github": "https://github.com/user87",
+        "availableForMentorship": false,
+        "projects": [
+            "Serverless Web App",
+            "Android App",
+            "Spring Boot Microservice"
+        ]
+    },
+    {
+        "email": "user88@example.com",
+        "firstName": "User88",
+        "lastName": "Test88",
+        "password": "hashedpassword",
+        "dob": "2004-10-21",
+        "profileImageURL": "",
+        "role": "student",
+        "batch": 2017,
+        "skills": [
+            "TensorFlow",
+            "Cybersecurity",
+            "IoT"
+        ],
+        "interests": [
+            "Connected Devices",
+            "Ethical Hacking",
+            "Embedded Systems",
+            "Network Security",
+            "Deep Learning",
+            "Machine Learning"
+        ],
+        "bio": "User88 is passionate about Connected Devices, Ethical Hacking, Embedded Systems, Network Security, Deep Learning, Machine Learning.",
+        "refreshToken": "",
+        "jobDetails": {},
+        "location": "City1",
+        "previousCompanies": [],
+        "internships": [],
+        "linkedin": "https://www.linkedin.com/in/user88",
+        "github": "https://github.com/user88",
+        "availableForMentorship": false,
+        "projects": [
+            "Object Detection System",
+            "IoT Weather Station",
+            "Connected Vehicle System"
+        ]
+    },
+    {
+        "email": "user89@example.com",
+        "firstName": "User89",
+        "lastName": "Test89",
+        "password": "hashedpassword",
+        "dob": "1989-06-18",
+        "profileImageURL": "",
+        "role": "student",
+        "batch": 2025,
+        "skills": [
+            "Django",
+            "Node.js",
+            "IoT"
+        ],
+        "interests": [
+            "API Development",
+            "Connected Devices",
+            "Web Development",
+            "Embedded Systems",
+            "Backend Development"
+        ],
+        "bio": "User89 is passionate about API Development, Connected Devices, Web Development, Embedded Systems, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {},
+        "location": "City3",
+        "previousCompanies": [],
+        "internships": [],
+        "linkedin": "https://www.linkedin.com/in/user89",
+        "github": "https://github.com/user89",
+        "availableForMentorship": false,
+        "projects": [
+            "IoT Weather Station",
+            "Real-time Chat App",
+            "Connected Vehicle System"
+        ]
+    },
+    {
+        "email": "user90@example.com",
+        "firstName": "User90",
+        "lastName": "Test90",
+        "password": "hashedpassword",
+        "dob": "1985-10-02",
+        "profileImageURL": "",
+        "role": "alumni",
+        "batch": 2019,
+        "skills": [
+            "Cybersecurity",
+            "Kubernetes",
+            "TensorFlow"
+        ],
+        "interests": [
+            "Cloud Computing",
+            "Ethical Hacking",
+            "DevOps",
+            "Network Security",
+            "Deep Learning",
+            "Machine Learning"
+        ],
+        "bio": "User90 is passionate about Cloud Computing, Ethical Hacking, DevOps, Network Security, Deep Learning, Machine Learning.",
+        "refreshToken": "",
+        "jobDetails": {
+            "company": "Company46",
+            "title": "Software Engineer"
+        },
+        "location": "City7",
+        "previousCompanies": [
+            "Company61"
+        ],
+        "internships": [
+            "Internship at AWS"
+        ],
+        "linkedin": "https://www.linkedin.com/in/user90",
+        "github": "https://github.com/user90",
+        "availableForMentorship": false,
+        "projects": [
+            "Object Detection System",
+            "CI/CD Pipeline",
+            "Scalable Web Service"
+        ]
+    },
+    {
+        "email": "user91@example.com",
+        "firstName": "User91",
+        "lastName": "Test91",
+        "password": "hashedpassword",
+        "dob": "1992-07-25",
+        "profileImageURL": "",
+        "role": "alumni",
+        "batch": 2017,
+        "skills": [
+            "Java",
+            "Kubernetes",
+            "IoT"
+        ],
+        "interests": [
+            "Android Development",
+            "Connected Devices",
+            "Cloud Computing",
+            "Embedded Systems",
+            "DevOps",
+            "Backend Development"
+        ],
+        "bio": "User91 is passionate about Android Development, Connected Devices, Cloud Computing, Embedded Systems, DevOps, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {
+            "company": "Company44",
+            "title": "Data Scientist"
+        },
+        "location": "City6",
+        "previousCompanies": [
+            "Company65"
+        ],
+        "internships": [
+            "Internship at Cybersecurity"
+        ],
+        "linkedin": "https://www.linkedin.com/in/user91",
+        "github": "https://github.com/user91",
+        "availableForMentorship": false,
+        "projects": [
+            "Android App",
+            "IoT Weather Station",
+            "Spring Boot Microservice"
+        ]
+    },
+    {
+        "email": "user92@example.com",
+        "firstName": "User92",
+        "lastName": "Test92",
+        "password": "hashedpassword",
+        "dob": "1990-11-09",
+        "profileImageURL": "",
+        "role": "student",
+        "batch": 2019,
+        "skills": [
+            "Cybersecurity",
+            "JavaScript",
+            "AWS"
+        ],
+        "interests": [
+            "UI/UX",
+            "Frontend Development",
+            "Web Development",
+            "Cloud Computing",
+            "Ethical Hacking",
+            "Infrastructure",
+            "Network Security"
+        ],
+        "bio": "User92 is passionate about UI/UX, Frontend Development, Web Development, Cloud Computing, Ethical Hacking, Infrastructure, Network Security.",
+        "refreshToken": "",
+        "jobDetails": {},
+        "location": "City6",
+        "previousCompanies": [],
+        "internships": [],
+        "linkedin": "https://www.linkedin.com/in/user92",
+        "github": "https://github.com/user92",
+        "availableForMentorship": false,
+        "projects": [
+            "Weather App",
+            "Portfolio Website",
+            "Serverless Web App"
+        ]
+    },
+    {
+        "email": "user93@example.com",
+        "firstName": "User93",
+        "lastName": "Test93",
+        "password": "hashedpassword",
+        "dob": "1997-01-13",
+        "profileImageURL": "",
+        "role": "student",
+        "batch": 2016,
+        "skills": [
+            "MongoDB",
+            "Python",
+            "JavaScript"
+        ],
+        "interests": [
+            "NoSQL Databases",
+            "UI/UX",
+            "Frontend Development",
+            "Data Science",
+            "Web Development",
+            "AI",
+            "Backend Development"
+        ],
+        "bio": "User93 is passionate about NoSQL Databases, UI/UX, Frontend Development, Data Science, Web Development, AI, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {},
+        "location": "City3",
+        "previousCompanies": [],
+        "internships": [],
+        "linkedin": "https://www.linkedin.com/in/user93",
+        "github": "https://github.com/user93",
+        "availableForMentorship": false,
+        "projects": [
+            "Weather App",
+            "Portfolio Website",
+            "To-Do App"
+        ]
+    },
+    {
+        "email": "user94@example.com",
+        "firstName": "User94",
+        "lastName": "Test94",
+        "password": "hashedpassword",
+        "dob": "2004-02-04",
+        "profileImageURL": "",
+        "role": "alumni",
+        "batch": 2016,
+        "skills": [
+            "Kubernetes",
+            "MongoDB",
+            "TensorFlow"
+        ],
+        "interests": [
+            "NoSQL Databases",
+            "Cloud Computing",
+            "DevOps",
+            "Deep Learning",
+            "Machine Learning",
+            "Backend Development"
+        ],
+        "bio": "User94 is passionate about NoSQL Databases, Cloud Computing, DevOps, Deep Learning, Machine Learning, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {
+            "company": "Company8",
+            "title": "AI Engineer"
+        },
+        "location": "City1",
+        "previousCompanies": [
+            "Company76"
+        ],
+        "internships": [
+            "Internship at Cybersecurity"
+        ],
+        "linkedin": "https://www.linkedin.com/in/user94",
+        "github": "https://github.com/user94",
+        "availableForMentorship": true,
+        "projects": [
+            "Object Detection System",
+            "CI/CD Pipeline",
+            "Scalable Web Service"
+        ]
+    },
+    {
+        "email": "user95@example.com",
+        "firstName": "User95",
+        "lastName": "Test95",
+        "password": "hashedpassword",
+        "dob": "1986-06-26",
+        "profileImageURL": "",
+        "role": "student",
+        "batch": 2018,
+        "skills": [
+            "AWS",
+            "SQL",
+            "Java"
+        ],
+        "interests": [
+            "Android Development",
+            "Database Management",
+            "Infrastructure",
+            "Cloud Computing",
+            "Data Analysis",
+            "Backend Development"
+        ],
+        "bio": "User95 is passionate about Android Development, Database Management, Infrastructure, Cloud Computing, Data Analysis, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {},
+        "location": "City7",
+        "previousCompanies": [],
+        "internships": [],
+        "linkedin": "https://www.linkedin.com/in/user95",
+        "github": "https://github.com/user95",
+        "availableForMentorship": false,
+        "projects": [
+            "Serverless Web App",
+            "Android App",
+            "Spring Boot Microservice"
+        ]
+    },
+    {
+        "email": "user96@example.com",
+        "firstName": "User96",
+        "lastName": "Test96",
+        "password": "hashedpassword",
+        "dob": "1990-06-01",
+        "profileImageURL": "",
+        "role": "student",
+        "batch": 2015,
+        "skills": [
+            "C++",
+            "JavaScript",
+            "MongoDB"
+        ],
+        "interests": [
+            "NoSQL Databases",
+            "UI/UX",
+            "Frontend Development",
+            "Web Development",
+            "System Design",
+            "Competitive Programming",
+            "Backend Development"
+        ],
+        "bio": "User96 is passionate about NoSQL Databases, UI/UX, Frontend Development, Web Development, System Design, Competitive Programming, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {},
+        "location": "City7",
+        "previousCompanies": [],
+        "internships": [],
+        "linkedin": "https://www.linkedin.com/in/user96",
+        "github": "https://github.com/user96",
+        "availableForMentorship": false,
+        "projects": [
+            "Weather App",
+            "Portfolio Website",
+            "To-Do App"
+        ]
+    },
+    {
+        "email": "user97@example.com",
+        "firstName": "User97",
+        "lastName": "Test97",
+        "password": "hashedpassword",
+        "dob": "2004-07-26",
+        "profileImageURL": "",
+        "role": "alumni",
+        "batch": 2015,
+        "skills": [
+            "SQL",
+            "Python",
+            "Node.js"
+        ],
+        "interests": [
+            "API Development",
+            "Database Management",
+            "Data Science",
+            "AI",
+            "Data Analysis",
+            "Backend Development"
+        ],
+        "bio": "User97 is passionate about API Development, Database Management, Data Science, AI, Data Analysis, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {
+            "company": "Company41",
+            "title": "Data Scientist"
+        },
+        "location": "City5",
+        "previousCompanies": [
+            "Company53"
+        ],
+        "internships": [
+            "Internship at Cybersecurity"
+        ],
+        "linkedin": "https://www.linkedin.com/in/user97",
+        "github": "https://github.com/user97",
+        "availableForMentorship": false,
+        "projects": [
+            "Real-time Chat App",
+            "Machine Learning Model",
+            "Hospital Management Database"
+        ]
+    },
+    {
+        "email": "user98@example.com",
+        "firstName": "User98",
+        "lastName": "Test98",
+        "password": "hashedpassword",
+        "dob": "1986-06-19",
+        "profileImageURL": "",
+        "role": "student",
+        "batch": 2025,
+        "skills": [
+            "Kubernetes",
+            "Django",
+            "Java"
+        ],
+        "interests": [
+            "Android Development",
+            "Cloud Computing",
+            "Web Development",
+            "DevOps",
+            "Backend Development"
+        ],
+        "bio": "User98 is passionate about Android Development, Cloud Computing, Web Development, DevOps, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {},
+        "location": "City10",
+        "previousCompanies": [],
+        "internships": [],
+        "linkedin": "https://www.linkedin.com/in/user98",
+        "github": "https://github.com/user98",
+        "availableForMentorship": false,
+        "projects": [
+            "Android App",
+            "Spring Boot Microservice",
+            "CI/CD Pipeline"
+        ]
+    },
+    {
+        "email": "user99@example.com",
+        "firstName": "User99",
+        "lastName": "Test99",
+        "password": "hashedpassword",
+        "dob": "1994-04-09",
+        "profileImageURL": "",
+        "role": "student",
+        "batch": 2023,
+        "skills": [
+            "Java",
+            "C++",
+            "SQL"
+        ],
+        "interests": [
+            "Android Development",
+            "Database Management",
+            "System Design",
+            "Competitive Programming",
+            "Data Analysis",
+            "Backend Development"
+        ],
+        "bio": "User99 is passionate about Android Development, Database Management, System Design, Competitive Programming, Data Analysis, Backend Development.",
+        "refreshToken": "",
+        "jobDetails": {},
+        "location": "City6",
+        "previousCompanies": [],
+        "internships": [],
+        "linkedin": "https://www.linkedin.com/in/user99",
+        "github": "https://github.com/user99",
+        "availableForMentorship": false,
+        "projects": [
+            "Android App",
+            "Spring Boot Microservice",
+            "Hospital Management Database"
+        ]
+    }
+]
