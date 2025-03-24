@@ -5,7 +5,7 @@ interface Event extends Document {
     location: string;
     date: Date;
     time: string;
-    creator: Types.ObjectId;
+    owner: Types.ObjectId;
     rsvps: Types.ObjectId[];
     description: string;
     entryFee: number;
@@ -16,7 +16,7 @@ const EventSchema = new Schema<Event>({
     location: { type: String, required: true },
     date: { type: Date, required: true },
     time: { type: String, required: true },
-    creator: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+    owner: { type: Schema.Types.ObjectId, ref: 'User', required: true },
     rsvps: [{ type: Schema.Types.ObjectId, ref: 'User' }],
     description: { type: String, default: "" },
     entryFee: { type: Number, default: 0 }

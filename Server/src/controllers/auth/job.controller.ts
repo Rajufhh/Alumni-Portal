@@ -42,6 +42,10 @@ export const handlePostJob = asyncHandler(async (req: Request, res: Response) =>
     const id = req.user?._id;
     const { company, title, description, salary, location } = req.body;
 
+    if (req.user?.role !== "alumni" && req.user?.role !== "admin"){
+        throw new APIError(400, "Unauthorized request");
+    }
+
     if (!company || !title || !description || !salary || !location){
         throw new APIError(404, "Incomplete data to post job");
     }
@@ -82,6 +86,10 @@ export const handleDeleteJob = asyncHandler(async (req: Request, res: Response) 
         throw new APIError(404, "userId or jobId not found");
     }
 
+    if (req.user?.role !== "alumni" && req.user?.role !== "admin"){
+        throw new APIError(400, "Unauthorized request");
+    }
+
     const owner = await User.findById(id).lean();
 
     if (!owner){
@@ -111,6 +119,10 @@ export const handleUpdateJobPost = asyncHandler(async  (req: Request, res: Respo
 
     if (!req.user){
         throw new APIError(400, "Unauthorized access");
+    }
+
+    if (req.user?.role !== "alumni" && req.user?.role !== "admin"){
+        throw new APIError(400, "Unauthorized request");
     }
 
     const id = req.user._id;

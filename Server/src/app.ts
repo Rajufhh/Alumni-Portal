@@ -18,8 +18,10 @@ app.use(express.static("public"));
 
 import userRouter from './routes/user.routes'
 import jobRouter from './routes/job.routes'
+import eventRouter from './routes/event.routes'
 
 app.use("/api", userRouter);
 app.use("/api/job", jobRouter);
+app.use("/api/event", eventRouter);
 
 export default app;
