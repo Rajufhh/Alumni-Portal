@@ -16,7 +16,7 @@ export const Home = () => {
   }, [user, navigate]);
 
   return (
-    <div className="min-h-screen text-white flex items-center justify-center text-4xl">Home</div>
+    <div className="min-h-screen text-white flex items-center justify-center text-4xl bg-[#222]">Home</div>
   )
 }
 // bg-[hsl(240,10%,3.9%)]

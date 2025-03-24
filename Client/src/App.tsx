@@ -10,8 +10,49 @@ import { Jobs } from './components/Pages/Jobs/Jobs'
 import { Gallery } from './components/Pages/Gallery/Gallery'
 import { Mentor } from './components/Pages/MentorFinder/Mentor'
 import { AlumniDirectory } from './components/Pages/AlumniDirectory/AlumniDirectory'
+import { useEffect } from 'react'
+import axios from 'axios'
+import { useDispatch } from 'react-redux'
+import { setUser } from './store/userSlice'
 
 function App() {
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    handleFetchUser();
+  }, []);
+
+  const handleFetchUser = async () => {
+    try {
+      const accessToken = localStorage.getItem('accessToken');
+
+      if (!accessToken){
+        // User not logged in
+        console.log("No access token found. User not logged in");
+        return;
+      }
+
+      const response = await axios.get("http://localhost:3000/api/user/profile", {
+        headers: {
+          'Authorization': `Bearer ${accessToken}`,
+          'Content-Type': 'application/json'
+        },
+        withCredentials: true
+      });
+
+      if (response.data && response.data.data){
+        dispatch(setUser(response.data.data));
+        console.log("User profile fetched.")
+      }
+      else{
+        console.log("Could not fetch user profile.");
+      }
+    }
+    catch (error) {
+      console.error("Error in fetching user profile", error);
+    }
+  }
 
   return (
     <Routes>

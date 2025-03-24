@@ -99,14 +99,14 @@ export const handleUserSignUp = asyncHandler(async (req: Request, res: Response)
 export const handleUserLogout = asyncHandler(async (req: Request, res: Response) => {
 
     // Search up the user, delete the stored refresh token
-    // await User.findByIdAndUpdate(
-    //     req.user?._id,
-    //     {
-    //         $unset: {
-    //             refreshToken: 1
-    //         }
-    //     }
-    // );
+    await User.findByIdAndUpdate(
+        req.user?._id,
+        {
+            $unset: {
+                refreshToken: 1
+            }
+        }
+    );
 
     const options = {
         httpOnly: true,
@@ -180,4 +180,24 @@ export const handleUpdateUserPassword = asyncHandler(async (req: Request, res: R
 export const handleUpdateAccountDetails = asyncHandler(async (req: Request, res: Response) => {
     // Fetch new details from user
     // update user in db
+});
+
+export const handleGetUserProfile = asyncHandler(async (req: Request, res: Response) => {
+    const id = req.user?._id;
+
+    if (!id) {
+        throw new APIError(400, "User id nto found");
+    }
+    
+    const user = await User.findById(id).select(
+        "-password -refreshToken"
+    ); 
+    
+    if (!user){
+        throw new APIError(404, "User nto found");
+    }
+
+    res
+        .status(200)
+        .json(new APIResponse(200, user, "User profile retrieved successfully"));
 });

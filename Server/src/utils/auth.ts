@@ -1,6 +1,6 @@
-import User from "../models/user.models";
+import { IUser } from "../models/user.models";
 
-export const generateAccessAndRefreshToken = (user: User) => {
+export const generateAccessAndRefreshToken = (user: IUser) => {
     try {
         const accessToken = user.generateAccessToken();
         const refreshToken = user.generateRefreshToken();

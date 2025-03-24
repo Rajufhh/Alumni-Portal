@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken'
 import crypto from 'crypto'
 import { USER_TEMPORARY_TOKEN_EXPIRY } from '../utils/constants';
 
-interface User extends Document {
+export interface IUser extends Document {
     firstName: string;
     lastName?: string;
     email: string;
@@ -35,7 +35,7 @@ interface User extends Document {
     generateTemporaryToken(): { unhashedToken: string, hashedToken: string, tokenExpiry: number }
 };
 
-const UserSchema = new Schema<User>({
+const UserSchema = new Schema<IUser>({
     email: { type: String, required: true },
     firstName: { type: String, required: true },
     lastName: { type: String },
@@ -134,5 +134,5 @@ UserSchema.methods.generateTemporaryToken = function () {
     return { unHashedToken, hashedToken, tokenExpiry };
 };
 
-const User = model<User>("User", UserSchema);
+const User = model<IUser>("User", UserSchema);
 export default User;

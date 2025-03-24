@@ -17,7 +17,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 import userRouter from './routes/user.routes'
+import jobRouter from './routes/job.routes'
 
 app.use("/api", userRouter);
+app.use("/api/job", jobRouter);
 
 export default app;
