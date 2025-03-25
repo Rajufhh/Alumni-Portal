@@ -1,15 +1,16 @@
 import { Router } from "express";
-import { verifyJWT } from "../middlewares/auth/user.middlewares";
-import { handleDeleteEvent, handleFetchAllEvents, handleFetchEventsByUser, handlePostEvent, handleUpdateEvent } from "../controllers/auth/event.controller";
+import { verifyJWT, verifyPermission } from "../middlewares/auth/user.middlewares";
+import { handleDeleteEvent, handleFetchAllEvents, handleFetchEventsByUser, handlePostEvent, handleRegisterForEvent, handleUpdateEvent } from "../controllers/event.controller";
 
 const router = Router();
 
 // /api/event
 
 router.get("", verifyJWT, handleFetchAllEvents);
-router.get("/:id", verifyJWT, handleFetchEventsByUser);
-router.post("/", verifyJWT, handlePostEvent);
-router.delete("/:eventId", verifyJWT, handleDeleteEvent);
-router.post("/update/:eventId", verifyJWT, handleUpdateEvent);
+router.get("/:id", verifyJWT, verifyPermission(["alumni", "admin"]), handleFetchEventsByUser);
+router.post("/", verifyJWT, verifyPermission(["alumni", "admin"]), handlePostEvent);
+router.delete("/:eventId", verifyJWT, verifyPermission(["alumni", "admin"]), handleDeleteEvent);
+router.post("/update/:eventId", verifyJWT, verifyPermission(["alumni", "admin"]), handleUpdateEvent);
+router.post("/register/:eventId", verifyJWT, handleRegisterForEvent);
 
 export default router;

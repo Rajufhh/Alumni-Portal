@@ -16,5 +16,5 @@ const ArticleSchema = new Schema({
     thumbnail: { type: String }
 }, { timestamps: true } );
 
-const Post = model<Article>("Article", ArticleSchema);
-export default Post;
+const Article = model<Article>("Article", ArticleSchema);
+export default Article;

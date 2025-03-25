@@ -1,8 +1,9 @@
 import { Request, Response } from "express";
-import asyncHandler from "../../utils/AsyncHandler";
-import Event from "../../models/event.models";
-import APIResponse from "../../utils/APIResponse";
-import APIError from "../../utils/APIError";
+import asyncHandler from "../utils/AsyncHandler";
+import Event from "../models/event.models";
+import APIResponse from "../utils/APIResponse";
+import APIError from "../utils/APIError";
+import mongoose from "mongoose";
 
 export const handleFetchAllEvents = asyncHandler(async (req: Request, res: Response) => {
     const events = await Event.find({}).lean();
@@ -60,7 +61,7 @@ export const handlePostEvent = asyncHandler(async (req: Request, res: Response) 
 
 export const handleDeleteEvent = asyncHandler(async (req: Request, res: Response) => {
     const { eventId } = req.params;
-    const id = req.user?._id;
+    const id = req.user?._id as string;
 
     if (!eventId){
         throw new APIError(404, "eventId is required");
@@ -89,7 +90,7 @@ export const handleDeleteEvent = asyncHandler(async (req: Request, res: Response
 
 export const handleUpdateEvent = asyncHandler(async (req: Request, res: Response) => {
     const { eventId } = req.params;
-    const id = req.user?._id;
+    const id = req.user?._id as string;
     const { title, location, date, time, description, entryFee } = req.body;
 
     if (!eventId){
@@ -119,5 +120,32 @@ export const handleUpdateEvent = asyncHandler(async (req: Request, res: Response
     res
         .status(200)
         .json(new APIResponse(200, updatedEvent, "Updated event successfully"));
+});
+
+export const handleRegisterForEvent = asyncHandler(async (req: Request, res: Response) => {
+    const { eventId } = req.params;
+    const id = req.user?._id as string;
+
+    if (!eventId){
+        throw new APIError(400, "eventId is required");
+    }
+
+    const event = await Event.findById(eventId).lean();
+
+    if (!event){
+        throw new APIError(400, "Event not found");
+    }
+
+    if (event.rsvps.includes(new mongoose.Types.ObjectId(id))){
+        throw new APIError(400, "Already rsvp'd");
+    }
+
+    event.rsvps.push(new mongoose.Types.ObjectId(id));
+
+    await event.save();
+
+    res
+        .status(200)
+        .json(new APIResponse(200, event, "Successfully registered for the event"));
 });
 
