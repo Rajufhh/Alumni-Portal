@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import asyncHandler from "../../utils/AsyncHandler";
-import Job from "../../models/job.models";
-import APIError from "../../utils/APIError";
-import APIResponse from "../../utils/APIResponse";
-import User from "../../models/user.models";
+import asyncHandler from "../utils/AsyncHandler";
+import Job from "../models/job.models";
+import APIError from "../utils/APIError";
+import APIResponse from "../utils/APIResponse";
+import User from "../models/user.models";
 import { Types } from "mongoose";
 
 export const handleFetchAllJobs = asyncHandler(async (req: Request, res: Response) => {

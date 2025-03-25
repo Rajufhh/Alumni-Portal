@@ -43,7 +43,7 @@ export const verifyJWT = asyncHandler(async (req: Request, res: Response, next: 
 });
 
 export const verifyPermission = (roles: string[] = []) => {
-    asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
+    return asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
         if (!req.user?._id) {
             throw new APIError(401, "Unauthorized request");
         }

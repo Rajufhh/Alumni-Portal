@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { handleDeleteJob, handleFetchAllJobs, handleFetchJobsByUser, handlePostJob, handleUpdateJobPost } from '../controllers/auth/job.controller';
+import { handleDeleteJob, handleFetchAllJobs, handleFetchJobsByUser, handlePostJob, handleUpdateJobPost } from '../controllers/job.controller';
 import { verifyJWT } from '../middlewares/auth/user.middlewares';
 
 const router = Router();

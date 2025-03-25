@@ -180,6 +180,65 @@ export const handleUpdateUserPassword = asyncHandler(async (req: Request, res: R
 export const handleUpdateAccountDetails = asyncHandler(async (req: Request, res: Response) => {
     // Fetch new details from user
     // update user in db
+    const userId = req.user?._id;
+
+    if (!userId){
+        throw new APIError(400, "Unauthorized request");
+    }
+
+    const {
+        firstName,
+        lastName,
+        profileImageURL,
+        interests,
+        skills,
+        bio,
+        jobDetails, // Nested object
+        previousCompanies,
+        internships,
+        batch,
+        location,
+        linkedin,
+        github,
+        availableForMentorship,
+    } = req.body;
+
+    const updates: { [key: string]: any } = {};
+    if (firstName !== undefined) updates.firstName = firstName;
+    if (lastName !== undefined) updates.lastName = lastName;
+    if (profileImageURL !== undefined) updates.profileImageURL = profileImageURL;
+    if (interests !== undefined) updates.interests = interests;
+    if (skills !== undefined) updates.skills = skills;
+    if (bio !== undefined) updates.bio = bio;
+    if (jobDetails !== undefined) {
+        updates["jobDetails.company"] = jobDetails.company;
+        updates["jobDetails.title"] = jobDetails.title;
+    }
+    if (previousCompanies !== undefined) updates.previousCompanies = previousCompanies;
+    if (internships !== undefined) updates.internships = internships;
+    if (location !== undefined) updates.location = location;
+    if (batch !== undefined) updates.batch = batch;
+    if (linkedin !== undefined) updates.linkedin = linkedin;
+    if (github !== undefined) updates.github = github;
+    if (availableForMentorship !== undefined) updates.availableForMentorship = availableForMentorship;
+
+    if (Object.keys(updates).length === 0) {
+        throw new APIError(400, "No valid fields to update");
+    }
+
+    const updatedUser = await User.findByIdAndUpdate(
+        userId,
+        { $set: updates },
+        { new: true, runValidators: true }
+    ).select("-password -refreshToken");
+
+    if (!updatedUser){
+        throw new APIError(400, "Error while updating user profile");
+    }
+
+    res
+        .status(200)
+        .json(new APIResponse(200, updatedUser, "Successfully updated user profile"));
 });
 
 export const handleGetUserProfile = asyncHandler(async (req: Request, res: Response) => {
@@ -200,4 +259,63 @@ export const handleGetUserProfile = asyncHandler(async (req: Request, res: Respo
     res
         .status(200)
         .json(new APIResponse(200, user, "User profile retrieved successfully"));
+});
+
+export const handleFetchAllAlumniProfiles = asyncHandler(async (req: Request, res: Response) => {
+    const alumnis = await User.find({ role: "alumni" }).lean();
+
+    res
+        .status(200)
+        .json(new APIResponse(200, alumnis || [], alumnis.length ? "Successfully fetched all alumni profiles" : "No alumnis found"));
+});
+
+export const handleFetchAllStudentProfiles = asyncHandler(async (req: Request, res: Response) => {
+    const students = await User.find({ role: "student" }).lean();
+
+    res
+        .status(200)
+        .json(new APIResponse(200, students || [], students.length ? "Successfully fetched all student profiles" : "No students found"));
+});
+
+export const handleDeleteUser = asyncHandler(async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const userId = req.user?._id;
+
+    if (userId?.toString() !== id.toString()){
+        throw new APIError(400, "Unauthorized request");
+    }
+
+    if (!id) {
+        throw new APIError(400, "Unauthorized request");
+    }
+
+    const user = await User.findById(id).lean();
+
+    if (!user){
+        throw new APIError(404, "User does not exist");
+    }
+
+    await User.deleteOne({ _id: id });
+
+    res
+        .status(200)
+        .json(new APIResponse(200, "", "User deleted successfully"));
+});
+
+export const handleGetProfileById = asyncHandler(async (req: Request, res: Response) => {
+    const { id } = req.params;
+
+    if (!id){
+        throw new APIError(400, "Unauthorized request");
+    }
+
+    const user = await User.findById(id).select("-password -refreshToken").lean();
+
+    if (!user){
+        throw new APIError(404, "User not found");
+    }
+
+    res
+        .status(200)
+        .json(new APIResponse(200, user, "Fetched user details successfully"));
 });

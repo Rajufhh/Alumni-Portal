@@ -1,27 +1,20 @@
 import { model, Types, Document, Schema } from 'mongoose'
-import { POST_TYPES } from '../utils/constants';
 
-interface Post extends Document {
+interface Article extends Document {
     content: string;
     author: Types.ObjectId;
     title: string;
-    media: {
-        type: 'image' | 'video',
-        url: string,
-    };
-    type: POST_TYPES
+    tags: string[];
+    thumbnail: string;
 };
 
-const PostSchema = new Schema({
+const ArticleSchema = new Schema({
     content: { type: String, required: true, default: "" },
     title: { type: String, default: "" },
     author: { type: Schema.Types.ObjectId, ref: "User", required: true },
-    media: {
-        type: { type: String, enum: [ 'video', 'image' ] },
-        url: { type: String },
-    },
-    type: { type: String, enum: Object.values(POST_TYPES), required: true }
+    tags: [{ type: String }],
+    thumbnail: { type: String }
 }, { timestamps: true } );
 
-const Post = model<Post>("Post", PostSchema);
+const Post = model<Article>("Article", ArticleSchema);
 export default Post;
