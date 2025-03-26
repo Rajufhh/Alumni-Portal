@@ -9,7 +9,7 @@ interface Comment extends Document {
 const CommentSchema = new Schema({
     author: { type: Schema.Types.ObjectId, ref: "User", required: true },
     content: { type: String, required: true },
-    post: { type: Schema.Types.ObjectId, ref: "Post", required: true },
+    post: { type: Schema.Types.ObjectId, ref: "Article", required: true },
 }, { timestamps: true });
 
 const Comment = model<Comment>("Comment", CommentSchema);
