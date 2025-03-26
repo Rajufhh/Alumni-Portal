@@ -87,3 +87,42 @@ export const handleDeleteArticle = asyncHandler(async (req: Request, res: Respon
         .status(200)
         .json(new APIResponse(200, "", "Deleted article successfully"));
 });
+
+export const handleUpdateArticle = asyncHandler(async (req: Request, res: Response) => {
+    const { articleId } = req.params;
+    const { content, title, tags } = req.body;
+    const id = req.user?._id as string;
+
+    const updates: { [key: string]: any } = {};
+    if (content !== undefined) updates.content = content;
+    if (title !== undefined) updates.title = title;
+    if (tags !== undefined && tags.length) updates.tags = tags;
+
+    if (!articleId){
+        throw new APIError(400, "articleId is required");
+    }
+
+    const article = await Article.findById(articleId).lean();
+
+    if (!article){
+        throw new APIError(404, "Article not found");
+    }
+
+    if (article.author.toString() !== id){
+        throw new APIError(400, "Unauthorized request");
+    }
+
+    const updatedArticle = await Article.findByIdAndUpdate(
+        articleId,
+        { $set: updates },
+        { new: true, runValidators: true }
+    ).lean();
+
+    if (!updatedArticle){
+        throw new APIError(400, "Error updating article");
+    }
+
+    res
+        .status(200)
+        .json(new APIResponse(200, updatedArticle, "Successfully updated article"));
+});     

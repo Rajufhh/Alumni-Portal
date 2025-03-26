@@ -19,9 +19,15 @@ app.use(express.static("public"));
 import userRouter from './routes/user.routes'
 import jobRouter from './routes/job.routes'
 import eventRouter from './routes/event.routes'
+import likeRouter from './routes/like.routes'
+import articleRouter from './routes/article.routes'
+import mentorshipRouter from './routes/mentorship.routes'
 
 app.use("/api", userRouter);
 app.use("/api/job", jobRouter);
 app.use("/api/event", eventRouter);
+app.use("/api/like", likeRouter);
+app.use("/api/article", articleRouter);
+app.use("/api/mentorship", mentorshipRouter);
 
 export default app;

@@ -6,6 +6,7 @@ interface Article extends Document {
     title: string;
     tags: string[];
     thumbnail: string;
+    likes: number;
 };
 
 const ArticleSchema = new Schema({
@@ -13,7 +14,8 @@ const ArticleSchema = new Schema({
     title: { type: String, default: "" },
     author: { type: Schema.Types.ObjectId, ref: "User", required: true },
     tags: [{ type: String }],
-    thumbnail: { type: String }
+    thumbnail: { type: String },
+    likes: { type: Number, default: 0 }
 }, { timestamps: true } );
 
 const Article = model<Article>("Article", ArticleSchema);
