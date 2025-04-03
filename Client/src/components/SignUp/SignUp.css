@@ -1,0 +1,72 @@
+/* Center the sign-up box in the middle of the page */
+.signup-container {
+    width: 700px;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid rgb(204, 204, 204);
+    text-align: center;
+    background: #fff;
+
+    /* Centering the box */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.signup-container h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.input-box {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.input-box input,
+.input-box select {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid #dbdada;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.input-box select {
+    color: #8c8c8c;
+    background: white;
+    cursor: pointer;
+}
+
+.input-box select option {
+    color: black;
+}
+
+/* FIX: Ensures text stays black after selection */
+.input-box select:focus,
+.input-box select:valid {
+    color: black;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #989ea5;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.form-active button {
+    background-color: #135abc;
+}
+
+button:active {
+    background-color: #a3bbdd;
+}

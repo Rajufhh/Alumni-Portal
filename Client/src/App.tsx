@@ -1,6 +1,8 @@
 import { Route, Routes } from 'react-router'
 import './App.css'
 import { Home } from './components/Pages/Home/Home'
+// import  Login  from './components/Login/Login'
+// import { SignUp } from './components/SignUp/SignUp'
 import { Login } from './components/Pages/Login/Login'
 import { Layout } from './components/Utils/Layout'
 import { Profile } from './components/Utils/Profile'
@@ -14,6 +16,8 @@ import { useEffect } from 'react'
 import axios from 'axios'
 import { useDispatch } from 'react-redux'
 import { setUser } from './store/userSlice'
+// import {SignUp} from './components/SignUp/SignUp'
+// import { Login } from './components/Login/Login'
 
 function App() {
 

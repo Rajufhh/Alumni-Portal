@@ -1,0 +1,216 @@
+*{
+    font-family: sans-serif;
+}
+
+.hero-container {
+    margin:30px 30px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 60px 80px;
+    background: #F3F6EC;
+    border-radius: 0 0 50px 50px;
+    /* box-shadow: 4px 4px #dcdcdc; */
+}
+
+.hero-image img {
+    max-width: 500px;
+    height: auto;
+    border-radius: 10px;
+}
+
+.hero-content {
+    flex: 1;
+    text-align: left;
+}
+
+.hero-content h1 {
+    font-size: 36px;
+    font-weight:595;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+.highlight {
+    color: #4A67AA;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.login-btn, .signup-btn {
+    padding: 12px 24px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    border: none;
+}
+
+.login-btn {
+    background: #ffffff;
+    border: 1px solid rgb(39, 57, 91);
+    color: #16161d;
+}
+
+.signup-btn {
+    background: #ffffff;
+    border: 1px solid rgb(39, 57, 91);
+    color: #16161d;;
+}
+
+.signup-btn:hover{
+    background-color: #135abc;
+}
+
+.signup-btn:active {
+    background-color: #a3bbdd;
+}
+
+.login-btn:hover{
+    background-color: #135abc;
+}
+
+.login-btn:active {
+    background-color: #a3bbdd;
+}
+
+.stats-section {
+    display: flex;
+    flex-wrap: nowrap; /* Prevent items from wrapping */
+    align-items: center;
+    justify-content: center; /* Center items horizontally */
+    gap: 50px; /* Adjust spacing between items */
+    margin-top: 100px;
+    margin-left: 50px;
+    padding: 10px;
+    width: 100%;
+    white-space: nowrap; /* Ensure text doesn't break */
+}
+
+.stat-box {
+    text-align: center;
+    flex: 1;
+}
+
+.stat-box h3 {
+    font-size: 24px;
+    /* font-weight:200px; */
+    color:#16161d;
+}
+
+.testimonials-section {
+    text-align: center;
+    padding: 50px 20px;
+    background: #f8f8f8;
+}
+
+.testimonials-section h2 {
+    font-size: 28px;
+    margin-bottom: 25px;
+}
+
+.testimonial-slider {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;  /* Enables horizontal scrolling */
+    padding: 10px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: #ddd transparent;
+}
+
+.testimonial-slider::-webkit-scrollbar {
+    height: 6px;
+}
+
+.testimonial-slider::-webkit-scrollbar-thumb {
+    background: #bbb;
+    border-radius: 10px;
+}
+
+.testimonial-card {
+    flex: 0 0 400px; /* Increased width */
+    background: white;
+    padding: 30px; /* More padding */
+    border-radius: 15px; /* Softer corners */
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+    scroll-snap-align: start;
+    min-height: 220px; /* Increased height */
+}
+
+.testimonial-card h4 {
+    font-size: 22px; /* Bigger name */
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.testimonial-card p {
+    font-size: 16px; /* Slightly bigger text */
+    color: #444;
+    line-height: 1.4;
+}
+
+/* Features Section */
+.features-section {
+    text-align: center;
+    padding: 50px 20px;
+    background: #ffffff;
+}
+
+.features-section h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+.features-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.feature-card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: white;
+    padding: 12px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.3s ease;
+    border: 1px solid #ddd;
+}
+
+.feature-card:hover {
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+.mentorship-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: white;
+    padding: 15px 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    font-weight: 500;
+    border: 1px solid #ddd;
+    margin: 0 auto;
+    width: fit-content;
+}
+
+.icon {
+    font-size: 18px;
+}
