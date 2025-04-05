@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import UserIcon from "../../../assets/user-icon-dark.svg";
-import UserIconLight from "../../../assets/user-icon.svg";
+// import UserIcon from "../../../assets/user-icon-dark.svg";
+// import UserIconLight from "../../../assets/user-icon.svg";
 import { RootState } from "@/store/Store";
 import githubIcon from "../../../assets/github-logo.png"
 import linkedinIcon from "../../../assets/linkedin-logo.png"
@@ -11,8 +11,9 @@ import settingsIconDark from "../../../assets/settings-icon-dark.svg"
 import { Link, useNavigate } from "react-router";
 import { clearUser } from "@/store/userSlice";
 import axios from "axios";
+import zoro from "../../../assets/Zoro-min.png"
 
-const UserProfileCard = () => {
+export const UserProfileCard = () => {
 
     const isDarkMode = useSelector((state: RootState) => state.config.isDarkMode);
     const user = useSelector((state: RootState) => state.user.user);
@@ -31,15 +32,6 @@ const UserProfileCard = () => {
             icon: linkedinIcon
         }
     ]
-
-    // const skills = [
-    //     "React",
-    //     "C++",
-    //     "Nodejs",
-    //     "Machine Learning",
-    //     "Typescript",
-    //     "Tailwindcss",
-    // ]
 
     const handleLogout = async () => {
         try {
@@ -78,11 +70,11 @@ const UserProfileCard = () => {
     const role = (user?.role[0].toUpperCase() ?? "") + user?.role.substring(1);
 
   return (
-    <div className="dark:bg-[#151515] bg-white rounded-xl p-4 text-center dark:shadow-none shadow-xl">
+    <div className="dark:bg-[#151515] bg-white rounded-md p-4 text-center dark:shadow-none shadow-xl">
         <div className="flex items-center gap-4 px-2 text-sm">
             <img
             className="w-10 h-10 rounded-full object-cover"
-            src={user?.profileImageUrl ?? (isDarkMode ? UserIconLight : UserIcon)}
+            src={user?.profileImageUrl ?? zoro}
             />
             <div>
                 <h2 className="font-semibold">{user?.firstName + ' ' + user?.lastName}</h2>
@@ -91,7 +83,7 @@ const UserProfileCard = () => {
 
         </div>
 
-        <hr className="my-4 border-t border-gray-600 dark:border-gray-400 w-[80%] mx-auto"/>
+        <hr className="my-4 border-t border-gray-200 dark:border-gray-700 w-[85%] mx-auto"/>
 
         <div className="text-start text-sm px-2 space-y-2">
             <p className="">🏢 {user?.batch.toString().substring(0, 4)} Batch</p>
@@ -99,7 +91,7 @@ const UserProfileCard = () => {
 
         </div>
 
-        <hr className="my-4 border-t border-gray-600 w-[80%] dark:border-gray-400 mx-auto"/>
+        <hr className="my-4 border-t border-gray-200 dark:border-gray-700 w-[85%] mx-auto"/>
 
         <div className="px-4 space-y-4">
             <h3 className="font-semibold text-start text-sm">Social Profiles</h3>
@@ -121,7 +113,7 @@ const UserProfileCard = () => {
             </div>
         </div>
 
-        <hr className="my-3 border-t border-gray-600 w-[80%] dark:border-gray-400 mx-auto"/>
+        <hr className="my-4 border-t border-gray-200 dark:border-gray-700 w-[85%] mx-auto"/>
 
         <div className="px-4 flex items-start flex-col gap-3">
             <Link to={""} className="flex items-center gap-2 cursor-pointer">
@@ -135,5 +127,3 @@ const UserProfileCard = () => {
     </div>
   );
 };
-
-export default UserProfileCard;

@@ -1,12 +1,12 @@
 import { Outlet } from "react-router"
 import { Header } from "./Header"
-import { Sidebar } from "./Sidebar"
+import { ScrollToTopButton } from "./ScrollToTopButton"
 
 export const Layout = () => {
   return (
     <div className="">
     <Header />
-    <Sidebar />
+    <ScrollToTopButton />
     <main>
       <Outlet />
     </main>
