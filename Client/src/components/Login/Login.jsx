@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
+import { Link } from "react-router-dom";
 import './Login.css';
-
 
 function Login(){
 
@@ -28,7 +28,9 @@ function Login(){
             <div className='forgot-pass' style={{ display: "flex", justifyContent: "flex-end", margin: "10px 0" }}>
                 <a href="#">Forgot Password?</a>
             </div>
-            <button>Sign In →</button>
+            <Link to='/postloginhome'>
+                <button>Sign In →</button>
+            </Link>
         </div>
         </>
     );
