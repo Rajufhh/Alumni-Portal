@@ -66,7 +66,7 @@ export const handleUserSignUp = asyncHandler(async (req: Request, res: Response)
         lastName,
         email,
         password,
-        role,
+        role: role.toLowerCase(),
         dob: DOB,
         batch,
         linkedin,

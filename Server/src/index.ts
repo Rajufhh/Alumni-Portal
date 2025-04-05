@@ -2,9 +2,10 @@ import dotenv from 'dotenv'
 import { connectDB } from './db/index.db';
 import app from './app';
 import { createServer } from 'http';
-import { Server, Socket } from 'socket.io/dist/index';
 import jwt from 'jsonwebtoken'
 import mongoose from 'mongoose';
+import { Server } from 'socket.io';
+import type { Socket as IOSocket } from 'socket.io';
 
 dotenv.config();
 const PORT = process.env.PORT || 3000;
@@ -19,7 +20,7 @@ const io = new Server(httpServer, {
     }
 })
 
-io.use((socket: Socket, next) => {
+io.use((socket, next) => {
     const token = socket.handshake.auth.token;
 
     if (!token){
@@ -42,7 +43,7 @@ io.use((socket: Socket, next) => {
     }
 });
 
-io.on("connection", (socket: Socket) => {
+io.on("connection", (socket) => {
     const userId = (socket as any).userId;
     console.log(`User ${userId} is now online as: ${socket.id}`);
 

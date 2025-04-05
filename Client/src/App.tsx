@@ -4,7 +4,7 @@ import { Home } from './components/Pages/Home/Home'
 import { Login } from './components/Pages/Login/Login'
 import { Layout } from './components/Utils/Layout'
 import { Profile } from './components/Utils/Profile'
-import { InterviewExperiences } from './components/Pages/InterviewExperiences/InterviewExperiences'
+import { Articles } from './components/Pages/Articles/Articles'
 import { Events } from './components/Pages/Events/Events'
 import { Jobs } from './components/Pages/Jobs/Jobs'
 import { Gallery } from './components/Pages/Gallery/Gallery'
@@ -14,6 +14,7 @@ import { useEffect } from 'react'
 import axios from 'axios'
 import { useDispatch } from 'react-redux'
 import { setUser } from './store/userSlice'
+import { WelcomePage } from './components/Pages/Home/WelcomPage'
 
 function App() {
 
@@ -60,8 +61,9 @@ function App() {
 
       <Route element={<Layout />} >
         <Route path='/home' element={<Home />} />
+        <Route path='/welcome' element={<WelcomePage />}/>
         <Route path='/profile' element={<Profile />} />
-        <Route path='/interview-experiences' element={<InterviewExperiences />} />
+        <Route path='/articles' element={<Articles />} />
         <Route path='/events' element={<Events />} />
         <Route path='/jobs' element={<Jobs />} />
         <Route path='/gallery' element={<Gallery />} />

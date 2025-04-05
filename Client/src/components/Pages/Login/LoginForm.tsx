@@ -1,42 +1,36 @@
-"use client"
-import { z } from 'zod'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm } from 'react-hook-form'
-import { Input } from '../../ui/input'
-import {
-    Form,
-    FormControl,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage
-} from '../../ui/form'
-import { Button } from '../../ui/button'
-import { useNavigate } from 'react-router'
-import axios from 'axios'
-import { useDispatch } from 'react-redux'
-import { setUser } from '@/store/userSlice'
-
-const formSchema = z.object({
-    email: z.string().email("Invalid email address"),
-    password: z.string().min(8, "Password must be atleast 8 characters")
-});
+import { useState } from "react";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { setUser } from "@/store/userSlice";
+import { useNavigate } from "react-router";
 
 export const LoginForm = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
+  const isFormActive = email.trim() !== "" && password.trim() !== "";
 
-    const form = useForm<z.infer<typeof formSchema>>({
-        resolver: zodResolver(formSchema),
-        defaultValues: {
-            email: "",
-            password: ""
-        },
-    });
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
+  };
 
-    const submitForm = async (values: z.infer<typeof formSchema>) => {
-        console.log(values);
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (!isFormActive) return;
+
+    // TODO: Handle authentication logic here
+    console.log("Logging in with:", { email, password });
+    };
+
+    const submitForm = async () => {
+        const values = { email, password }
 
         const response = await axios.post("http://localhost:3000/api/login", values, { withCredentials: true });
         const accessToken = response.data.data.accessToken;
@@ -57,44 +51,61 @@ export const LoginForm = () => {
         navigate("/home");
     }
 
+
+
   return (
-    <Form {...form}>
-        <form onSubmit={form.handleSubmit(submitForm)} className='space-y-12 px-6 py-6'>
-            <div className='space-y-2'>
-                <h2 className='text-3xl font-semibold'>Welcome Back!</h2>
-                <p className='text-sm'>Please enter your details here</p>
-            </div>
-            <FormField
-                control={form.control}
-                name='email'
-                render={({field}) => (
-                    <FormItem>
-                        <FormLabel>Email</FormLabel>
-                        <FormControl>
-                            <Input className='rounded-sm w-xs' type='text' placeholder='Enter your Email' {...field}/>
-                        </FormControl>
-                        <FormMessage />
-                    </FormItem>
-                )}
-            />
+    <div className="fixed inset-0 flex items-center justify-center bg-gray-100">
+      <form
+        onSubmit={handleSubmit}
+        className="w-full max-w-sm bg-white p-6 rounded-lg shadow-md border border-gray-300"
+      >
+        <h2 className="text-2xl font-semibold mb-6 text-center">Login</h2>
 
-            <FormField
-                control={form.control}
-                name='password'
-                render={({field}) => (
-                    <FormItem>
-                        <FormLabel>Password</FormLabel>
-                        <FormControl>
-                            <Input className='rounded-sm' type='password' placeholder='Enter your password' {...field}/>
-                        </FormControl>
-                        <FormMessage />
-                    </FormItem>
-                )}
-            />
+        <div className="mb-4">
+          <input
+            type="text"
+            placeholder="Email or Username"
+            value={email}
+            onChange={handleEmailChange}
+            className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            required
+          />
+        </div>
 
-            <Button type='submit' className='rounded-sm hover:bg-gray-300 cursor-pointer bg-white text-black w-full'>Login</Button>
+        <div className="mb-2">
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={handlePasswordChange}
+            className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            required
+          />
+        </div>
 
-        </form>
-    </Form>
-  )
-}
+        <div className="flex justify-end mb-4">
+          <a
+            href="#"
+            className="text-sm text-blue-600 hover:underline"
+            onClick={(e) => e.preventDefault()}
+          >
+            Forgot Password?
+          </a>
+        </div>
+
+        <button
+          type="submit"
+          disabled={!isFormActive}
+          className={`w-full py-3 rounded text-white font-medium transition-colors cursor-pointer ${
+            isFormActive
+              ? "bg-blue-600 hover:bg-blue-700"
+              : "bg-gray-400 cursor-not-allowed"
+          }`}
+          onClick={submitForm}
+        >
+          Sign In →
+        </button>
+      </form>
+    </div>
+  );
+};

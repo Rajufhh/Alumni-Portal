@@ -1,233 +1,150 @@
-"use client"
-import { z } from 'zod'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm } from 'react-hook-form'
-import { Input } from '../../ui/input'
-import {
-    Form,
-    FormControl,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage
-} from '@/components/ui/form'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Button } from '../../ui/button'
-import axios from 'axios'
-import { useNavigate } from 'react-router'
-import { useDispatch } from 'react-redux'
-import { setUser } from '@/store/userSlice'
+"use client";
 
-const formSchema = z.object({
-  firstName: z.string(),
-  lastName: z.string(),
-  email: z.string().email("Invalid email address"),
-  password: z.string().min(8, "Password must be atleast 8 characters"),
-  batch: z.string().min(3, "Invalid year").startsWith("20", "Invalid year"),
-  role: z.enum(['student', 'alumni'], {
-    required_error: "Please select a role"
-  }),
-  linkedin: z.string().includes("linkedin.com", { message: "Enter valid LinkedIn address" }),
-  github: z.string().includes("github.com", { message: "Enter valid Github address" }),
-  dob: z.string().min(10, "Enter a valid date")
-})
-
-// dob: z.date().refine((date) => date < new Date(), {
-//   message: "Date of birth cannot be in the future"
-// })
+import { setUser } from "@/store/userSlice";
+import axios from "axios";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router";
 
 export const SignupForm = () => {
-
-  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  // const { setUser } = useSelector((state: RootState) => state.user);
-
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      firstName: "",
-      lastName: "",
-      email: "",
-      password: "",
-      batch: "",
-      role: undefined,
-      linkedin: "",
-      github: "",
-      dob: ""
-    }
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    batch: "",
+    role: "",
+    linkedin: "",
+    github: "",
+    email: "",
+    password: "",
+    dob: "",
   });
 
-  const submitForm = async (values: z.infer<typeof formSchema>) => {
-    console.log(values);
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const submitForm = async () => {
     try {
-      const response = await axios.post("http://localhost:3000/api/signup", values, { withCredentials: true });
+      const response = await axios.post(
+        "http://localhost:3000/api/signup",
+        formData,
+        { withCredentials: true }
+      );
       const accessToken = response.data.data.accessToken;
       const refreshToken = response.data.data.refreshToken;
       const user = response.data.data.user;
 
       dispatch(setUser(user));
 
-      if (!accessToken || !refreshToken){
+      if (!accessToken || !refreshToken) {
         throw new Error("Error while signing up");
       }
 
-      // Store the tokens for authorization purposes
-      localStorage.setItem('accessToken', accessToken);
-      localStorage.setItem('refreshToken', refreshToken);
+      localStorage.setItem("accessToken", accessToken);
+      localStorage.setItem("refreshToken", refreshToken);
 
-      // Navigate the user to the dashboard/home page
       navigate("/home");
-
-    }
-    catch(error){
+    } catch (error) {
       console.error("SIGNUP_ERROR", error);
     }
-  }
+  };
 
   return (
-    <div className='flex flex-col gap-6 mt-10 mr-[-2rem]'>
-    
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(submitForm)} className='flex flex-col gap-6'>
+    <div className="">
+      <h2 className="text-2xl font-semibold text-gray-800 mb-6 text-center">
+        Create Your Account
+      </h2>
 
-        <div className='space-y-2'>
-          <h2 className='text-3xl font-semibold'>Welcome!</h2>
-          <p className='text-sm'>Please enter your details here</p>
-        </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <input
+          type="text"
+          name="firstName"
+          placeholder="First Name"
+          value={formData.firstName}
+          onChange={handleChange}
+          className="w-full px-4 py-3 max-h-12 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+        />
+        <input
+          type="text"
+          name="lastName"
+          placeholder="Last Name"
+          value={formData.lastName}
+          onChange={handleChange}
+          className="w-full px-4 py-3 max-h-12 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+        />
+        <input
+          type="text"
+          name="batch"
+          placeholder="Batch"
+          value={formData.batch}
+          onChange={handleChange}
+          className="w-full px-4 py-3 max-h-12 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+        />
+        <select
+          name="role"
+          value={formData.role}
+          onChange={handleChange}
+          className="w-full px-4 py-3 max-h-12 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm bg-white text-gray-600"
+        >
+          <option value="" disabled hidden>Select Role</option>
+          <option value="Student">Student</option>
+          <option value="Alumni">Alumni</option>
+        </select>
+        <input
+          id="dob"
+          type="text"
+          name="dob" 
+          placeholder="Date of Birth"
+          value={formData.dob}
+          onChange={handleChange}
+          className="w-full px-4 py-3 max-h-12 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+        />
+        <input
+          type="text"
+          name="linkedin"
+          placeholder="LinkedIn Profile"
+          value={formData.linkedin}
+          onChange={handleChange}
+          className="w-full px-4 py-3 max-h-12 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+        />
+        <input
+          type="text"
+          name="github"
+          placeholder="GitHub Profile"
+          value={formData.github}
+          onChange={handleChange}
+          className="w-full px-4 py-3 max-h-12 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+        />
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          value={formData.email}
+          onChange={handleChange}
+          className="w-full px-4 py-3 max-h-12 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm md:col-span-2"
+        />
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          value={formData.password}
+          onChange={handleChange}
+          className="w-full px-4 py-3 max-h-12 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm md:col-span-2"
+        />
+      </div>
 
-        <div className='space-y-6 grid grid-cols-2 gap-x-8'>
-        <FormField
-          control={form.control}
-          name='firstName'
-          render={({field}) => (
-            <FormItem>
-                <FormLabel>First Name</FormLabel>
-                <FormControl>
-                    <Input className='rounded-sm w-56' type='text' placeholder='Enter First Name' {...field}/>
-                </FormControl>
-                <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name='lastName'
-          render={({field}) => (
-            <FormItem>
-                <FormLabel>Last Name</FormLabel>
-                <FormControl>
-                    <Input className='rounded-sm w-56' type='text' placeholder='Enter Last Name' {...field}/>
-                </FormControl>
-                <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name='email'
-          render={({field}) => (
-            <FormItem>
-                <FormLabel>Email</FormLabel>
-                <FormControl>
-                    <Input className='rounded-sm w-56' type='text' placeholder='Enter your Email' {...field}/>
-                </FormControl>
-                <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name='password'
-          render={({field}) => (
-            <FormItem>
-                <FormLabel>Password</FormLabel>
-                <FormControl>
-                    <Input className='rounded-sm w-56' type='password' placeholder='Enter your Password' {...field}/>
-                </FormControl>
-                <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name='batch'
-          render={({field}) => (
-            <FormItem>
-                <FormLabel>Batch</FormLabel>
-                <FormControl>
-                    <Input className='rounded-sm w-56' placeholder='20XX' type='text' {...field}/>
-                </FormControl>
-                <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name='role'
-          render={({field}) => (
-            <FormItem>
-                <FormLabel>Role</FormLabel>
-                <FormControl>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
-                      <SelectTrigger className="w-[180px]">
-                        <SelectValue placeholder='Select a role'/>
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value='student'>Student</SelectItem>
-                        <SelectItem value='alumni'>Alumni</SelectItem>
-                      </SelectContent>
-                    </Select>
-                </FormControl>
-                <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name='dob'
-          render={({field}) => (
-            <FormItem>
-                <FormLabel>dob</FormLabel>
-                <FormControl>
-                  <Input type='text' className='w-56' placeholder='DD/MM/YYYY' {...field}/>
-                </FormControl>
-                <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name='linkedin'
-          render={({field}) => (
-            <FormItem>
-                <FormLabel>LinkedIn</FormLabel>
-                <FormControl>
-                    <Input className='rounded-sm w-56' type='text' placeholder='Enter LinkedIn profile' {...field}/>
-                </FormControl>
-                <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name='github'
-          render={({field}) => (
-            <FormItem>
-                <FormLabel>Github</FormLabel>
-                <FormControl>
-                    <Input className='rounded-sm w-56' type='text' placeholder='Enter Github profile' {...field}/>
-                </FormControl>
-                <FormMessage />
-            </FormItem>
-          )}
-        />
-        </div>
-
-        <Button className='text-black hover:bg-gray-300 cursor-pointer bg-white' type='submit'>Sign up</Button>
-
-      </form>
-    </Form>
+      <button
+        type="submit"
+        className="w-full mt-6 cursor-pointer bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-medium transition duration-200"
+        onClick={submitForm}
+      >
+        Sign Up →
+      </button>
     </div>
-  )
-}
+  );
+};

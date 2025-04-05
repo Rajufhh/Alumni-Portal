@@ -80,7 +80,7 @@ export const handlePostJob = asyncHandler(async (req: Request, res: Response) =>
 
 export const handleDeleteJob = asyncHandler(async (req: Request, res: Response) => {
     const { jobId } = req.params;
-    const id = req.user?._id;
+    const id = req.user?._id as string;
 
     if (!id || !jobId){
         throw new APIError(404, "userId or jobId not found");
@@ -125,7 +125,7 @@ export const handleUpdateJobPost = asyncHandler(async  (req: Request, res: Respo
         throw new APIError(400, "Unauthorized request");
     }
 
-    const id = req.user._id;
+    const id = req.user?._id as string;
 
     if (!jobId){
         throw new APIError(400, "jobId is required");
