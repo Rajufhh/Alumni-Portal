@@ -26,7 +26,7 @@ const EventCard = ({ title, date, time, location, description }: EventCardInterf
 
       <p className="text-gray-700 text-sm mt-2">{description}</p>
       
-      <button className="px-4 py-1.5 bg-blue-600 cursor-pointer text-white rounded-md hover:bg-blue-700 transition text-sm absolute top-6 right-8">
+      <button className="px-4 py-1.5 bg-black cursor-pointer text-white rounded-md transition text-sm absolute top-6 right-8">
         Rsvp
       </button>
     </div>

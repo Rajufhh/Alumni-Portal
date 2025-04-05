@@ -9,7 +9,7 @@ interface JobCardInterface {
   
   export const JobCard = ({ title, company, date, location, jobType, skills }: JobCardInterface) => {
     return (
-      <div className="bg-white border rounded-xl p-6 shadow-sm hover:shadow-md transition relative">
+      <div className="bg-white border rounded-xl col-span-2 p-6 shadow-md hover:shadow-lg transition relative">
         <h2 className="text-lg font-semibold mb-1">{title}</h2>
   
         <div className="text-sm text-gray-600 flex flex-wrap items-center gap-2 mb-2">
@@ -43,7 +43,7 @@ interface JobCardInterface {
           </div>
         )}
 
-        <button className="px-4 py-1.5 bg-blue-600 cursor-pointer text-white rounded-md hover:bg-blue-700 transition text-sm absolute bottom-4 right-4">
+        <button className="px-4 py-1.5 bg-black font-semibold cursor-pointer text-white rounded-md transition text-sm absolute bottom-4 right-4">
             Apply Now
         </button>
       </div>

@@ -54,7 +54,7 @@ export const LoginForm = () => {
 
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-gray-100">
+    <div className="w-full flex items-center justify-center">
       <form
         onSubmit={handleSubmit}
         className="w-full max-w-sm bg-white p-6 rounded-lg shadow-md border border-gray-300"
@@ -64,10 +64,10 @@ export const LoginForm = () => {
         <div className="mb-4">
           <input
             type="text"
-            placeholder="Email or Username"
+            placeholder="Email"
             value={email}
             onChange={handleEmailChange}
-            className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-black"
             required
           />
         </div>
@@ -78,7 +78,7 @@ export const LoginForm = () => {
             placeholder="Password"
             value={password}
             onChange={handlePasswordChange}
-            className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-black"
             required
           />
         </div>
@@ -86,7 +86,7 @@ export const LoginForm = () => {
         <div className="flex justify-end mb-4">
           <a
             href="#"
-            className="text-sm text-blue-600 hover:underline"
+            className="text-sm text-black hover:underline"
             onClick={(e) => e.preventDefault()}
           >
             Forgot Password?
@@ -98,7 +98,7 @@ export const LoginForm = () => {
           disabled={!isFormActive}
           className={`w-full py-3 rounded text-white font-medium transition-colors cursor-pointer ${
             isFormActive
-              ? "bg-blue-600 hover:bg-blue-700"
+              ? "bg-black"
               : "bg-gray-400 cursor-not-allowed"
           }`}
           onClick={submitForm}

@@ -9,14 +9,13 @@ interface ArticleCardInterface {
     summary: string;
 }
 
-
 export const ArticleCard = ({ title, author, date, summary }: ArticleCardInterface) => {
   return (
-    <div className="border shadow-sm rounded-lg hover:shadow-md transition w-max relative">
+    <div className="border shadow-sm rounded-lg hover:shadow-lg transition w-max relative col-span-1">
       <div className="w-full rounded-t-lg h-45 bg-gray-300">
 
       </div>
-      <div className="py-4 px-3">
+      <div className="py-4 px-3 bg-white rounded-b-md">
         <h2 className="text-md font-semibold mb-1">{title}</h2>
 
         <div className="flex items-center text-sm text-gray-500 gap-2 mb-3">

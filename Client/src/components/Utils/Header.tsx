@@ -5,7 +5,7 @@
 // import { Link, NavLink, useNavigate } from "react-router"
 
 import logo from "../../assets/logo.png"
-import { NavLink, useNavigate } from "react-router"
+import { Link, NavLink, useNavigate } from "react-router"
 import { useDispatch, useSelector } from "react-redux"
 import axios from "axios"
 import { clearUser } from "@/store/userSlice"
@@ -82,7 +82,7 @@ export const Header = () => {
     }
 
   return (
-    <nav className="sticky flex flex-wrap items-center justify-between w-full px-6 py-4 dark:bg-black/70 bg-white/40 text-black backdrop-blur-md shadow-md top-0">
+    <nav className="sticky flex flex-wrap items-center justify-between w-full px-6 py-4 dark:bg-black/70 bg-white/40 text-black backdrop-blur-md shadow-md top-0 z-99">
         <div className="flex gap-3 items-center">
             <img src={logo} className="w-12 h-12"/>
             <h1 className="text-2xl font-bold  text-black dark:text-white font-mono">Alumni Connect</h1>
@@ -105,9 +105,9 @@ export const Header = () => {
           }
       </ul>
         <div className="flex gap-6 text-2xl items-center">
-          <button className="cursor-pointer">
+          <Link to={'/chat'} className="cursor-pointer">
             <img src={isDarkMode ? chatIcon : chatIconDark} className="w-5 h-5"/>
-          </button>
+          </Link>
           <button className="cursor-pointer" onClick={handleModeToggle}>
             <img className="w-5 h-5" src={isDarkMode ? modeIconLight : modeIconDark}/>
           </button>

@@ -55,7 +55,7 @@ export const SignupForm = () => {
   };
 
   return (
-    <div className="">
+    <div className="w-full max-w-3xl mt-16 bg-white text-black rounded-xl shadow-lg p-8">
       <h2 className="text-2xl font-semibold text-gray-800 mb-6 text-center">
         Create Your Account
       </h2>
@@ -67,7 +67,7 @@ export const SignupForm = () => {
           placeholder="First Name"
           value={formData.firstName}
           onChange={handleChange}
-          className="w-full px-4 py-3 max-h-12 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+          className="w-full px-4 py-3 max-h-12 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black text-sm"
         />
         <input
           type="text"
@@ -75,7 +75,7 @@ export const SignupForm = () => {
           placeholder="Last Name"
           value={formData.lastName}
           onChange={handleChange}
-          className="w-full px-4 py-3 max-h-12 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+          className="w-full px-4 py-3 max-h-12 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black text-sm"
         />
         <input
           type="text"
@@ -83,13 +83,13 @@ export const SignupForm = () => {
           placeholder="Batch"
           value={formData.batch}
           onChange={handleChange}
-          className="w-full px-4 py-3 max-h-12 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+          className="w-full px-4 py-3 max-h-12 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black text-sm"
         />
         <select
           name="role"
           value={formData.role}
           onChange={handleChange}
-          className="w-full px-4 py-3 max-h-12 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm bg-white text-gray-600"
+          className="w-full px-4 py-3 max-h-12 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black text-sm bg-white text-gray-600"
         >
           <option value="" disabled hidden>Select Role</option>
           <option value="Student">Student</option>
@@ -102,7 +102,7 @@ export const SignupForm = () => {
           placeholder="Date of Birth"
           value={formData.dob}
           onChange={handleChange}
-          className="w-full px-4 py-3 max-h-12 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+          className="w-full px-4 py-3 max-h-12 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black text-sm"
         />
         <input
           type="text"
@@ -110,7 +110,7 @@ export const SignupForm = () => {
           placeholder="LinkedIn Profile"
           value={formData.linkedin}
           onChange={handleChange}
-          className="w-full px-4 py-3 max-h-12 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+          className="w-full px-4 py-3 max-h-12 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black text-sm"
         />
         <input
           type="text"
@@ -118,7 +118,7 @@ export const SignupForm = () => {
           placeholder="GitHub Profile"
           value={formData.github}
           onChange={handleChange}
-          className="w-full px-4 py-3 max-h-12 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+          className="w-full px-4 py-3 max-h-12 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black text-sm"
         />
         <input
           type="email"
@@ -126,7 +126,7 @@ export const SignupForm = () => {
           placeholder="Email"
           value={formData.email}
           onChange={handleChange}
-          className="w-full px-4 py-3 max-h-12 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm md:col-span-2"
+          className="w-full px-4 py-3 max-h-12 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black text-sm md:col-span-2"
         />
         <input
           type="password"
@@ -134,13 +134,13 @@ export const SignupForm = () => {
           placeholder="Password"
           value={formData.password}
           onChange={handleChange}
-          className="w-full px-4 py-3 max-h-12 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm md:col-span-2"
+          className="w-full px-4 py-3 max-h-12 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black text-sm md:col-span-2"
         />
       </div>
 
       <button
         type="submit"
-        className="w-full mt-6 cursor-pointer bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-medium transition duration-200"
+        className="w-full mt-6 cursor-pointer bg-black text-white py-3 rounded-lg font-medium transition duration-200"
         onClick={submitForm}
       >
         Sign Up →

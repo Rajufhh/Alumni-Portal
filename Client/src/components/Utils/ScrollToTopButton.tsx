@@ -6,12 +6,14 @@ export const ScrollToTopButton = () => {
 
   const handleScroll = () => {
     setIsVisible(window.scrollY > 100);
+    console.log('test');
   }
 
   useEffect(() => {
-    document.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    console.log('hello');
 
-    return () => document.removeEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const scrollToTop = () => {
@@ -19,7 +21,7 @@ export const ScrollToTopButton = () => {
   }
 
   return isVisible && (
-    <button onClick={scrollToTop} className="dark:shadow-none shadow-md shadow-black">
+    <button onClick={scrollToTop} className="dark:shadow-none shadow-md shadow-black z-50">
       <img src={scrollIcon} className="w-12 h-12 fixed pl-3 pb-1 bottom-12 right-12 cursor-pointer bg-white rounded-full" />
     </button>
   )

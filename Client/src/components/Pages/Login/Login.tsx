@@ -8,33 +8,34 @@ export const Login = () => {
   const [isLoginForm, setIsLoginForm] = useState(true);
 
   return (
-    // Container that centers the form
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 relative px-4">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-[#000000] relative px-4">
 
-      {/* Toggle Buttons */}
       <div className="absolute top-6 left-1/2 -translate-x-1/2 flex gap-6 text-lg font-semibold z-10">
+
         <button
           className={`transition-colors duration-200 cursor-pointer ${
-            isLoginForm ? "text-black" : "text-gray-500 hover:text-black"
+            isLoginForm ? "text-white" : "text-gray-500 hover:text-white"
           }`}
           onClick={() => setIsLoginForm(true)}
         >
           Login
         </button>
+
         <button
           className={`transition-colors duration-200 cursor-pointer ${
-            isLoginForm ? "text-gray-500 hover:text-black" : "text-black"
+            isLoginForm ? "text-gray-500 hover:text-gray-500" : "text-white"
           }`}
           onClick={() => setIsLoginForm(false)}
         >
           Signup
         </button>
+
       </div>
 
-      {/* Right: Form Section */}
-      <div className="w-full max-w-3xl mt-16 bg-white text-black rounded-xl shadow-lg p-8">
+      <div className="w-full flex justify-center">
         {isLoginForm ? <LoginForm /> : <SignupForm />}
       </div>
+
     </div>
   );
 };

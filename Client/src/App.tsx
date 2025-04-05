@@ -15,6 +15,7 @@ import axios from 'axios'
 import { useDispatch } from 'react-redux'
 import { setUser } from './store/userSlice'
 import { WelcomePage } from './components/Pages/Home/WelcomPage'
+import { Chat } from './components/Pages/Chat/Chat'
 
 function App() {
 
@@ -69,6 +70,7 @@ function App() {
         <Route path='/gallery' element={<Gallery />} />
         <Route path='/find-mentor' element={<Mentor />} />
         <Route path='/alumni-directory' element={<AlumniDirectory />} />
+        <Route path='/chat' element={<Chat />} />
       </Route>
 
     </Routes>

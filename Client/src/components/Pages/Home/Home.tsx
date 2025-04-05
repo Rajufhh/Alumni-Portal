@@ -7,7 +7,7 @@ import { UserProfileCard } from "./UserProfileCard";
 // import userIconDark from "../../../assets/user-icon-dark.svg"
 import { Post } from "./Post";
 import { PostForm } from "./PostForm";
-import { UpcomingEvents } from "./upcomingEvents";
+import { UpcomingEvents } from "./UpcomingEvents";
 import { Connections } from "./Connections";
 
 interface Post {
