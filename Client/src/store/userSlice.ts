@@ -26,10 +26,12 @@ export interface User {
 
 export interface UserState {
     user: User | null;
+    loading: boolean;
 }
 
 const initialState: UserState = {
-    user: null
+    user: null,
+    loading: true
 }
 
 const userSlice = createSlice({
@@ -38,9 +40,11 @@ const userSlice = createSlice({
     reducers: {
         setUser: (state, action: PayloadAction<User>) => {
             state.user = action.payload;
+            state.loading = false;
         },
         clearUser: (state) => {
             state.user = null;
+            state.loading = false;
         },
         updateUser: (state, action: PayloadAction<User>) => {
             if (state.user) state.user = { ...state.user, ...action.payload };

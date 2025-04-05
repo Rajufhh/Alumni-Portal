@@ -52,11 +52,11 @@ export const Home = () => {
   const [activePostId, setActivePostId] = useState<number | null>(null);
   const [commentInput, setCommentInput] = useState<string>("");
 
-  const user = useSelector((state: RootState) => state.user.user);
+  const { user, loading } = useSelector((state: RootState) => state.user);
   const navigate = useNavigate();
   
   useEffect(() => {      
-      if (user === null){
+      if (!loading && user === null){
             console.log("!user");
           navigate("/welcome");
         }
@@ -117,11 +117,13 @@ export const Home = () => {
   }, []);
 
     return (
-    <div className="w-full min-h-screen bg-[#F5F3EA]"> 
+    <div className="w-full min-h-screen dark:bg-[#000000] bg-[#e6e9da] dark:text-white text-black"> 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-x-8 gap-y-6 px-4 md:px-10 py-6">
+
         {/* Left Sidebar */}
         <div className="md:col-span-1 space-y-6">
-          <div className="bg-white rounded-xl p-4 shadow text-center">
+
+          <div className="dark:bg-[#151515] bg-white rounded-xl p-4 text-center dark:shadow-none shadow-xl">
             <img
               className="w-20 h-20 rounded-full object-cover mx-auto"
               src={alumni[0].image}
@@ -131,9 +133,9 @@ export const Home = () => {
             <p className="text-sm text-gray-500">{alumni[0].city}</p>
           </div>
   
-          <div className="space-y-3 bg-white p-4 rounded-xl shadow">
+          <div className="space-y-3 dark:bg-[#151515] bg-white p-4 rounded-xl dark:shadow-none shadow-xl">
             {options.map((item) => (
-              <p key={item.id} className="flex items-center gap-3 text-gray-700">
+              <p key={item.id} className="flex items-center gap-3 dark:text-gray-300 text-black">
                 {item.icon} {item.label}
               </p>
             ))}
@@ -143,7 +145,7 @@ export const Home = () => {
         {/* Center Feed */}
         <div className="md:col-span-2 space-y-6">
           {posts.map((post) => (
-            <div key={post.id} className="bg-white p-5 rounded-xl shadow space-y-2">
+            <div key={post.id} className="dark:bg-[#151515] bg-white  p-5 rounded-xl dark:shadow-none shadow-xl space-y-2">
               <div className="flex items-center space-x-4">
                 <img
                   src="https://via.placeholder.com/40"
@@ -200,7 +202,7 @@ export const Home = () => {
   
         {/* Right Sidebar */}
         <div className="md:col-span-1 space-y-6">
-          <div className="bg-white p-4 rounded-xl shadow">
+          <div className="dark:bg-[#151515] bg-white  p-4 rounded-xl dark:shadow-none shadow-xl">
             <h3 className="text-lg font-semibold mb-3">Jobs Posted</h3>
             {jobs.map((job, idx) => (
               <div key={idx} className="flex items-center space-x-4 mb-3">
@@ -217,7 +219,7 @@ export const Home = () => {
             ))}
           </div>
   
-          <div className="bg-white p-4 rounded-xl shadow">
+          <div className="dark:bg-[#151515] bg-white  p-4 rounded-xl dark:shadow-none shadow-xl">
             <h3 className="text-lg font-semibold mb-3">Event Announcements</h3>
             {events.map((event, idx) => (
               <div key={idx} className="mb-3">
