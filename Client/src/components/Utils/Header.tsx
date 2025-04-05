@@ -18,7 +18,6 @@ import { useEffect } from "react"
 import { toggleMode } from "@/store/configSlice"
 import chatIconDark from "../../assets/chat-icon-dark.svg"
 import userIconDark from "../../assets/user-icon-dark.svg"
-import mainLogo from "../../assets/main-logo.png"
 
 export const Header = () => {
     const dispatch = useDispatch();

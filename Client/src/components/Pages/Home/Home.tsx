@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { GiSuitcase } from "react-icons/gi";
 import { FaCalendarDay, FaGraduationCap, FaHandshake, FaComment, FaUser } from "react-icons/fa";
-import tulip from "../../../assets/tulip.jpg";
-import sunflower from "../../../assets/sunflower.jpg";
-import rose from "../../../assets/rose.jpg";
 import microsoft from "../../../assets/microsoft-logo.jpg";
 import deloitte from "../../../assets/deloitte-logo.png";
 import opkey from "../../../assets/opkey_logo.jpeg";
@@ -12,19 +9,12 @@ import phillips from "../../../assets/phillips-logo.png";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/Store";
 import { useNavigate } from "react-router";
+import UserProfileCard from "./UserProfileCard";
 
 interface Job {
   title: string;
   company: string;
   image: string;
-}
-
-interface Alumni {
-  id: number;
-  name: string;
-  college: string;
-  image: string;
-  city: string;
 }
 
 interface Option {
@@ -54,13 +44,16 @@ export const Home = () => {
 
   const { user, loading } = useSelector((state: RootState) => state.user);
   const navigate = useNavigate();
+  // const isDarkMode = useSelector((state: RootState) => state.config.isDarkMode);
   
   useEffect(() => {      
       if (!loading && user === null){
             console.log("!user");
           navigate("/welcome");
-        }
+      }
   }, []);
+
+  console.log(user);
 
   const jobs: Job[] = [
     { title: "Product Designer", company: "Opkey", image: opkey },
@@ -68,12 +61,6 @@ export const Home = () => {
     { title: "Data Analyst", company: "Google", image: google },
     { title: "Web developer", company: "Microsoft", image: microsoft },
     { title: "Software Engineer", company: "Deloitte", image: deloitte },
-  ];
-
-  const alumni: Alumni[] = [
-    { id: 1, name: "Pranali Habib", college: "NIT Kashmir", image: tulip, city: "Gulmarg, Kashmir" },
-    { id: 2, name: "Toiub Khan", college: "BITS Pilani", image: sunflower, city: "Hyderabad, Telangana" },
-    { id: 3, name: "Aman Mehta", college: "NIT Trichy", image: rose, city: "Ahmedabad, Gujarat" },
   ];
 
   const options: Option[] = [
@@ -123,16 +110,8 @@ export const Home = () => {
         {/* Left Sidebar */}
         <div className="md:col-span-1 space-y-6">
 
-          <div className="dark:bg-[#151515] bg-white rounded-xl p-4 text-center dark:shadow-none shadow-xl">
-            <img
-              className="w-20 h-20 rounded-full object-cover mx-auto"
-              src={alumni[0].image}
-            />
-            <h2 className="text-lg font-semibold mt-2">{user?.firstName + ' ' + user?.lastName}</h2>
-            <p>{alumni[0].college}</p>
-            <p className="text-sm text-gray-500">{alumni[0].city}</p>
-          </div>
-  
+          <UserProfileCard />
+
           <div className="space-y-3 dark:bg-[#151515] bg-white p-4 rounded-xl dark:shadow-none shadow-xl">
             {options.map((item) => (
               <p key={item.id} className="flex items-center gap-3 dark:text-gray-300 text-black">
