@@ -18,7 +18,7 @@ export const PostForm = () => {
   };
 
   return (
-    <div className="w-full max-w-xl mx-auto rounded-2xl shadow-md p-4 space-y-4 bg-white dark:bg-[#151515]">
+    <div className="w-full max-w-xl mx-auto rounded-md shadow-md p-4 space-y-4 bg-white dark:bg-[#151515]">
 
       <div className="flex gap-3 items-start">
 

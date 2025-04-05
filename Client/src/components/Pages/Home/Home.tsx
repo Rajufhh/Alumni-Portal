@@ -1,9 +1,4 @@
 import { useState, useEffect } from "react";
-import microsoft from "../../../assets/microsoft-logo.jpg";
-import deloitte from "../../../assets/deloitte-logo.png";
-import opkey from "../../../assets/opkey_logo.jpeg";
-import google from "../../../assets/google-logo.png";
-import phillips from "../../../assets/phillips-logo.png";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/Store";
 import { useNavigate } from "react-router";
@@ -13,12 +8,7 @@ import { UserProfileCard } from "./UserProfileCard";
 import { Post } from "./Post";
 import { PostForm } from "./PostForm";
 import { UpcomingEvents } from "./upcomingEvents";
-
-interface Job {
-  title: string;
-  company: string;
-  image: string;
-}
+import { Connections } from "./Connections";
 
 interface Post {
   id: number;
@@ -53,30 +43,13 @@ export const Home = () => {
 
   console.log(user);
 
-  const jobs: Job[] = [
-    { title: "Product Designer", company: "Opkey", image: opkey },
-    { title: "Data Engineer", company: "Philips", image: phillips },
-    { title: "Data Analyst", company: "Google", image: google },
-    { title: "Web developer", company: "Microsoft", image: microsoft },
-    { title: "Software Engineer", company: "Deloitte", image: deloitte },
-  ];
-
     return (
     <div className="w-full min-h-screen dark:bg-[#000000] bg-[#e6e9da] dark:text-white text-black"> 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-x-8 gap-y-6 px-4 md:px-10 py-6">
 
         {/* Left Sidebar */}
         <div className="md:col-span-1 space-y-6">
-
           <UserProfileCard />
-
-          {/* <div className="space-y-3 dark:bg-[#151515] bg-white p-4 rounded-xl dark:shadow-none shadow-xl">
-            {options.map((item) => (
-              <p key={item.id} className="flex items-center gap-3 dark:text-gray-300 text-black">
-                {item.icon} {item.label}
-              </p>
-            ))}
-          </div> */}
         </div>
   
         {/* Center Feed */}
@@ -100,23 +73,7 @@ export const Home = () => {
         <div className="md:col-span-1 space-y-6">  
 
           <UpcomingEvents />
-
-          <div className="dark:bg-[#151515] bg-white  p-4 rounded-xl dark:shadow-none shadow-xl">
-            <h3 className="text-lg font-semibold mb-3">Jobs Posted</h3>
-            {jobs.map((job, idx) => (
-              <div key={idx} className="flex items-center space-x-4 mb-3">
-                <img
-                  src={job.image}
-                  alt="Company Logo"
-                  className="w-10 h-10 object-contain rounded-md"
-                />
-                <div>
-                  <h4 className="font-medium">{job.title}</h4>
-                  <p className="text-sm text-gray-500">{job.company}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+          <Connections />
 
         </div>
       </div>

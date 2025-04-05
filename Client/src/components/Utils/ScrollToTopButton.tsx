@@ -19,7 +19,7 @@ export const ScrollToTopButton = () => {
   }
 
   return isVisible && (
-    <button onClick={scrollToTop} className="">
+    <button onClick={scrollToTop} className="dark:shadow-none shadow-md shadow-black">
       <img src={scrollIcon} className="w-12 h-12 fixed pl-3 pb-1 bottom-12 right-12 cursor-pointer bg-white rounded-full" />
     </button>
   )

@@ -12,7 +12,7 @@ export const UpcomingEvents = () => {
     ];
 
   return (
-    <div className="dark:bg-[#151515] bg-white  p-4 rounded-xl dark:shadow-none shadow-xl">
+    <div className="dark:bg-[#151515] bg-white  p-4 rounded-md dark:shadow-none shadow-xl">
         <h3 className="text-lg font-semibold mb-3">Upcoming Events</h3>
 
         {events.map((event, idx) => (
