@@ -1,10 +1,14 @@
 import { SearchbarTemplate } from "@/components/Utils/SearchbarTemplate"
 import { ArticleCard } from "./ArticleCard"
+import { useState } from "react";
+import { Pagination } from "@/components/Utils/Pagination";
 // import { useSelector } from "react-redux";
 // import { RootState } from "@/store/Store";
 
 export const Articles = () => {
   // const isDarkMode = useSelector((state: RootState) => state.config.isDarkMode);
+  const [currentPage, setCurrentPage] = useState(1);
+    const totalPages = 10;
 
   const articles = [
     {
@@ -16,6 +20,7 @@ export const Articles = () => {
       },
       date: "April 3, 2025",
       summary: "In this article, we explore the best practices for architecting scalable frontend applications using React and Tailwind CSS...",
+      likes: 0,
     },
     {
       title: "Building Scalable Web Apps with React",
@@ -26,6 +31,18 @@ export const Articles = () => {
       },
       date: "April 3, 2025",
       summary: "In this article, we explore the best practices for architecting scalable frontend applications using React and Tailwind CSS...",
+      likes: 0,
+    },
+    {
+      title: "Building Scalable Web Apps with React",
+      author: {
+        firstName: "Ojas",
+        lastName: "Deshpande",
+        profileImageURL: "image",
+      },
+      date: "April 3, 2025",
+      summary: "In this article, we explore the best practices for architecting scalable frontend applications using React and Tailwind CSS...",
+      likes: 0,
     },
     {
       title: "Building Scalable Web Apps with React",
@@ -36,6 +53,7 @@ export const Articles = () => {
       },
       date: "April 3, 2025",
       summary: "In this article, we explore the best practices for architecting scalable frontend applications using React and Tailwind CSS...",
+      likes: 0,
     },
     {
       title: "Building Scalable Web Apps with React",
@@ -46,6 +64,7 @@ export const Articles = () => {
       },
       date: "April 3, 2025",
       summary: "In this article, we explore the best practices for architecting scalable frontend applications using React and Tailwind CSS...",
+      likes: 0,
     },
     {
       title: "Building Scalable Web Apps with React",
@@ -56,6 +75,7 @@ export const Articles = () => {
       },
       date: "April 3, 2025",
       summary: "In this article, we explore the best practices for architecting scalable frontend applications using React and Tailwind CSS...",
+      likes: 0,
     },
     {
       title: "Building Scalable Web Apps with React",
@@ -66,6 +86,7 @@ export const Articles = () => {
       },
       date: "April 3, 2025",
       summary: "In this article, we explore the best practices for architecting scalable frontend applications using React and Tailwind CSS...",
+      likes: 0,
     },
     {
       title: "Building Scalable Web Apps with React",
@@ -76,24 +97,15 @@ export const Articles = () => {
       },
       date: "April 3, 2025",
       summary: "In this article, we explore the best practices for architecting scalable frontend applications using React and Tailwind CSS...",
-    },
-    {
-      title: "Building Scalable Web Apps with React",
-      author: {
-        firstName: "Ojas",
-        lastName: "Deshpande",
-        profileImageURL: "image"
-      },
-      date: "April 3, 2025",
-      summary: "In this article, we explore the best practices for architecting scalable frontend applications using React and Tailwind CSS...",
+      likes: 0,
     },
   ]
   
 
   return (
-    <div className="dark:bg-[#000000] bg-[#e6e9da] w-full min-h-screen flex flex-col items-center">
+    <div className="dark:bg-[#000000] bg-[#e6e9da] w-full min-h-screen flex flex-col items-center pb-6">
 
-      <div className="space-y-2 py-6 w-full bg-gray-50 px-12">
+      <div className="space-y-2 py-6 w-full bg-gray-50 px-12 dark:bg-[#151515]">
         <h2 className="text-3xl font-bold dark:text-white text-black">Articles</h2>
         <p className="dark:text-gray-300 text-gray-700">Insights, experiences, and advice from our alumni community</p>
       </div>
@@ -112,10 +124,18 @@ export const Articles = () => {
                 }}
                 date={article.date}
                 summary={article.summary}
+                likes={article.likes}
               />
             ))
           }
       </div>
+
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={setCurrentPage}
+      />
+
     </div>
   )
 }

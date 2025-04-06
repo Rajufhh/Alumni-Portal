@@ -3,7 +3,7 @@ import './App.css'
 import { Home } from './components/Pages/Home/Home'
 import { Login } from './components/Pages/Login/Login'
 import { Layout } from './components/Utils/Layout'
-import { Profile } from './components/Utils/Profile'
+import { Profile } from './components/Pages/Profile/Profile'
 import { Articles } from './components/Pages/Articles/Articles'
 import { Events } from './components/Pages/Events/Events'
 import { Jobs } from './components/Pages/Jobs/Jobs'
@@ -16,6 +16,8 @@ import { useDispatch } from 'react-redux'
 import { setUser } from './store/userSlice'
 import { WelcomePage } from './components/Pages/Home/WelcomPage'
 import { Chat } from './components/Pages/Chat/Chat'
+import { Resources } from './components/Pages/Resources/Resources'
+import { EditProfile } from './components/Pages/Profile/EditProfile'
 
 function App() {
 
@@ -58,11 +60,11 @@ function App() {
 
   return (
     <Routes>
-      <Route path='/' element={<Login />} />
+      <Route path='/login' element={<Login />} />
 
       <Route element={<Layout />} >
         <Route path='/home' element={<Home />} />
-        <Route path='/welcome' element={<WelcomePage />}/>
+        <Route path='/' element={<WelcomePage />}/>
         <Route path='/profile' element={<Profile />} />
         <Route path='/articles' element={<Articles />} />
         <Route path='/events' element={<Events />} />
@@ -71,6 +73,8 @@ function App() {
         <Route path='/find-mentor' element={<Mentor />} />
         <Route path='/alumni-directory' element={<AlumniDirectory />} />
         <Route path='/chat' element={<Chat />} />
+        <Route path='/resources' element={<Resources />} />
+        <Route path='/profile/edit' element={<EditProfile />} />
       </Route>
 
     </Routes>

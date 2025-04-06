@@ -5,7 +5,7 @@ interface badgeProps {
 export const Badge = ({ value }: badgeProps) => {
   return (
     <span
-        className="px-2 rounded-full bg-blue-200 text-blue-900 text-xs font-medium border border-blue-300 shadow-sm hover:bg-blue-200 transition"
+        className="px-2 py-0.5 rounded-sm text-xs text-white bg-black dark:bg-white dark:text-black font-semibold"
     >
         {value}
     </span>

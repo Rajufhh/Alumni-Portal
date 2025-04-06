@@ -1,6 +1,6 @@
 import { WorkInProgress } from "@/components/Utils/WorkInProgress"
 
-export const Gallery = () => {
+export const Resources = () => {
   return (
     <WorkInProgress />
   )

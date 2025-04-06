@@ -10,11 +10,10 @@ import { PostForm } from "./PostForm";
 import { UpcomingEvents } from "./UpcomingEvents";
 import { Connections } from "./Connections";
 
-interface Post {
+export interface Post {
   id: number;
   user: string;
   content: string;
-  hashtags: string;
   likes: number;
 }
 
@@ -26,20 +25,30 @@ export const Home = () => {
   // const isDarkMode = useSelector((state: RootState) => state.config.isDarkMode);
   
   useEffect(() => {      
+      console.log(user);
       if (!loading && user === null){
             console.log("!user");
-          navigate("/welcome");
+          navigate("/");
       }
-  }, []);
+  }, [user, loading, navigate]);
 
   useEffect(() => {
     setPosts([
-        { id: 1, user: "ShahRukh Khan", content: "Kashmir’s beauty...", hashtags: "Kashmir Peace Love", likes: 0 },
-        { id: 2, user: "Aman Mehta", content: "College is all about...", hashtags: "CollegeLife", likes: 0 },
-        { id: 3, user: "Arushi Pragya", content: "Between classes...", hashtags: "CollegeLife", likes: 0 },
-        { id: 4, user: "Pranali Habib", content: "Is there anything...", hashtags: "CollegeStruggles", likes: 0 },
+        { id: 1, user: "ShahRukh Khan", content: "Kashmir’s beauty...", likes: 0 },
+        { id: 2, user: "Aman Mehta", content: "College is all about...", likes: 0 },
+        { id: 3, user: "Arushi Pragya", content: "Between classes...", likes: 0 },
+        { id: 4, user: "Pranali Habib", content: "Is there anything...", likes: 0 },
     ]);
     }, []);
+
+    const handlePost = (content: string) => {
+      if (!user) return;
+
+      setPosts(prev => [
+        ...prev, 
+        { id: 0, user: user.firstName + " " + user.lastName, content: content, likes: 0 }
+      ]);
+    }
 
   console.log(user);
 
@@ -55,7 +64,7 @@ export const Home = () => {
         {/* Center Feed */}
         <div className="md:col-span-2 space-y-6">
 
-          <PostForm />
+          <PostForm handlePost={handlePost} />
 
           {posts.map((post, index) => (
             <Post key={index}

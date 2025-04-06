@@ -1,5 +1,7 @@
+import { WorkInProgress } from "@/components/Utils/WorkInProgress"
+
 export const Mentor = () => {
   return (
-    <div>Mentor</div>
+    <WorkInProgress />
   )
 }

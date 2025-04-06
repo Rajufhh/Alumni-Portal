@@ -17,17 +17,18 @@
 
 import { SearchbarTemplate } from "@/components/Utils/SearchbarTemplate"
 import EventCard from "./EventCard"
+import { useState } from "react";
+import { Pagination } from "@/components/Utils/Pagination";
 // import { useSelector } from "react-redux";
 // import { RootState } from "@/store/Store";
 
 export const Events = () => {
-  // const isDarkMode = useSelector((state: RootState) => state.config.isDarkMode);
-
-  
-  
+  // const isDarkMode = useSelector((state: RootState) => state.config.isDarkMode);`
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = 10;
 
   return (
-    <div className="dark:bg-[#000000] bg-[#e6e9da] w-full min-h-screen flex flex-col items-center">
+    <div className="dark:bg-[#000000] bg-[#e6e9da] w-full min-h-screen flex flex-col items-center pb-6">
 
       <div className="space-y-2 py-6 w-full bg-gray-50 px-12">
         <h2 className="text-3xl font-bold dark:text-white text-black">Events</h2>
@@ -48,6 +49,13 @@ export const Events = () => {
               />
           }
       </div>
+      
+      <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={setCurrentPage}
+        />
+
     </div>
   )
 }

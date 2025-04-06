@@ -1,10 +1,14 @@
 import { SearchbarTemplate } from "@/components/Utils/SearchbarTemplate"
 import { JobCard } from "./JobCard"
+import { Pagination } from "@/components/Utils/Pagination"
+import { useState } from "react";
 // import { useSelector } from "react-redux";
 // import { RootState } from "@/store/Store";
 
 export const Jobs = () => {
   // const isDarkMode = useSelector((state: RootState) => state.config.isDarkMode);
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = 10;
 
   const jobs = [
     { 
@@ -74,9 +78,9 @@ export const Jobs = () => {
   ]
 
   return (
-    <div className="dark:bg-[#000000] bg-[#e6e9da] w-full min-h-screen flex flex-col items-center">
+    <div className="dark:bg-[#000000] bg-[#e6e9da] w-full min-h-screen flex flex-col items-center pb-6">
 
-      <div className="space-y-2 py-6 w-full bg-gray-50 px-12">
+      <div className="space-y-2 py-6 w-full bg-gray-50 px-12 dark:bg-[#151515]">
         <h2 className="text-3xl font-bold dark:text-white text-black">Job Board</h2>
         <p className="dark:text-gray-300 text-gray-700">Find and apply to jobs posted by alumni</p>
       </div>
@@ -97,6 +101,13 @@ export const Jobs = () => {
             ))
           }
       </div>
+
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={setCurrentPage}
+      />
+
     </div>
   )
 }

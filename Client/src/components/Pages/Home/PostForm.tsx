@@ -5,7 +5,11 @@ import UserIcon from "@/assets/user-icon.svg";
 import UserIconDark from "@/assets/user-icon-dark.svg";
 import { Paperclip, Smile, Image, Send } from "lucide-react";
 
-export const PostForm = () => {
+interface PostFormProps {
+  handlePost: (content: string) => void;
+}
+
+export const PostForm = ({ handlePost }: PostFormProps) => {
   const isDarkMode = useSelector((state: RootState) => state.config.isDarkMode);
   const postContent = useRef<HTMLTextAreaElement>(null);
 
@@ -16,6 +20,8 @@ export const PostForm = () => {
       temp.style.height = `${temp.scrollHeight}px`;
     }
   };
+
+  
 
   return (
     <div className="w-full max-w-xl mx-auto rounded-md shadow-md p-4 space-y-4 bg-white dark:bg-[#151515]">
@@ -52,7 +58,7 @@ export const PostForm = () => {
           </button>
         </div>
 
-        <button className="flex items-center gap-1 dark:bg-white bg-black dark:text-black text-white cursor-pointer text-sm px-4 py-1 rounded-full transition">
+        <button className="flex items-center gap-1 dark:bg-white bg-black dark:text-black text-white cursor-pointer text-sm px-4 py-1 rounded-full transition" onClick={() => handlePost(postContent.current?.value || "")}>
           <Send size={14} />
           <span>Post</span>
         </button>

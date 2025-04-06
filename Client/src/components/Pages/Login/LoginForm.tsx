@@ -54,7 +54,7 @@ export const LoginForm = () => {
 
 
   return (
-    <div className="w-full flex items-center justify-center">
+    <div className="w-full flex items-center justify-center text-black">
       <form
         onSubmit={handleSubmit}
         className="w-full max-w-sm bg-white p-6 rounded-lg shadow-md border border-gray-300"
