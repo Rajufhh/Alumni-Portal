@@ -17,7 +17,6 @@ import { setUser } from './store/userSlice'
 import { WelcomePage } from './components/Pages/Home/WelcomPage'
 import { Chat } from './components/Pages/Chat/Chat'
 import { Resources } from './components/Pages/Resources/Resources'
-import { EditProfile } from './components/Pages/Profile/EditProfile'
 
 function App() {
 
@@ -74,7 +73,7 @@ function App() {
         <Route path='/alumni-directory' element={<AlumniDirectory />} />
         <Route path='/chat' element={<Chat />} />
         <Route path='/resources' element={<Resources />} />
-        <Route path='/profile/edit' element={<EditProfile />} />
+        <Route path='/profile/:userId' element={<Profile />} />
       </Route>
 
     </Routes>

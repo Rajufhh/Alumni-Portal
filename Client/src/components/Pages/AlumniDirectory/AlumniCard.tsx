@@ -21,7 +21,7 @@ export const AlumniCard = ({
   return (
     <div className="bg-white border rounded-xl p-6 shadow-sm hover:shadow-lg transition relative dark:bg-[#151515]">
       <div className="flex gap-4">
-        <div className="w-16 h-16 rounded-full bg-gray-200 animate-pulse" />
+        <div className="w-16 h-16 rounded-full bg-gray-200" />
 
         <div className="flex-1">
           <h2 className="text-lg font-semibold">{name}</h2>
@@ -42,8 +42,8 @@ export const AlumniCard = ({
             ))}
           </div>
 
-          <button className="px-4 py-1.5 bg-black font-semibold cursor-pointer text-white rounded-md transition text-sm absolute bottom-6 right-4 dark:bg-white dark:text-black">
-            Apply Now
+          <button className="px-3 py-1 bg-black font-semibold cursor-pointer text-white rounded-md transition text-sm absolute top-6 right-4 dark:bg-white dark:text-black">
+            Connect
         </button>
         </div>
       </div>

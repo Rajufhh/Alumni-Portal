@@ -18,6 +18,7 @@ export const Header = () => {
     const navigate = useNavigate();
     const isDarkMode = useSelector((state: RootState) => state.config.isDarkMode);
     const [dropdownVisibility, setDropdownVisibility] = useState(false);
+    const { user } = useSelector((state: RootState) => state.user);
 
     useEffect(() => {
         if (isDarkMode){
@@ -118,7 +119,7 @@ export const Header = () => {
             >
 
                 <div className="px-4 py-2 w-full dark:hover:bg-white dark:hover:text-black hover:bg-black hover:text-white  cursor-pointer rounded-t-md">
-                    <Link to={"/profile/edit"}>
+                    <Link to={`/profile/${user?._id}`}>
                         Edit Profile
                     </Link>
                 </div>
