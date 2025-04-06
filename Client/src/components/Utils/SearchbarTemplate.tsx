@@ -1,17 +1,15 @@
-// import { RootState } from "@/store/Store";
-// import { useSelector } from "react-redux";
-
 interface searchbarProps {
     placeholder: string;
+    value?: string;
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export const SearchbarTemplate = ({ placeholder }: searchbarProps) => {
-    // const isDarkMode = useSelector((state: RootState) => state.config.isDarkMode);
+export const SearchbarTemplate = ({ placeholder, value, onChange }: searchbarProps) => {
 
   return (
     <div className="w-full py-2 bg-gray-50 flex items-center px-12 justify-between dark:bg-[#151515]">
         <div className="w-1/2 py-4 space-x-4">
-            <input type="text" placeholder={placeholder} className="w-[70%] py-2 px-3 focus:ring-black focus:ring-2 focus:outline-none text-sm rounded-sm bg-white text-black shadow-sm shadow-black"/>
+            <input type="text" placeholder={placeholder} value={value} onChange={onChange} className="w-[70%] py-2 px-3 focus:ring-black focus:ring-2 focus:outline-none text-sm rounded-sm bg-white text-black shadow-sm shadow-black"/>
             <button className="dark:bg-white dark:text-black text-sm bg-black text-white font-semibold px-4 py-2 rounded-sm cursor-pointer">
                 Search
             </button>

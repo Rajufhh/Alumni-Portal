@@ -10,6 +10,7 @@ interface JobCardInterface {
   }
   
   export const JobCard = ({ title, company, date, location, jobType, skills }: JobCardInterface) => {
+    
 
     return (
       <div className="bg-white border rounded-xl col-span-2 p-6 shadow-md hover:shadow-lg transition relative dark:bg-[#151515] dark:text-white text-black">
