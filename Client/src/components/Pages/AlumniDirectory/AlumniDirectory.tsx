@@ -5,6 +5,7 @@ import { AlumniCard } from "./AlumniCard";
 
 export const AlumniDirectory = () => {
   const [currentPage, setCurrentPage] = useState(1);
+  const [searchQuery, setSearchQuery] = useState("");
   const totalPages = 10;
 
   const alumniProfiles = [
@@ -55,6 +56,18 @@ export const AlumniDirectory = () => {
     }
   ];
 
+  const filteredAlumni = alumniProfiles.filter(alumni => {
+    const query = searchQuery.toLowerCase();
+    
+    return (
+      alumni.batch.toLowerCase().includes(query) ||
+      alumni.jobTitle.toLowerCase().includes(query) ||
+      alumni.company.toLowerCase().includes(query) ||
+      alumni.skills.some((skill) => skill.toLowerCase().includes(query)) ||
+      alumni.name.toLowerCase().includes(query)
+    )
+  });
+
   return (
     <div className="dark:bg-[#000000] bg-[#e6e9da] w-full min-h-screen flex flex-col items-center pb-6">
 
@@ -63,11 +76,11 @@ export const AlumniDirectory = () => {
         <p className="dark:text-gray-300 text-gray-700">Find and connect with Alumni</p>
       </div>
 
-      <SearchbarTemplate placeholder="Search by name, skills or company"/>
+      <SearchbarTemplate placeholder="Search by name, skills or company" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>
 
       <div className="w-full px-4 md:px-30 py-6 space-y-8">
           {
-            alumniProfiles.map((alumni, index) => (
+            filteredAlumni.map((alumni, index) => (
               <AlumniCard key={index}
                 name={alumni.name}
                 jobTitle={alumni.jobTitle}

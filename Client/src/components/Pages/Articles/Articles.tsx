@@ -8,6 +8,7 @@ import { Pagination } from "@/components/Utils/Pagination";
 export const Articles = () => {
   // const isDarkMode = useSelector((state: RootState) => state.config.isDarkMode);
   const [currentPage, setCurrentPage] = useState(1);
+  const [searchQuery, setSearchQuery] = useState("");
     const totalPages = 10;
 
   const articles = [
@@ -101,6 +102,16 @@ export const Articles = () => {
     },
   ]
   
+  const filteredArticles = articles.filter(article => {
+    const query = searchQuery.toLowerCase();
+
+    return (
+      article.author.firstName.toLowerCase().includes(query) ||
+      article.author.lastName.toLowerCase().includes(query) ||
+      article.title.toLowerCase().includes(query)
+    )
+  })
+
 
   return (
     <div className="dark:bg-[#000000] bg-[#e6e9da] w-full min-h-screen flex flex-col items-center pb-6">
@@ -110,11 +121,11 @@ export const Articles = () => {
         <p className="dark:text-gray-300 text-gray-700">Insights, experiences, and advice from our alumni community</p>
       </div>
 
-      <SearchbarTemplate placeholder="Search articles by title, author or description"/>
+      <SearchbarTemplate placeholder="Search articles by title, author or description" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
 
       <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-12 px-4 md:px-10 py-6">
           {
-            articles.map((article, index) => (
+            filteredArticles.map((article, index) => (
               <ArticleCard key={index}
                 title={article.title}
                 author={{
