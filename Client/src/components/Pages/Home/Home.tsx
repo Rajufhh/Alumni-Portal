@@ -9,6 +9,7 @@ import { PostForm } from "./PostForm";
 import { UpcomingEvents } from "./UpcomingEvents";
 import { Connections } from "./Connections";
 import { useAuthorize } from "@/hooks/useAuthorize";
+import { useNotification } from "@/hooks/useNotification";
 
 export interface Post {
   id: number;
@@ -20,6 +21,8 @@ export interface Post {
 export const Home = () => {
   const [posts, setPosts] = useState<Post[]>([]);
   useAuthorize();
+  const { notify } = useNotification();
+  notify({ id: "welcome-toast", type: "info", content: "Welcome!"})
 
   const { user } = useSelector((state: RootState) => state.user);
 
@@ -30,7 +33,9 @@ export const Home = () => {
         { id: 3, user: "Arushi Pragya", content: "Between classes...", likes: 0 },
         { id: 4, user: "Pranali Habib", content: "Is there anything...", likes: 0 },
     ]);
-    }, []);
+
+
+  }, []);
 
     const handlePost = (content: string) => {
       if (!user) return;

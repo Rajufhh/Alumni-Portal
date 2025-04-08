@@ -1,6 +1,7 @@
 "use client";
 
 import { Spinner } from "@/components/ui/Spinner";
+import { useNotification } from "@/hooks/useNotification";
 import { setUser } from "@/store/userSlice";
 import axios from "axios";
 import { useState } from "react";
@@ -11,6 +12,7 @@ export const SignupForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  const { notify } = useNotification();
 
   const [formData, setFormData] = useState({
     firstName: "",
@@ -55,8 +57,10 @@ export const SignupForm = () => {
       navigate("/home");
     } catch (error) {
       console.error("SIGNUP_ERROR", error);
+      notify({ id: "signup-error", type: "error", content: "500: Signup Error" });
     }
     finally{
+      notify({ id: "signup-toast", type: "success", content: "Signed-up successfully" });
       setLoading(false);
     }
   };

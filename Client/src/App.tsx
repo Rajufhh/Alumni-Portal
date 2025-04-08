@@ -17,6 +17,8 @@ import { setUser } from './store/userSlice'
 import { WelcomePage } from './components/Pages/Home/WelcomPage'
 import { Chat } from './components/Pages/Chat/Chat'
 import { Resources } from './components/Pages/Resources/Resources'
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
 
@@ -58,25 +60,29 @@ function App() {
   }
 
   return (
-    <Routes>
-      <Route path='/login' element={<Login />} />
+    <>
+      <Routes>
+        <Route path='/login' element={<Login />} />
 
-      <Route element={<Layout />} >
-        <Route path='/home' element={<Home />} />
-        <Route path='/' element={<WelcomePage />}/>
-        <Route path='/profile' element={<Profile />} />
-        <Route path='/articles' element={<Articles />} />
-        <Route path='/events' element={<Events />} />
-        <Route path='/jobs' element={<Jobs />} />
-        <Route path='/gallery' element={<Gallery />} />
-        <Route path='/find-mentor' element={<Mentor />} />
-        <Route path='/alumni-directory' element={<AlumniDirectory />} />
-        <Route path='/chat' element={<Chat />} />
-        <Route path='/resources' element={<Resources />} />
-        <Route path='/profile/:userId' element={<Profile />} />
-      </Route>
+        <Route element={<Layout />} >
+          <Route path='/home' element={<Home />} />
+          <Route path='/' element={<WelcomePage />}/>
+          <Route path='/profile' element={<Profile />} />
+          <Route path='/articles' element={<Articles />} />
+          <Route path='/events' element={<Events />} />
+          <Route path='/jobs' element={<Jobs />} />
+          <Route path='/gallery' element={<Gallery />} />
+          <Route path='/find-mentor' element={<Mentor />} />
+          <Route path='/alumni-directory' element={<AlumniDirectory />} />
+          <Route path='/chat' element={<Chat />} />
+          <Route path='/resources' element={<Resources />} />
+          <Route path='/profile/:userId' element={<Profile />} />
+        </Route>
 
-    </Routes>
+      </Routes>
+
+      <ToastContainer position='bottom-left' autoClose={3000} />
+    </>
   )
 }
 

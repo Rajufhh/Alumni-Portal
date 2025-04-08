@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { setUser } from "@/store/userSlice";
 import { useNavigate } from "react-router";
 import { Spinner } from "@/components/ui/Spinner";
+import { useNotification } from "@/hooks/useNotification";
 
 export const LoginForm = () => {
   const [email, setEmail] = useState("");
@@ -11,6 +12,7 @@ export const LoginForm = () => {
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { notify } = useNotification();
 
   const isFormActive = email.trim() !== "" && password.trim() !== "";
 
@@ -48,13 +50,13 @@ export const LoginForm = () => {
         } 
         catch (error) {
           console.error("LOGIN_SUBMISSION_ERROR", error);
+          notify({ id: "login-error", type: "error", content: "500: Login Error" });
         }
         finally{
+          notify({ id: "login-toast", type: "success", content: "Logged-in successfully!" });
           setLoading(false);
         }
     }
-
-
 
   return (
     <div className="w-full flex items-center justify-center text-black">
