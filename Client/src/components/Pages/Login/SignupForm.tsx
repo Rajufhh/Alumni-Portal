@@ -1,5 +1,6 @@
 "use client";
 
+import { Spinner } from "@/components/ui/Spinner";
 import { setUser } from "@/store/userSlice";
 import axios from "axios";
 import { useState } from "react";
@@ -9,6 +10,7 @@ import { useNavigate } from "react-router";
 export const SignupForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const [formData, setFormData] = useState({
     firstName: "",
@@ -29,6 +31,8 @@ export const SignupForm = () => {
   };
 
   const submitForm = async () => {
+    setLoading(true);
+
     try {
       const response = await axios.post(
         "http://localhost:3000/api/signup",
@@ -51,6 +55,9 @@ export const SignupForm = () => {
       navigate("/home");
     } catch (error) {
       console.error("SIGNUP_ERROR", error);
+    }
+    finally{
+      setLoading(false);
     }
   };
 
@@ -143,7 +150,7 @@ export const SignupForm = () => {
         className="w-full mt-6 cursor-pointer bg-black text-white py-3 rounded-lg font-medium transition duration-200"
         onClick={submitForm}
       >
-        Sign Up →
+        { loading ? <Spinner /> : 'Sign Up →' }
       </button>
     </div>
   );

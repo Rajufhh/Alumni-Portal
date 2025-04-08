@@ -3,10 +3,12 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { setUser } from "@/store/userSlice";
 import { useNavigate } from "react-router";
+import { Spinner } from "@/components/ui/Spinner";
 
 export const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -20,35 +22,36 @@ export const LoginForm = () => {
     setPassword(e.target.value);
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    if (!isFormActive) return;
-
-    // TODO: Handle authentication logic here
-    console.log("Logging in with:", { email, password });
-    };
-
     const submitForm = async () => {
-        const values = { email, password }
+        setLoading(true);
 
-        const response = await axios.post("http://localhost:3000/api/login", values, { withCredentials: true });
-        const accessToken = response.data.data.accessToken;
-        const refreshToken = response.data.data.refreshToken;
-        const user = response.data.data.user;
+        try {
+          const values = { email, password }
 
-        dispatch(setUser(user));
+          const response = await axios.post("http://localhost:3000/api/login", values, { withCredentials: true });
+          const accessToken = response.data.data.accessToken;
+          const refreshToken = response.data.data.refreshToken;
+          const user = response.data.data.user;
 
-        if (!accessToken || !refreshToken){
-            throw new Error("Error while signing up");
+          dispatch(setUser(user));
+
+          if (!accessToken || !refreshToken){
+              throw new Error("Error while signing up");
+          }
+
+          // Store the tokens for authorization purposes
+          localStorage.setItem('accessToken', accessToken);
+          localStorage.setItem('refreshToken', refreshToken);
+
+          // Navigate the user to the dashboard/home page
+          navigate("/home");
+        } 
+        catch (error) {
+          console.error("LOGIN_SUBMISSION_ERROR", error);
         }
-
-        // Store the tokens for authorization purposes
-        localStorage.setItem('accessToken', accessToken);
-        localStorage.setItem('refreshToken', refreshToken);
-
-        // Navigate the user to the dashboard/home page
-        navigate("/home");
+        finally{
+          setLoading(false);
+        }
     }
 
 
@@ -56,7 +59,7 @@ export const LoginForm = () => {
   return (
     <div className="w-full flex items-center justify-center text-black">
       <form
-        onSubmit={handleSubmit}
+        onSubmit={(e) => e.preventDefault()}
         className="w-full max-w-sm bg-white p-6 rounded-lg shadow-md border border-gray-300"
       >
         <h2 className="text-2xl font-semibold mb-6 text-center">Login</h2>
@@ -103,7 +106,7 @@ export const LoginForm = () => {
           }`}
           onClick={submitForm}
         >
-          Sign In →
+          { loading ? <Spinner /> : 'Sign In →' }
         </button>
       </form>
     </div>
