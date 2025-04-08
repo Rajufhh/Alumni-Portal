@@ -2,11 +2,13 @@ import { SearchbarTemplate } from "@/components/Utils/SearchbarTemplate"
 import { Pagination } from "@/components/Utils/Pagination"
 import { useState } from "react";
 import { AlumniCard } from "./AlumniCard";
+import { useAuthorize } from "@/hooks/useAuthorize";
 
 export const AlumniDirectory = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
   const totalPages = 10;
+  useAuthorize();
 
   const alumniProfiles = [
     {

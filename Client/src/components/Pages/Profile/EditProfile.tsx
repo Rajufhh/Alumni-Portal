@@ -38,18 +38,18 @@ export const EditProfile = () => {
     );
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-            ...prev,
-            [name]: value,
-    }));
+      const { name, value } = e.target;
+      setFormData((prev) => ({
+              ...prev,
+              [name]: value,
+      }));
     };
 
     const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    console.log("Saved data:", formData);
-    alert("Changes saved!");
-    Object.assign(defaultData, formData);
+      e.preventDefault();
+      console.log("Saved data:", formData);
+      alert("Changes saved!");
+      Object.assign(defaultData, formData);
     };
 
   return (

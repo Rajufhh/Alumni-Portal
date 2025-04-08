@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/Store";
-import { useNavigate } from "react-router";
 import { UserProfileCard } from "./UserProfileCard";
 // import userIcon from "../../../assets/user-icon.svg"
 // import userIconDark from "../../../assets/user-icon-dark.svg"
@@ -9,6 +8,7 @@ import { Post } from "./Post";
 import { PostForm } from "./PostForm";
 import { UpcomingEvents } from "./UpcomingEvents";
 import { Connections } from "./Connections";
+import { useAuthorize } from "@/hooks/useAuthorize";
 
 export interface Post {
   id: number;
@@ -19,18 +19,9 @@ export interface Post {
 
 export const Home = () => {
   const [posts, setPosts] = useState<Post[]>([]);
+  useAuthorize();
 
-  const { user, loading } = useSelector((state: RootState) => state.user);
-  const navigate = useNavigate();
-  // const isDarkMode = useSelector((state: RootState) => state.config.isDarkMode);
-  
-  useEffect(() => {      
-      console.log(user);
-      if (!loading && user === null){
-            console.log("!user");
-          navigate("/");
-      }
-  }, [user, loading, navigate]);
+  const { user } = useSelector((state: RootState) => state.user);
 
   useEffect(() => {
     setPosts([

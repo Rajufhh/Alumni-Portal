@@ -1,32 +1,14 @@
-// import EventCard from "./EventCard"
-
-// export const Events = () => {
-//   return (
-//     <div className="">
-//       <EventCard
-//       title="Tech Alumni Meetup 2025"
-//       date="April 20, 2025"
-//       time="5:00 PM - 8:00 PM"
-//       location="Gujarat University Auditorium"
-//       description="An evening to reconnect with alumni, share experiences, and explore collaboration opportunities."
-//       tags={["Networking", "Tech", "In-Person"]}
-//       />
-//     </div>
-//   )
-// }
-
 import { SearchbarTemplate } from "@/components/Utils/SearchbarTemplate"
 import EventCard from "./EventCard"
 import { useState } from "react";
 import { Pagination } from "@/components/Utils/Pagination";
-// import { useSelector } from "react-redux";
-// import { RootState } from "@/store/Store";
+import { useAuthorize } from "@/hooks/useAuthorize";
 
 export const Events = () => {
-  // const isDarkMode = useSelector((state: RootState) => state.config.isDarkMode);`
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
   const totalPages = 10;
+  useAuthorize();
 
   const events = [
     {

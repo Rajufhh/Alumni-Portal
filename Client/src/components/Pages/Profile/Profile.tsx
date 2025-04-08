@@ -8,11 +8,14 @@ import { EditProfile } from "./EditProfile";
 import { ChangePassword } from "./ChangePassword";
 import { ViewProfile } from "./ViewProfile";
 import { RootState } from "@/store/Store";
+import { Uploads } from "./Uploads";
+import { useAuthorize } from "@/hooks/useAuthorize";
 
-type ComponentType = "view" | "edit" | "password";
+type ComponentType = "view" | "edit" | "password" | "uploads";
 
 export const Profile = () => {
   const { userId: profileId } = useParams();
+  useAuthorize();
 
   const dispatch = useDispatch();
   const { user } = useSelector((state: RootState) => state.user);
@@ -74,12 +77,15 @@ export const Profile = () => {
           alt="Profile"
           className="rounded-full w-48 h-48 object-cover border-4 border-white"
         />
-        <label
-          htmlFor="profile-pic-upload"
-          className="text-sm text-neutral-700 dark:text-neutral-300 mt-3 cursor-pointer hover:underline"
-        >
-          Change Profile Picture
-        </label>
+        {
+          activeComponent === "edit" && isOwnProfile &&
+          <label
+            htmlFor="profile-pic-upload"
+            className="text-sm text-neutral-700 dark:text-neutral-300 mt-3 cursor-pointer hover:underline"
+          >
+            Change Profile Picture
+          </label>
+        }
         <input
           type="file"
           id="profile-pic-upload"
@@ -111,6 +117,13 @@ export const Profile = () => {
               >
                 Change Password
               </button>
+
+              <button
+                className="w-full py-2 text-sm border rounded transition bg-[#000000] dark:bg-[#151515] hover:bg-[#151515] dark:hover:bg-[#222] dark:text-neutral-100 cursor-pointer"
+                onClick={() => setActiveComponent("uploads")}
+              >
+                My Uploads
+              </button>
             </>
           ) : (
             <>
@@ -139,6 +152,7 @@ export const Profile = () => {
         )}
         {activeComponent === "edit" && isOwnProfile && <EditProfile />}
         {activeComponent === "password" && isOwnProfile && <ChangePassword />}
+        {activeComponent === "uploads" && isOwnProfile && <Uploads />}
       </div>
     </div>
   );

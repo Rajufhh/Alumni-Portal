@@ -1,11 +1,10 @@
-import { Spinner } from "@/components/ui/Spinner"
 import { WorkInProgress } from "@/components/Utils/WorkInProgress"
+import { useAuthorize } from "@/hooks/useAuthorize"
 
 export const Mentor = () => {
+  useAuthorize();
+
   return (
-    // <WorkInProgress />
-    <div className="w-full min-h-screen flex justify-center items-center bg-[#000000]">
-      <Spinner />
-    </div>
+    <WorkInProgress />
   )
 }

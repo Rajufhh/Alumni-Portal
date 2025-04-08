@@ -2,6 +2,7 @@ import { SearchbarTemplate } from "@/components/Utils/SearchbarTemplate"
 import { ArticleCard } from "./ArticleCard"
 import { useState } from "react";
 import { Pagination } from "@/components/Utils/Pagination";
+import { useAuthorize } from "@/hooks/useAuthorize";
 // import { useSelector } from "react-redux";
 // import { RootState } from "@/store/Store";
 
@@ -9,7 +10,8 @@ export const Articles = () => {
   // const isDarkMode = useSelector((state: RootState) => state.config.isDarkMode);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
-    const totalPages = 10;
+  const totalPages = 10;
+  useAuthorize();
 
   const articles = [
     {

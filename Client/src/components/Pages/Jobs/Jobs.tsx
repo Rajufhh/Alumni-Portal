@@ -2,14 +2,13 @@ import { SearchbarTemplate } from "@/components/Utils/SearchbarTemplate"
 import { JobCard } from "./JobCard"
 import { Pagination } from "@/components/Utils/Pagination"
 import { useState } from "react";
-// import { useSelector } from "react-redux";
-// import { RootState } from "@/store/Store";
+import { useAuthorize } from "@/hooks/useAuthorize";
 
 export const Jobs = () => {
-  // const isDarkMode = useSelector((state: RootState) => state.config.isDarkMode);
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = 10;
   const [searchQuery, setSearchQuery] = useState("");
+  useAuthorize();
 
   const jobs = [
     { 
