@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { verifyJWT, verifyPermission } from "../middlewares/auth/user.middlewares";
-import { handleDeleteEvent, handleFetchAllEvents, handleFetchEventsByUser, handlePostEvent, handleRegisterForEvent, handleUpdateEvent } from "../controllers/event.controller";
+import { handleDeleteEvent, handleFetchAllEvents, handleFetchEventsByUser, handlePostEvent, handleRemoveRsvp, handleRsvpForEvent, handleUpdateEvent } from "../controllers/event.controller";
 
 const router = Router();
 
@@ -11,6 +11,7 @@ router.get("/:id", verifyJWT, verifyPermission(["alumni", "admin"]), handleFetch
 router.post("/", verifyJWT, verifyPermission(["alumni", "admin"]), handlePostEvent);
 router.delete("/:eventId", verifyJWT, verifyPermission(["alumni", "admin"]), handleDeleteEvent);
 router.post("/update/:eventId", verifyJWT, verifyPermission(["alumni", "admin"]), handleUpdateEvent);
-router.post("/register/:eventId", verifyJWT, handleRegisterForEvent);
+router.post("/register/:eventId", verifyJWT, handleRsvpForEvent);
+router.put("/register/:eventId", verifyJWT, handleRemoveRsvp);
 
 export default router;

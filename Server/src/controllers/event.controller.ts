@@ -1,151 +1,207 @@
-import { Request, Response } from "express";
-import asyncHandler from "../utils/AsyncHandler";
-import Event from "../models/event.models";
-import APIResponse from "../utils/APIResponse";
-import APIError from "../utils/APIError";
-import mongoose from "mongoose";
+    import { Request, Response } from "express";
+    import asyncHandler from "../utils/AsyncHandler";
+    import Event from "../models/event.models";
+    import APIResponse from "../utils/APIResponse";
+    import APIError from "../utils/APIError";
+    import mongoose from "mongoose";
+import { pagination } from "../utils/Pagination";
 
-export const handleFetchAllEvents = asyncHandler(async (req: Request, res: Response) => {
-    const events = await Event.find({}).lean();
-
-    res
-        .status(200)
-        .json(new APIResponse(200, events, events.length ? "Events fetched successfully" : "No Events available"));
-});
-
-export const handleFetchEventsByUser = asyncHandler(async (req: Request, res: Response) => {
-    const { id } = req.params;
-
-    if (!id){
-        throw new APIError(400, "userId is required");
+    interface Results {
+        next?: {
+            page: number;
+            limit: number;
+        };
+        prev?: {
+            page: number;
+            limit: number;
+        }
     }
 
-    const events = await Event.find({ owner: id }).lean();
+    export const handleFetchAllEvents = asyncHandler(async (req: Request, res: Response) => {
+        const page = parseInt(req.query.page as string) || 1;
+        const limit = parseInt(req.query.limit as string) || 10;
+        const search = (req.query.search as string).toLowerCase() || "";
+        
+        
+        // Create a mongoDB filter
+        const filter =  search ? {
+            $or: [
+                { title: { $regex: search, $options: "i" } },
+                { owner: { $regex: search, $options: "i" } },
+            ]
+        } : {};
 
-    res
-        .status(200)
-        .json(new APIResponse(200, events, events.length ? "Events fetched successfully" : "No Events available"));
-});
+        const total = await Event.countDocuments(filter);
+        const { startIndex, next, prev, totalPages } = pagination(page, limit, total);
 
-export const handlePostEvent = asyncHandler(async (req: Request, res: Response) => {
-    const { title, location, date, time, description, entryFee } = req.body;
-    const id = req.user?._id;
+        const events = await Event.find(filter).skip(startIndex).limit(limit).populate("owner", "_id profileImageURL firstName lastName");
 
-    if (req.user?.role !== "alumni" && req.user?.role !== "admin"){
-        throw new APIError(400, "Unauthorized request");
-    }
-
-    if (!id){
-        throw new APIError(400, "Unauthorized request");
-    }
-
-    const event = await Event.create({
-        title,
-        location,
-        date,
-        time,
-        description,
-        entryFee,
-        owner: id,
-        rsvps: []
+        res
+            .status(200)
+            .json(new APIResponse(200, { events, totalPages, totalResults: total, pagination: { prev, next } }, events.length ? "Events fetched successfully" : "No Events available"));
     });
 
-    if (!event){
-        throw new APIError(400, "Error posting event");
-    }
+    export const handleFetchEventsByUser = asyncHandler(async (req: Request, res: Response) => {
+        const { id } = req.params;
 
-    res
-        .status(201)
-        .json(new APIResponse(201, event, "Event posted successfully"));
-});
+        if (!id){
+            throw new APIError(400, "userId is required");
+        }
 
-export const handleDeleteEvent = asyncHandler(async (req: Request, res: Response) => {
-    const { eventId } = req.params;
-    const id = req.user?._id as string;
+        const events = await Event.find({ owner: id }).lean();
 
-    if (!eventId){
-        throw new APIError(404, "eventId is required");
-    }
+        res
+            .status(200)
+            .json(new APIResponse(200, events, events.length ? "Events fetched successfully" : "No Events available"));
+    });
 
-    if (req.user?.role !== "alumni" && req.user?.role !== "admin"){
-        throw new APIError(400, "Unauthorized request");
-    }
+    export const handlePostEvent = asyncHandler(async (req: Request, res: Response) => {
+        const { title, location, date, time, description, entryFee } = req.body;
+        const id = req.user?._id;
 
-    const event = await Event.findById(eventId).lean();
+        if (req.user?.role !== "alumni" && req.user?.role !== "admin"){
+            throw new APIError(400, "Unauthorized request");
+        }
 
-    if (!event){
-        throw new APIError(404, "Event not found");
-    }
+        if (!id){
+            throw new APIError(400, "Unauthorized request");
+        }
 
-    if (event.owner.toString() !== id.toString()){
-        throw new APIError(400, "Unauthorized request");
-    }
-    
-    await Event.deleteOne({ _id: eventId });
+        const event = await Event.create({
+            title,
+            location,
+            date,
+            time,
+            description,
+            entryFee,
+            owner: id,
+            rsvps: []
+        });
 
-    res
-        .status(200)
-        .json(new APIResponse(200, "", "Event deleted successfully"));
-});
+        if (!event){
+            throw new APIError(400, "Error posting event");
+        }
 
-export const handleUpdateEvent = asyncHandler(async (req: Request, res: Response) => {
-    const { eventId } = req.params;
-    const id = req.user?._id as string;
-    const { title, location, date, time, description, entryFee } = req.body;
+        res
+            .status(201)
+            .json(new APIResponse(201, event, "Event posted successfully"));
+    });
 
-    if (!eventId){
-        throw new APIError(400, "eventId is required");
-    }
+    export const handleDeleteEvent = asyncHandler(async (req: Request, res: Response) => {
+        const { eventId } = req.params;
+        const id = req.user?._id as string;
 
-    if (req.user?.role !== "alumni" && req.user?.role !== "admin"){
-        throw new APIError(400, "Unauthorized request");
-    }
+        if (!eventId){
+            throw new APIError(404, "eventId is required");
+        }
 
-    const event = await Event.findById(eventId).lean();
+        if (req.user?.role !== "alumni" && req.user?.role !== "admin"){
+            throw new APIError(400, "Unauthorized request");
+        }
 
-    if (!event){
-        throw new APIError(404, "Event not found");
-    }
+        const event = await Event.findById(eventId).lean();
 
-    if (event.owner.toString() !== id.toString()){
-        throw new APIError(400, "Unauthorized request");
-    }
+        if (!event){
+            throw new APIError(404, "Event not found");
+        }
 
-    const updatedEvent = await Event.findByIdAndUpdate(
-        eventId,
-        { $set: { title, location, date, time, description, entryFee } },
-        { new: true, runValidators: true }
-    ).lean();
-    
-    res
-        .status(200)
-        .json(new APIResponse(200, updatedEvent, "Updated event successfully"));
-});
+        if (event.owner.toString() !== id.toString()){
+            throw new APIError(400, "Unauthorized request");
+        }
+        
+        await Event.deleteOne({ _id: eventId });
 
-export const handleRegisterForEvent = asyncHandler(async (req: Request, res: Response) => {
-    const { eventId } = req.params;
-    const id = req.user?._id as string;
+        res
+            .status(200)
+            .json(new APIResponse(200, "", "Event deleted successfully"));
+    });
 
-    if (!eventId){
-        throw new APIError(400, "eventId is required");
-    }
+    export const handleUpdateEvent = asyncHandler(async (req: Request, res: Response) => {
+        const { eventId } = req.params;
+        const id = req.user?._id as string;
+        const { title, location, date, time, description, entryFee } = req.body;
 
-    const event = await Event.findById(eventId).lean();
+        if (!eventId){
+            throw new APIError(400, "eventId is required");
+        }
 
-    if (!event){
-        throw new APIError(400, "Event not found");
-    }
+        if (req.user?.role !== "alumni" && req.user?.role !== "admin"){
+            throw new APIError(400, "Unauthorized request");
+        }
 
-    if (event.rsvps.includes(new mongoose.Types.ObjectId(id))){
-        throw new APIError(400, "Already rsvp'd");
-    }
+        const event = await Event.findById(eventId).lean();
 
-    event.rsvps.push(new mongoose.Types.ObjectId(id));
+        if (!event){
+            throw new APIError(404, "Event not found");
+        }
 
-    await event.save();
+        if (event.owner.toString() !== id.toString()){
+            throw new APIError(400, "Unauthorized request");
+        }
 
-    res
-        .status(200)
-        .json(new APIResponse(200, event, "Successfully registered for the event"));
-});
+        const updatedEvent = await Event.findByIdAndUpdate(
+            eventId,
+            { $set: { title, location, date, time, description, entryFee } },
+            { new: true, runValidators: true }
+        ).lean();
+        
+        res
+            .status(200)
+            .json(new APIResponse(200, updatedEvent, "Updated event successfully"));
+    });
+
+    export const handleRsvpForEvent = asyncHandler(async (req: Request, res: Response) => {
+        const { eventId } = req.params;
+        const id = req.user?._id as string;
+
+        if (!eventId){
+            throw new APIError(400, "eventId is required");
+        }
+
+        const event = await Event.findById(eventId);
+
+        if (!event){
+            throw new APIError(400, "Event not found");
+        }
+
+        if (event.rsvps.some((userId) => userId.equals(id))){
+            throw new APIError(400, "Already rsvp'd");
+        }
+
+        event.rsvps.push(new mongoose.Types.ObjectId(id));
+
+        await event.save();
+
+        res
+            .status(200)
+            .json(new APIResponse(200, event, "Successfully registered for the event"));
+    });
+
+    export const handleRemoveRsvp = asyncHandler(async (req: Request, res: Response) => {
+        const { eventId } = req.params;
+        const id = req.user?._id as string;
+
+        if (!eventId){
+            throw new APIError(400, "eventId is required");
+        }
+
+        const event = await Event.findById(eventId);
+
+        if (!event){
+            throw new APIError(400, "Event not found");
+        }
+
+        if (event.rsvps.some((userId) => userId.equals(id))){
+            event.rsvps = event.rsvps.filter(userId => userId.toString() !== id.toString());
+        }
+        else{
+            throw new APIError(400, "No rsvp");
+        }
+
+        await event.save();
+
+        res
+            .status(200)
+            .json(new APIResponse(200, event, "Successfully unregistered for the event"));
+    });
 
