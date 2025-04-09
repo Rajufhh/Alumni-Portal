@@ -1,26 +1,3 @@
-// import { RootState } from "@/store/Store";
-// import { useEffect } from "react"
-// import { useSelector } from "react-redux";
-// import { useNavigate } from "react-router";
-
-// export const Home = () => {
-
-//   const user = useSelector((state: RootState) => state.user);
-//   const navigate = useNavigate();
-
-//   useEffect(() => {
-//     if (!user){
-//       // Not authenticated
-//       navigate("/");
-//     }
-//   }, [user, navigate]);
-
-//   return (
-//     <div className="min-h-screen text-white flex items-center justify-center text-4xl bg-[#222]">Home</div>
-//   )
-// }
-// // bg-[hsl(240,10%,3.9%)]
-
 import { Link, useNavigate } from "react-router-dom";
 import homepageImage from "../../../assets/homepage.png";
 import { useSelector } from "react-redux";
@@ -93,7 +70,6 @@ export const WelcomePage = () => {
     },
   ];
   
-
   return (
     <div className="px-4 md:px-12 lg:px-24 py-10 space-y-16 bg-[#e6e9da] dark:bg-[#000000]">
       {/* Hero Section */}

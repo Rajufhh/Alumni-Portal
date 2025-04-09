@@ -6,7 +6,7 @@
     import mongoose from "mongoose";
 import { pagination } from "../utils/Pagination";
 
-    interface Results {
+    export interface Results {
         next?: {
             page: number;
             limit: number;

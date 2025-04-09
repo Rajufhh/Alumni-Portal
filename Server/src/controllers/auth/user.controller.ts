@@ -5,6 +5,7 @@ import APIResponse from "../../utils/APIResponse";
 import APIError from "../../utils/APIError";
 import { generateAccessAndRefreshToken } from "../../utils/auth";
 import jwt from "jsonwebtoken"
+import { pagination } from "../../utils/Pagination";
 
 export const handleUserLogin = asyncHandler(async (req: Request, res: Response) => {
     const { email, password } = req.body;
@@ -175,6 +176,34 @@ export const handleUpdateUserPassword = asyncHandler(async (req: Request, res: R
     // Compare the old and new passwords
     // If match, throw error
     // update user in db
+    const  { password, newPassword } = req.body;
+    
+    if (!password || !newPassword){
+        throw new APIError(400, "Password is required");
+    }
+
+    const user = await User.findById(req.user?._id);
+
+    if (!user){
+        throw new APIError(400, "User does not exist");
+    }
+
+    const isSamePassword = await user.isPasswordCorrect(password);
+
+    if (!isSamePassword){
+        throw new APIError(400, "Invalid Password");
+    }
+
+    if (password === newPassword){
+        throw new APIError(400, "New password should be different from the old one");
+    }
+    
+    user.password = newPassword;
+    await user.save();
+
+    res
+        .status(200)
+        .json(new APIResponse(200, null, "Password updated successfully"));
 });
 
 export const handleUpdateAccountDetails = asyncHandler(async (req: Request, res: Response) => {
@@ -262,11 +291,30 @@ export const handleGetUserProfile = asyncHandler(async (req: Request, res: Respo
 });
 
 export const handleFetchAllAlumniProfiles = asyncHandler(async (req: Request, res: Response) => {
-    const alumnis = await User.find({ role: "alumni" }).lean();
+    const page = parseInt(req.query.page as string) || 1;
+    const limit = parseInt(req.query.limit as string) || 10;
+    const search = (req.query.search as string).toLowerCase() || "";
+        
+    // Create a mongoDB filter
+    const filter = { 
+        role: "alumni",
+        ...(search && {
+            $or: [
+                { firstName: { $regex: search, $options: "i" } },
+                { lastName: { $regex: search, $options: "i" } },
+                { batch: { $regex: search, $options: "i" } },
+                { company: { $regex: search, $options: "i" } }
+            ]
+        })
+    };
+
+    const total = await User.countDocuments(filter);
+    const { startIndex, next, prev, totalPages } = pagination(page, limit, total);
+    const alumnis = await User.find(filter).skip(startIndex).limit(limit).lean().select("-password -refreshToken");
 
     res
         .status(200)
-        .json(new APIResponse(200, alumnis || [], alumnis.length ? "Successfully fetched all alumni profiles" : "No alumnis found"));
+        .json(new APIResponse(200, { alumnis, totalPages, totalResults: total, pagination: { prev, next } }, alumnis.length ? "Successfully fetched all alumni profiles" : "No alumnis found"));
 });
 
 export const handleFetchAllStudentProfiles = asyncHandler(async (req: Request, res: Response) => {

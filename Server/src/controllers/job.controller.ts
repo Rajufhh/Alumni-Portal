@@ -5,46 +5,75 @@ import APIError from "../utils/APIError";
 import APIResponse from "../utils/APIResponse";
 import User from "../models/user.models";
 import { Types } from "mongoose";
+import { pagination } from "../utils/Pagination";
 
 export const handleFetchAllJobs = asyncHandler(async (req: Request, res: Response) => {
-    // Fetch all jobs
-    const jobs = await Job.find({}).lean();
+    const page = parseInt(req.query.page as string) || 1;
+    const limit = parseInt(req.query.limit as string) || 10;
+    const search = (req.query.search as string).toLowerCase() || "";
+        
+    // Create a mongoDB filter
+    const filter = { 
+        ...(search && {
+            $or: [
+                { title: { $regex: search, $options: "i" } },
+                { description: { $regex: search, $options: "i" } },
+                { company: { $regex: search, $options: "i" } }
+            ]
+        })
+    };
 
-    if (!jobs){
-        throw new APIError(400, "Error fetching jobs");
-    }
+    const total = await Job.countDocuments(filter);
+    const { startIndex, next, prev, totalPages } = pagination(page, limit, total);
+
+    // Fetch all jobs
+    const jobs = await Job.find(filter).lean().skip(startIndex).limit(limit).populate("owner", "_id firstName lastName profileImageURL");
 
     res
         .status(200)
-        .json(new APIResponse(200, jobs, jobs.length ? "Successfully fetched all jobs" : "No jobs available"));
+        .json(new APIResponse(200, { jobs, totalPages, totalResults: total, pagination: { prev, next } }, jobs.length ? "Successfully fetched all jobs" : "No jobs available"));
 });
 
 export const handleFetchJobsByUser = asyncHandler(async (req: Request, res: Response) => {
     // Fetch the jobs posted by [id] user
     const { id } = req.params;
+     const page = parseInt(req.query.page as string) || 1;
+    const limit = parseInt(req.query.limit as string) || 10;
+    const search = (req.query.search as string).toLowerCase() || "";
+        
+    // Create a mongoDB filter
+    const filter = {
+        owner: id,
+        ...(search && {
+            $or: [
+                { title: { $regex: search, $options: "i" } },
+                { description: { $regex: search, $options: "i" } },
+                { company: { $regex: search, $options: "i" } }
+            ]
+        })
+    };
+
+    const total = await Job.countDocuments(filter);
+    const { startIndex, next, prev, totalPages } = pagination(page, limit, total);
 
     if (!id){
         throw new APIError(404, "User id is required");
     }
 
-    const jobs = await Job.find({ owner: id }).lean();
-
-    if (!jobs){
-        throw new APIError(400, "Error fetching user jobs");
+    if (String(req.user?._id) !== id){
+        throw new APIError(400, "Unauthorized request");
     }
+
+    const jobs = await Job.find(filter).skip(startIndex).limit(limit).populate("owner", "_id lastName firstName profileImageURL").lean();
 
     res
         .status(200)
-        .json(new APIResponse(200, jobs, jobs.length ? "Successfully fetched jobs posted by user" : "No jobs available"));
+        .json(new APIResponse(200, { jobs, totalPages, totalResults: total, pagination: { prev, next } }, jobs.length ? "Successfully fetched jobs posted by user" : "No jobs available"));
 });
 
 export const handlePostJob = asyncHandler(async (req: Request, res: Response) => {
     const id = req.user?._id;
     const { company, title, description, salary, location } = req.body;
-
-    if (req.user?.role !== "alumni" && req.user?.role !== "admin"){
-        throw new APIError(400, "Unauthorized request");
-    }
 
     if (!company || !title || !description || !salary || !location){
         throw new APIError(404, "Incomplete data to post job");
@@ -54,14 +83,8 @@ export const handlePostJob = asyncHandler(async (req: Request, res: Response) =>
         throw new APIError(400, "User not found");
     }
 
-    const owner = await User.findById(id).lean();
-
-    if (!owner){
-        throw new APIError(400, "Invalid user id");
-    }
-
     const job = await Job.create({
-        owner: owner._id,
+        owner: id,
         company,
         title,
         location,
@@ -86,16 +109,6 @@ export const handleDeleteJob = asyncHandler(async (req: Request, res: Response) 
         throw new APIError(404, "userId or jobId not found");
     }
 
-    if (req.user?.role !== "alumni" && req.user?.role !== "admin"){
-        throw new APIError(400, "Unauthorized request");
-    }
-
-    const owner = await User.findById(id).lean();
-
-    if (!owner){
-        throw new APIError(404, "User does not exist");
-    }
-
     const job = await Job.findById(jobId).lean();
 
     if (!job){
@@ -117,15 +130,7 @@ export const handleUpdateJobPost = asyncHandler(async  (req: Request, res: Respo
     const { jobId } = req.params;
     const { company, title, description, salary, location } = req.body;
 
-    if (!req.user){
-        throw new APIError(400, "Unauthorized access");
-    }
-
-    if (req.user?.role !== "alumni" && req.user?.role !== "admin"){
-        throw new APIError(400, "Unauthorized request");
-    }
-
-    const id = req.user?._id as string;
+    const id = req.user?._id;
 
     if (!jobId){
         throw new APIError(400, "jobId is required");
@@ -137,7 +142,7 @@ export const handleUpdateJobPost = asyncHandler(async  (req: Request, res: Respo
         throw new APIError(404, "Job not found");
     }
 
-    if (job.owner.toString() !== id.toString()){
+    if (job.owner.toString() !== id?.toString()){
         throw new APIError(400, "You are not authorized to update this post");
     }
 

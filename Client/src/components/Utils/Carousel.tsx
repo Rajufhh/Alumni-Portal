@@ -23,8 +23,12 @@ export const Carousel = ({cards}: carouselProps) => {
     }
 
     useEffect(() => {
+        const interval = setInterval(() => {
+          nextState();
+        }, 3000);
 
-    }, [])
+        return () => clearInterval(interval);
+    }, []);    
 
   return (
     <div className="relative w-full max-w-lg mx-auto overflow-hidden">
