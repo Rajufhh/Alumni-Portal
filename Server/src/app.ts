@@ -23,6 +23,7 @@ import likeRouter from './routes/like.routes'
 import articleRouter from './routes/article.routes'
 import mentorshipRouter from './routes/mentorship.routes'
 import commentRouter from './routes/comment.routes'
+import tweetRouter from './routes/tweet.routes'
 
 app.use("/api", userRouter);
 app.use("/api/job", jobRouter);
@@ -31,5 +32,6 @@ app.use("/api/like", likeRouter);
 app.use("/api/article", articleRouter);
 app.use("/api/mentorship", mentorshipRouter);
 app.use("/api/comment", commentRouter);
+app.use("/api/tweets", tweetRouter);
 
 export default app;

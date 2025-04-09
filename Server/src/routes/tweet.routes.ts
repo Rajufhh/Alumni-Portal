@@ -1,0 +1,13 @@
+import { Router } from "express"; 
+import { verifyJWT, verifyPermission } from "../middlewares/auth/user.middlewares";
+import { handleDeleteTweet, handleFetchAllTweets, handleFetchUserTweets, handlePostTweet, handleUpdateTweet } from "../controllers/tweet.controller";
+
+const router = Router();
+
+router.get("/", verifyJWT, handleFetchAllTweets);
+router.get("/user/:id", verifyJWT, verifyPermission(["alumni", "admin"]), handleFetchUserTweets);
+router.post("/", verifyJWT, verifyPermission(["alumni", "admin"]), handlePostTweet);
+router.delete("/tweet/:id", verifyJWT, verifyPermission(["alumni", "admin"]), handleDeleteTweet);
+router.put("/tweet/:id", verifyJWT, verifyPermission(["alumni", "admin"]), handleUpdateTweet);
+
+export default router;
