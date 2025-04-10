@@ -7,11 +7,13 @@ interface Article extends Document {
     tags: string[];
     thumbnail: string;
     likes: number;
+    summary: string;
 };
 
 const ArticleSchema = new Schema({
     content: { type: String, required: true, default: "" },
     title: { type: String, default: "" },
+    summary: { type: String, default: "" },
     author: { type: Schema.Types.ObjectId, ref: "User", required: true },
     tags: [{ type: String }],
     thumbnail: { type: String },

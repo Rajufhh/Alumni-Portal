@@ -10,7 +10,11 @@ export const handleFetchAllArticles = asyncHandler(async (req: Request, res: Res
     const page = parseInt(req.query.page as string) || 1;
     const limit = parseInt(req.query.limit as string) || 10;
     const search = (req.query.search as string).toLowerCase() || "";
-        
+
+    console.log(page);
+    console.log(limit);
+    console.log(search);
+       
     // Create a mongoDB filter
     const filter = { 
         ...(search && {
@@ -73,9 +77,9 @@ export const handleFetchArticlesByUser = asyncHandler(async (req: Request, res: 
 });
 
 export const handlePostArticle = asyncHandler(async (req: Request, res: Response) => {
-    const { content, author, title, tags, thumbnail } = req.body;
+    const { content, author, title, tags, thumbnail, summary } = req.body;
 
-    if (!content || !author || !title || !tags || !thumbnail){
+    if (!content || !author || !title || !summary){
         throw new APIError(400, "Invalid data");
     }
 
@@ -84,16 +88,19 @@ export const handlePostArticle = asyncHandler(async (req: Request, res: Response
         author,
         title,
         tags: tags || [],
-        thumbnail
+        thumbnail: thumbnail || "" ,
+        summary
     });
 
     if (!article){
         throw new APIError(400, "Error posting article");
     }
 
+    const payload = await Article.findById(article._id).populate("author", "firstName lastName role _id profileImageURL").lean();
+
     res
         .status(201)
-        .json(new APIResponse(201, article, "Posted article successfully"));
+        .json(new APIResponse(201, payload, "Posted article successfully"));
 }); 
 
 export const handleDeleteArticle = asyncHandler(async (req: Request, res: Response) => {
@@ -147,7 +154,7 @@ export const handleUpdateArticle = asyncHandler(async (req: Request, res: Respon
         articleId,
         { $set: updates },
         { new: true, runValidators: true }
-    ).lean();
+    ).lean().populate("author", "firstName lastName profileImageURL _id role");
 
     if (!updatedArticle){
         throw new APIError(400, "Article not found or unauthorized");
@@ -156,4 +163,22 @@ export const handleUpdateArticle = asyncHandler(async (req: Request, res: Respon
     res
         .status(200)
         .json(new APIResponse(200, updatedArticle, "Successfully updated article"));
+});     
+
+export const handleFetchArticleById = asyncHandler(async (req: Request, res: Response) => {
+    const { articleId } = req.params;
+    
+    if (!articleId){
+        throw new APIError(404, "articleId is required");
+    }
+
+    const article = await Article.findById(articleId).lean().populate("author", "firstName lastName _id profileImageURL role");
+
+    if (!article){
+        throw new APIError(404, "Article not found");
+    }
+
+    res
+        .status(200)
+        .json(new APIResponse(200, article, "Article fetched successfully"));
 });     
