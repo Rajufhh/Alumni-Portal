@@ -68,10 +68,10 @@ export const Header = () => {
 
     return (
         <nav className="sticky flex flex-wrap items-center justify-between w-full px-6 py-4 dark:bg-black/70 bg-white/40 text-black backdrop-blur-md shadow-md top-0 z-50">
-            <div className="flex gap-3 items-center">
+            <Link to={'/'} className="flex gap-3 items-center">
                 <img src={logo} className="w-12 h-12" />
                 <h1 className="text-2xl font-bold text-black dark:text-white font-mono">Alumni Connect</h1>
-            </div>
+            </Link>
 
             <ul className="lg:flex gap-6 text-sm hidden">
                 {navItems.map(item => (

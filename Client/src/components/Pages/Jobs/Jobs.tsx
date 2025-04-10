@@ -1,119 +1,162 @@
 import { SearchbarTemplate } from "@/components/Utils/SearchbarTemplate"
 import { JobCard } from "./JobCard"
 import { Pagination } from "@/components/Utils/Pagination"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuthorize } from "@/hooks/useAuthorize";
+import axios from "axios";
+import { useNotification } from "@/hooks/useNotification";
+import { Spinner } from "@/components/ui/Spinner";
+import { JobForm } from "./JobForm";
+import { useLocation } from "react-router";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store/Store";
+
+export interface Job {
+  _id: string;
+  title: string;
+  company: string;
+  location: string;
+  createdAt: string; 
+  jobType: string; 
+  skills: string[];
+  owner: {
+    firstName: string;
+    lastName: string;
+    _id: string;
+    role: string;
+    profileImageURL: string;
+  }
+  salary: string;
+  url: string;
+  description: string;
+}
+
 
 export const Jobs = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = 10;
+  const [totalPages, setTotalPages] = useState(1);
+  const [loading, setLoading] = useState(false);
+  const [formVisibility, setFormVisibility] = useState(false);
+  const [jobToEdit, setJobToEdit] = useState<string>('');
+  const [jobs, setJobs] = useState<Job[]>([]);  
   const [searchQuery, setSearchQuery] = useState("");
+  const { notify } = useNotification(); 
+  const location = useLocation();
+  const { user } = useSelector((state: RootState) => state.user);
+
+  const isJobPage = location.pathname === '/jobs';
+
   useAuthorize();
 
-  const jobs = [
-    { 
-      title: "Frontend Developer",
-      company: "InnovateTech",
-      location: "Bangalore, India",
-      date: "April 3, 2025",
-      jobType: "Full-Time",
-      skills: ["React", "Tailwind", "REST API"]
-    },
-    { 
-      title: "Backend Developer",
-      company: "TechVerse",
-      location: "Hyderabad, India",
-      date: "April 1, 2025",
-      jobType: "Part-Time",
-      skills: ["Node.js", "Express", "MongoDB"]
-    },
-    { 
-      title: "UI/UX Designer",
-      company: "Designify",
-      location: "Pune, India",
-      date: "March 28, 2025",
-      jobType: "Full-Time",
-      skills: ["Figma", "Adobe XD", "Prototyping"]
-    },
-    { 
-      title: "Data Scientist",
-      company: "DataGenius",
-      location: "Remote",
-      date: "March 30, 2025",
-      jobType: "Remote",
-      skills: ["Python", "Pandas", "Machine Learning"]
-    },
-    { 
-      title: "Mobile App Developer",
-      company: "AppSphere",
-      location: "Chennai, India",
-      date: "April 2, 2025",
-      jobType: "Full-Time",
-      skills: ["React Native", "Firebase", "TypeScript"]
-    },
-    { 
-      title: "DevOps Engineer",
-      company: "CloudOps",
-      location: "Delhi, India",
-      date: "April 5, 2025",
-      jobType: "Full-Time",
-      skills: ["Docker", "Kubernetes", "AWS"]
-    },
-    { 
-      title: "Software Intern",
-      company: "NextGen Labs",
-      location: "Mumbai, India",
-      date: "April 4, 2025",
-      jobType: "Internship",
-      skills: ["HTML", "CSS", "JavaScript"]
-    },
-    { 
-      title: "Full Stack Developer",
-      company: "CodeCraft",
-      location: "Remote",
-      date: "March 27, 2025",
-      jobType: "Contract",
-      skills: ["React", "Node.js", "GraphQL"]
-    }
-  ];
-  
-
-  const filteredJobs = jobs.filter(job => {
-    const query = searchQuery.toLowerCase();
+  useEffect(() => {
     
-    return (
-      job.title.toLowerCase().includes(query) ||
-      job.company.toLowerCase().includes(query) ||
-      job.location.toLowerCase().includes(query) ||
-      job.skills.some((skill) => skill.toLowerCase().includes(query))
-    )
-  })
+    const fetchJobs = async () => {
+      try {
+        if (!isJobPage) return;
+        setLoading(true);
+
+        const result = await axios.get(
+          `http://localhost:3000/api/job?page=${currentPage}&limit=${10}&search=${searchQuery}`,
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem('accessToken')}`
+            }
+          }
+        );
+        
+        const jobs = result.data.data.jobs;
+        
+        setJobs(jobs);
+        setTotalPages(result.data.data.totalPages);
+        notify({ id: 'job-toast', type: 'success', content: 'Jobs fetched successfully' });
+        
+      } catch (error) {
+        console.error('Error fetching jobs', error);
+        notify({ id: 'job-toast', type: 'error', content: 'Could not fetch Jobs' });
+      }
+      finally {
+        setLoading(false);
+      }
+    }
+
+    fetchJobs();
+
+  }, [currentPage, searchQuery, isJobPage]);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchQuery]);
+
+  const deleteJob = async (_id: string) => {
+    try {
+      setLoading(true);
+
+      await axios.delete(
+        `http://localhost:3000/api/job/${_id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('accessToken')}`
+          }
+        }
+      );
+      
+      setJobs(prev => prev.filter(job => job._id !== _id));
+      notify({ id: 'job-toast', type: 'success', content: 'Job deleted successfully' });
+      
+    } catch (error) {
+      console.error('Error deleting job', error);
+      notify({ id: 'job-toast', type: 'error', content: 'Could not delete job' });
+    }
+    finally {
+      setLoading(false);
+      setJobToEdit("");
+    }
+  };
 
   return (
     <div className="dark:bg-[#000000] bg-[#e6e9da] w-full min-h-screen flex flex-col items-center pb-6">
 
-      <div className="space-y-2 py-6 w-full bg-gray-50 px-12 dark:bg-[#151515]">
-        <h2 className="text-3xl font-bold dark:text-white text-black">Job Board</h2>
-        <p className="dark:text-gray-300 text-gray-700">Find and apply to jobs posted by alumni</p>
+      {
+        formVisibility ?
+        <JobForm setJobs={setJobs} setFormVisibility={setFormVisibility} jobId={jobToEdit}/>  
+        : <>
+      <div className="space-y-2 flex justify-between items-center py-6 w-full bg-gray-50 px-12 dark:bg-[#151515]">
+        <div>
+          <h2 className="text-3xl font-bold dark:text-white text-black">Job Board</h2>
+          <p className="dark:text-gray-300 text-gray-700">Find and apply to jobs posted by alumni</p>
+        </div>
+
+         {
+          ["alumni", "admin"].includes(user?.role || "") &&
+          <button className="text-sm dark:text-black text-white dark:bg-white bg-black px-2 py-1 rounded-sm cursor-pointer font-semibold" onClick={() => {
+            setJobToEdit("");            
+            setFormVisibility(prev => !prev);
+          }}>
+            Post Job
+          </button>
+         } 
+
       </div>
 
       <SearchbarTemplate placeholder="Search jobs by title, description or company" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>
 
       <div className="w-full grid grid-cols-1 md:grid-cols-4 gap-x-8 gap-y-6 px-4 md:px-10 py-6">
       {
-          filteredJobs.length > 0 ? (
-            filteredJobs.map((job, index) => (
+          loading ?
+          <div className="col-span-4">
+            <Spinner /> 
+          </div> 
+          : jobs.length > 0 ? (
+            jobs.map((job, index) => (
               <JobCard key={index}
-                title={job.title}
-                company={job.company}
-                location={job.location}
-                date={job.date}
-                jobType={job.jobType}
-                skills={job.skills}
+                job={job}
+                setJobToEdit={setJobToEdit}
+                setFormVisibility={setFormVisibility}
+                deleteJob={deleteJob}
               />
             ))
           ) : (
-            <div className="col-span-full text-center text-gray-600 dark:text-gray-300">No jobs found for "{searchQuery}"</div>
+            <div className="col-span-full text-center text-gray-600 dark:text-gray-300">No jobs found</div>
           )
         }
       </div>
@@ -123,7 +166,9 @@ export const Jobs = () => {
         totalPages={totalPages}
         onPageChange={setCurrentPage}
       />
+      </>
 
+      }
     </div>
   )
 }

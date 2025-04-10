@@ -44,7 +44,7 @@ export const ArticleCard = ({ _id, title, author, createdAt, summary, likes, con
           };
           document.addEventListener("mousedown", handleClickOutside);
           return () => document.removeEventListener("mousedown", handleClickOutside);
-      }, []);
+      }, [author._id]);
 
 	  const formatDate = (isoString: string): string => {
 

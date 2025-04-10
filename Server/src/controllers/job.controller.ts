@@ -3,8 +3,6 @@ import asyncHandler from "../utils/AsyncHandler";
 import Job from "../models/job.models";
 import APIError from "../utils/APIError";
 import APIResponse from "../utils/APIResponse";
-import User from "../models/user.models";
-import { Types } from "mongoose";
 import { pagination } from "../utils/Pagination";
 
 export const handleFetchAllJobs = asyncHandler(async (req: Request, res: Response) => {
@@ -39,7 +37,7 @@ export const handleFetchJobsByUser = asyncHandler(async (req: Request, res: Resp
     const { id } = req.params;
      const page = parseInt(req.query.page as string) || 1;
     const limit = parseInt(req.query.limit as string) || 10;
-    const search = (req.query.search as string).toLowerCase() || "";
+    const search = (req.query.search as string ?? "").toLowerCase() || "";
         
     // Create a mongoDB filter
     const filter = {
@@ -73,7 +71,7 @@ export const handleFetchJobsByUser = asyncHandler(async (req: Request, res: Resp
 
 export const handlePostJob = asyncHandler(async (req: Request, res: Response) => {
     const id = req.user?._id;
-    const { company, title, description, salary, location } = req.body;
+    const { company, title, description, salary, location, url, jobType, skills } = req.body;
 
     if (!company || !title || !description || !salary || !location){
         throw new APIError(404, "Incomplete data to post job");
@@ -89,7 +87,10 @@ export const handlePostJob = asyncHandler(async (req: Request, res: Response) =>
         title,
         location,
         salary,
-        description
+        description,
+        url,
+        jobType,
+        skills
     });
 
     if (!job){
@@ -128,7 +129,7 @@ export const handleDeleteJob = asyncHandler(async (req: Request, res: Response) 
 
 export const handleUpdateJobPost = asyncHandler(async  (req: Request, res: Response) => {
     const { jobId } = req.params;
-    const { company, title, description, salary, location } = req.body;
+    const { company, title, description, salary, location, url, jobType } = req.body;
 
     const id = req.user?._id;
 
@@ -148,7 +149,7 @@ export const handleUpdateJobPost = asyncHandler(async  (req: Request, res: Respo
 
     const updatedJob = await Job.findByIdAndUpdate(
         jobId,
-        { $set: { company, title, description, salary, location } },
+        { $set: { company, title, description, salary, location, url, jobType } },
         { new: true, runValidators: true }
     ).lean();
 
@@ -159,4 +160,22 @@ export const handleUpdateJobPost = asyncHandler(async  (req: Request, res: Respo
     res
         .status(200)
         .json(new APIResponse(200, updatedJob, "Successfully updated job post"));
+});
+
+export const handleFetchJobById = asyncHandler(async  (req: Request, res: Response) => {
+    const { jobId } = req.params;
+    
+    if (!jobId) {
+        throw new APIError(404, "jobId is required");
+    }
+
+    const job = await Job.findById(jobId).lean().populate("owner", "firstName lastName role _id profileImageURL");
+
+    if (!job){
+        throw new APIError(404, "Job not found");
+    }
+
+    res
+        .status(200)
+        .json(new APIResponse(200, job, "Job fetched successfully"));
 });

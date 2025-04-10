@@ -2,8 +2,6 @@ import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/Store";
 import { UserProfileCard } from "./UserProfileCard";
-// import userIcon from "../../../assets/user-icon.svg"
-// import userIconDark from "../../../assets/user-icon-dark.svg"
 import { Post } from "./Post";
 import { PostForm } from "./PostForm";
 import { UpcomingEvents } from "./UpcomingEvents";
@@ -33,31 +31,6 @@ export const Home = () => {
   const { notify } = useNotification();
 
   const { user } = useSelector((state: RootState) => state.user);
-
-  	const fetchPosts = async () => {
-    	try {
-			setLoading(true);
-        	const result = await axios.get("http://localhost:3000/api/tweets?page=1&limit=10", {
-          		headers: {
-            		Authorization: `Bearer ${localStorage.getItem('accessToken')}`
-          	}
-        });
-
-        setPosts(result.data?.data.tweets);
-
-		if (posts.length > 0){
-			notify({ id: "post-toast", type: "success", content: "Posts fetched successfully" });
-		}
-
-		} 
-		catch (error) {
-			console.error("Error fetching posts", error);
-
-			notify({ id: "post-toast", type: "error", content: "Could not fetch posts" });
-		}
-
-		setLoading(false);
-  	}
 
 	const handlePost = async (content: string) => {
 		if (!user) return;
@@ -137,10 +110,34 @@ export const Home = () => {
 
     useEffect(() => {
       notify({ id: "welcome-toast", type: "info", content: "Welcome!"})
+
+	  const fetchPosts = async () => {
+    	try {
+			setLoading(true);
+        	const result = await axios.get("http://localhost:3000/api/tweets?page=1&limit=10", {
+          		headers: {
+            		Authorization: `Bearer ${localStorage.getItem('accessToken')}`
+          	}
+        });
+
+        setPosts(result.data?.data.tweets);
+
+		if (posts.length > 0){
+			notify({ id: "post-toast", type: "success", content: "Posts fetched successfully" });
+		}
+
+		} 
+		catch (error) {
+			console.error("Error fetching posts", error);
+
+			notify({ id: "post-toast", type: "error", content: "Could not fetch posts" });
+		}
+
+		setLoading(false);
+  	}	
+
       fetchPosts();
     }, []);
-
-  // console.log(user);
 
     return (
     <div className="w-full min-h-screen dark:bg-[#000000] bg-[#e6e9da] dark:text-white text-black"> 

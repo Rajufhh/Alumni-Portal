@@ -79,7 +79,7 @@ export const Articles = () => {
     };
 
     handleFetchArticles();    
-  }, [currentPage]);
+  }, [currentPage, searchQuery]);
   
   const deleteArticle = async (articleId: string) => {
     try {

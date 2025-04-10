@@ -43,7 +43,7 @@ export const Post = ({ _id, owner, content, likes, deletePost, updatePost }: Pos
         };
         document.addEventListener("mousedown", handleClickOutside);
         return () => document.removeEventListener("mousedown", handleClickOutside);
-    }, []);
+    }, [_id]);
 
 
     const handleUpdate = () => {
