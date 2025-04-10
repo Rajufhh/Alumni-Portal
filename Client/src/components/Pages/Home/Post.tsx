@@ -146,7 +146,7 @@ export const Post = ({ _id, owner, content, likes, deletePost, updatePost }: Pos
                         )
                     }
 
-                    {   owner._id === user?._id &&
+                    {   (owner._id === user?._id || ["admin", "alumni"].includes(user?.role || "")) &&  
                         <div className="relative">
                         <PiDotsThreeOutlineVerticalFill className="cursor-pointer relative" onClick={() => setDropdownVisibility(prev => !prev)} />
                         {

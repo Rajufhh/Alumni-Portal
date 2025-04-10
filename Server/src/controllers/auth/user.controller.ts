@@ -302,7 +302,6 @@ export const handleFetchAllAlumniProfiles = asyncHandler(async (req: Request, re
             $or: [
                 { firstName: { $regex: search, $options: "i" } },
                 { lastName: { $regex: search, $options: "i" } },
-                { batch: { $regex: search, $options: "i" } },
                 { company: { $regex: search, $options: "i" } }
             ]
         })

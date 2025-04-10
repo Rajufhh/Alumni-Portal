@@ -11,6 +11,7 @@ interface notificationProps {
 
 const playNotificationSound = () => {
     const audio = new Audio(notificationSound); 
+    audio.volume = 0.5;
     audio.play();
 };
 
@@ -20,8 +21,8 @@ export const useNotification = () => {
     const notify = ({ id, type, content }: notificationProps) => {
         if (id && toast.isActive(id)) return;
 
-        toast[type](content, {toastId: id, theme: isDarkMode ? 'dark' : 'light'});
         playNotificationSound();
+        toast[type](content, {toastId: id, theme: isDarkMode ? 'dark' : 'light', autoClose: 1500});
     };
 
     return { notify };

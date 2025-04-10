@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/Store";
-import { Paperclip, Smile, Image, Send } from "lucide-react";
+import { Smile, Send } from "lucide-react";
 import { FaUserCircle } from "react-icons/fa";
 
 interface PostFormProps {
@@ -54,13 +54,7 @@ export const PostForm = ({ handlePost }: PostFormProps) => {
 
       <div className="flex justify-between items-center border-t pt-2 border-gray-200 dark:border-gray-700 transition-colors">
 
-        <div className="flex gap-3 text-gray-500 dark:text-gray-400">
-          <button className="cursor-pointer" title="Add image">
-            <Image size={18} />
-          </button>
-          <button className="cursor-pointer" title="Attach file">
-            <Paperclip size={18} />
-          </button>
+        <div className="flex gap-3 text-gray-500 dark:text-gray-400">          
           <button className="cursor-pointer" title="Add emoji">
             <Smile size={18} />
           </button>
