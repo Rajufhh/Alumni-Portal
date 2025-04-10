@@ -27,7 +27,7 @@ export const handleFetchAllJobs = asyncHandler(async (req: Request, res: Respons
     const { startIndex, next, prev, totalPages } = pagination(page, limit, total);
 
     // Fetch all jobs
-    const jobs = await Job.find(filter).lean().skip(startIndex).limit(limit).populate("owner", "_id firstName lastName profileImageURL");
+    const jobs = await Job.find(filter).lean().skip(startIndex).limit(limit).populate("owner", "_id role firstName lastName profileImageURL");
 
     res
         .status(200)
@@ -64,7 +64,7 @@ export const handleFetchJobsByUser = asyncHandler(async (req: Request, res: Resp
         throw new APIError(400, "Unauthorized request");
     }
 
-    const jobs = await Job.find(filter).skip(startIndex).limit(limit).populate("owner", "_id lastName firstName profileImageURL").lean();
+    const jobs = await Job.find(filter).skip(startIndex).limit(limit).populate("owner", "_id role lastName firstName profileImageURL").lean();
 
     res
         .status(200)

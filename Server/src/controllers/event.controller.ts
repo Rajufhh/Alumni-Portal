@@ -34,7 +34,7 @@ import { pagination } from "../utils/Pagination";
         const total = await Event.countDocuments(filter);
         const { startIndex, next, prev, totalPages } = pagination(page, limit, total);
 
-        const events = await Event.find(filter).skip(startIndex).limit(limit).populate("owner", "_id profileImageURL firstName lastName");
+        const events = await Event.find(filter).skip(startIndex).limit(limit).populate("owner", "_id role profileImageURL firstName lastName");
 
         res
             .status(200)
@@ -205,3 +205,18 @@ import { pagination } from "../utils/Pagination";
             .json(new APIResponse(200, event, "Successfully unregistered for the event"));
     });
 
+    export const handleFetchRsvpdEvents = asyncHandler(async (req: Request, res: Response) => {
+        const id = req.user?._id;
+
+        if (!id){
+            throw new APIError(403, "Unauthorized request");
+        }
+        
+        const events = await Event.find({ rsvps: id });
+        
+        res
+            .status(200)
+            .json(new APIResponse(200, events, "Fetched rsvp'd events successfully"));
+    });
+
+// {}

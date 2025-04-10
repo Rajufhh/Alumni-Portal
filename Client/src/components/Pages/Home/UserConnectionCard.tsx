@@ -5,7 +5,7 @@ import userIconDark from "@/assets/user-icon-dark.svg"
 import { RootState } from "@/store/Store";
 import { useSelector } from "react-redux";
 
-interface userConnectionProps {
+export interface userConnectionProps {
     firstName: string;
     lastName: string;
     _id: string;

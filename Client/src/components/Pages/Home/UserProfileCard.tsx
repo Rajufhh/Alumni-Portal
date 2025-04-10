@@ -1,6 +1,4 @@
 import { useDispatch, useSelector } from "react-redux";
-// import UserIcon from "../../../assets/user-icon-dark.svg";
-// import UserIconLight from "../../../assets/user-icon.svg";
 import { RootState } from "@/store/Store";
 import githubIcon from "../../../assets/github-logo.png"
 import linkedinIcon from "../../../assets/linkedin-logo.png"
@@ -11,7 +9,7 @@ import settingsIconDark from "../../../assets/settings-icon-dark.svg"
 import { Link, useNavigate } from "react-router";
 import { clearUser } from "@/store/userSlice";
 import axios from "axios";
-import zoro from "../../../assets/Zoro-min.png"
+import { FaUserCircle } from "react-icons/fa";
 
 export const UserProfileCard = () => {
 
@@ -72,10 +70,14 @@ export const UserProfileCard = () => {
   return (
     <div className="dark:bg-[#151515] bg-white rounded-md p-4 text-center dark:shadow-none shadow-xl">
         <div className="flex items-center gap-4 px-2 text-sm">
-            <img
-            className="w-10 h-10 rounded-full object-cover"
-            src={user?.profileImageUrl ?? zoro}
-            />
+            {
+                user?.profileImageURL ?
+                <img
+                    className="w-10 h-10 rounded-full object-cover"
+                    src={user?.profileImageURL}
+                />
+                : <FaUserCircle  className="w-6 h-6"/>
+            }
             <div>
                 <h2 className="font-semibold">{user?.firstName + ' ' + user?.lastName}</h2>
                 <p className="text-start text-xs text-gray-400">{role}</p>

@@ -5,9 +5,9 @@ import { handleDeleteTweet, handleFetchAllTweets, handleFetchUserTweets, handleP
 const router = Router();
 
 router.get("/", verifyJWT, handleFetchAllTweets);
-router.get("/user/:id", verifyJWT, verifyPermission(["alumni", "admin"]), handleFetchUserTweets);
+router.get("/user/:userId", verifyJWT, verifyPermission(["alumni", "admin"]), handleFetchUserTweets);
 router.post("/", verifyJWT, verifyPermission(["alumni", "admin"]), handlePostTweet);
-router.delete("/tweet/:id", verifyJWT, verifyPermission(["alumni", "admin"]), handleDeleteTweet);
-router.put("/tweet/:id", verifyJWT, verifyPermission(["alumni", "admin"]), handleUpdateTweet);
+router.delete("/tweet/:tweetId", verifyJWT, verifyPermission(["alumni", "admin"]), handleDeleteTweet);
+router.put("/tweet/:tweetId", verifyJWT, verifyPermission(["alumni", "admin"]), handleUpdateTweet);
 
 export default router;

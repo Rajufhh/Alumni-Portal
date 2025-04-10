@@ -1,17 +1,16 @@
 import { useRef } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/Store";
-import UserIcon from "@/assets/user-icon.svg";
-import UserIconDark from "@/assets/user-icon-dark.svg";
 import { Paperclip, Smile, Image, Send } from "lucide-react";
+import { FaUserCircle } from "react-icons/fa";
 
 interface PostFormProps {
   handlePost: (content: string) => void;
 }
 
 export const PostForm = ({ handlePost }: PostFormProps) => {
-  const isDarkMode = useSelector((state: RootState) => state.config.isDarkMode);
   const postContent = useRef<HTMLTextAreaElement>(null);
+  const { user } = useSelector((state: RootState) => state.user);
 
   const handleInput = () => {
     const temp = postContent.current;
@@ -21,18 +20,27 @@ export const PostForm = ({ handlePost }: PostFormProps) => {
     }
   };
 
-  
+    const handleSubmit = () => {
+      handlePost(postContent.current?.value || "");
+      postContent.current!.value = "";
+      handleInput();
+    };
+
 
   return (
     <div className="w-full max-w-xl mx-auto rounded-md shadow-md p-4 space-y-4 bg-white dark:bg-[#151515]">
 
       <div className="flex gap-3 items-start">
 
-        <img
-          src={isDarkMode ? UserIcon : UserIconDark}
-          alt="User Avatar"
-          className="w-10 h-10 rounded-full object-cover"
-        />
+      {
+        user?.profileImageURL ?
+          <img
+             src={user?.profileImageURL}
+             className="rounded-full w-8 h-8"
+             alt="User"
+          />
+        : <FaUserCircle className="w-8 h-8"/>
+      }
 
         <textarea
           ref={postContent}
@@ -58,7 +66,7 @@ export const PostForm = ({ handlePost }: PostFormProps) => {
           </button>
         </div>
 
-        <button className="flex items-center gap-1 dark:bg-white bg-black dark:text-black text-white cursor-pointer text-sm px-4 py-1 rounded-full transition" onClick={() => handlePost(postContent.current?.value || "")}>
+        <button className="flex items-center gap-1 dark:bg-white bg-black dark:text-black text-white cursor-pointer text-sm px-4 py-1 rounded-full transition" onClick={handleSubmit}>
           <Send size={14} />
           <span>Post</span>
         </button>

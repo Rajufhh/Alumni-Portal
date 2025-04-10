@@ -41,7 +41,7 @@ export const handleUserLogin = asyncHandler(async (req: Request, res: Response) 
 
     const data = await User.findOne({ email: email }).select(
         "-password -refreshToken"
-    ); 
+    ).populate("connections", "firstName lastName _id profileImageURL role"); 
     
     res.status(200)
         .cookie("accessToken", accessToken, options)
@@ -76,7 +76,7 @@ export const handleUserSignUp = asyncHandler(async (req: Request, res: Response)
 
     const user = await User.findOne({ email: email }).select(
         "-password -refreshToken"
-    ); 
+    ).populate("connections", "firstName lastName _id profileImageURL role"); 
 
     if (!user){
         throw new APIError(400, "Error Signing Up");
@@ -367,3 +367,65 @@ export const handleGetProfileById = asyncHandler(async (req: Request, res: Respo
         .status(200)
         .json(new APIResponse(200, user, "Fetched user details successfully"));
 });
+
+export const handleFetchAllConnections = asyncHandler(async (req: Request, res: Response) => {
+    const id = req.user?._id;
+
+    if (!id) {
+        throw new APIError(403, "Unauthorized request");
+    }
+
+    const user = await User.findById(id).populate({ path: "connections", select: "firstName lastName _id profileImageURL role" }).lean();
+
+    if (!user){
+        throw new APIError(404, "User not found");
+    }
+
+    res
+        .status(200)
+        .json(new APIResponse(200, user?.connections, "Successfully fetched user connections"));
+});
+
+export const handleAddConnection = asyncHandler(async (req: Request, res: Response) => {
+    const { connecteeId } = req.params;
+    const connectorId = req.user?._id;
+
+    if (!connecteeId || !connectorId){
+        throw new APIError(404, "connecteeId and connectorId is required");
+    }
+
+    const updatedUser = await User.findByIdAndUpdate(
+        connectorId,
+        {
+            $addToSet: { connections: connecteeId },
+        },
+        { new: true, runValidators: true }
+    ).populate("connections", "firstName lastName _id role profileImageURL").select("-password -refreshToken");
+
+    res
+        .status(200)
+        .json(new APIResponse(200, updatedUser, "Successfully added connection"));
+});
+
+export const handleRemoveConnection = asyncHandler(async (req: Request, res: Response) => {
+    const { connecteeId } = req.params;
+    const connectorId = req.user?._id;
+
+    if (!connecteeId || !connectorId){
+        throw new APIError(404, "connecteeId and connectorId is required");
+    }
+
+    const updatedUser = await User.findByIdAndUpdate(
+        connectorId,
+        {
+            $pull: { connections: connecteeId },
+        },
+        { new: true, runValidators: true }
+    ).populate("connections", "firstName lastName _id role profileImageURL").select("-password -refreshToken");
+
+    res
+        .status(200)
+        .json(new APIResponse(200, updatedUser, "Successfully removed connection"));
+});
+
+//  {}

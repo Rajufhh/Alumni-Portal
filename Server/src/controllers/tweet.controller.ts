@@ -14,7 +14,7 @@ export const handleFetchAllTweets = asyncHandler(async (req: Request, res: Respo
     const total = await Tweet.countDocuments();
     const { startIndex, next, prev, totalPages } = pagination(page, limit, total);
     
-    const tweets = await Tweet.find().sort({ createdAt: -1 }).skip(startIndex).limit(limit).populate("author", "profileImageURL firstName lastName _id").lean();
+    const tweets = await Tweet.find().sort({ createdAt: -1 }).skip(startIndex).limit(limit).populate("author", "profileImageURL firstName lastName role _id").lean();
     
     res
         .status(200)
@@ -34,7 +34,7 @@ export const handleFetchUserTweets = asyncHandler(async (req: Request, res: Resp
     const total = await Tweet.countDocuments({ author: userId });
     const { startIndex, next, prev, totalPages } = pagination(page, limit, total);
 
-    const tweets = await Tweet.find({ author: userId }).sort({ createdAt: -1 }).skip(startIndex).limit(limit).populate("author", "profileImageURL firstName lastName _id").lean();
+    const tweets = await Tweet.find({ author: userId }).sort({ createdAt: -1 }).skip(startIndex).limit(limit).populate("author", "profileImageURL role firstName lastName _id").lean();
 
     res
         .status(200)
@@ -64,6 +64,8 @@ export const handleDeleteTweet = asyncHandler(async (req: Request, res: Response
 export const handleUpdateTweet = asyncHandler(async (req: Request, res: Response) => {
     const { tweetId } = req.params;
     const { content } = req.body;
+
+    console.log(tweetId);
 
     if (!tweetId || !content){
         throw new APIError(400, "tweetId and content is required");
@@ -110,9 +112,11 @@ export const handlePostTweet = asyncHandler(async (req: Request, res: Response) 
         throw new APIError(400, "Could not post tweet");
     }
 
+    const populatedTweet = await Tweet.findById(tweet._id).populate("author", "firstName role lastName _id profileImageURL").lean();
+
     res
         .status(201)
-        .json(new APIResponse(201, tweet, "Posted tweet successfully"));
+        .json(new APIResponse(201, populatedTweet, "Posted tweet successfully"));
 });
 
 // {}

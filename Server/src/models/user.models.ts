@@ -1,4 +1,4 @@
-import { Schema, Document, model } from 'mongoose'
+import { Schema, Document, model, Types } from 'mongoose'
 import { USER_ROLES } from '../utils/constants';
 import bcrypt from "bcrypt"
 import jwt from 'jsonwebtoken'
@@ -28,6 +28,7 @@ export interface IUser extends Document {
     linkedin: string;
     github: string;
     availableForMentorship: boolean;
+    connections: Types.ObjectId[];
 
     isPasswordCorrect(password: string): Promise<boolean>;
     generateAccessToken(): string;
@@ -58,6 +59,7 @@ const UserSchema = new Schema<IUser>({
     linkedin: { type: String, required: true },
     github: { type: String, required: true },
     availableForMentorship: { type: Boolean, default: false },
+    connections: [{ type: Schema.Types.ObjectId, ref: "User" }],
 }, { timestamps: true });
 
 UserSchema.pre("save", async function(next) {

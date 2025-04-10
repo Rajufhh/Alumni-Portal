@@ -1,106 +1,195 @@
-import { useState } from "react";
-import chatIcon from "../../../assets/chat-icon.svg"
-import chatIconDark from "../../../assets/chat-icon-dark.svg"
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/Store";
-import connectIcon from "../../../assets/connect-icon.svg"
-import connectIconDark from "../../../assets/connect-icon-dark.svg"
-import userIconDark from "../../../assets/user-icon-dark.svg"
-import userIcon from "../../../assets/user-icon.svg"
+import { Link } from "react-router";
+import { IoPersonAddOutline } from "react-icons/io5";
+import { IoPersonRemoveOutline } from "react-icons/io5";
+import { PiDotsThreeOutlineVerticalFill } from "react-icons/pi";
+import { useEffect, useState } from "react";
+import { useNotification } from "@/hooks/useNotification";
+import axios from "axios";
+import { updateUser } from "@/store/userSlice";
+import { Spinner } from "@/components/ui/Spinner";
+import { FaUserCircle } from "react-icons/fa";
 
 interface PostProps {
-    id: number;
+    _id: string;
     owner: {
         firstName: string;
         lastName: string;
         profileImageURL: string;
         _id: string;
+        role: string;
     };
     content: string;
     likes: number;
+    deletePost: (tweetId: string) => void;
+    updatePost: (content: string, tweetId: string) => void;                      
 }
 
-export const Post = ({ id, owner, content, likes }: PostProps) => {
-    const [comments, setComments] = useState<Record<number, string[]>>({});
-    const [activePostId, setActivePostId] = useState<number | null>(null);
-    const [commentInput, setCommentInput] = useState<string>("");
-    const isDarkMode = useSelector((state: RootState) => state.config.isDarkMode);
+export const Post = ({ _id, owner, content, likes, deletePost, updatePost }: PostProps) => {
+    const [dropdownVisibility, setDropdownVisibility] = useState(false);
+    const [editable, setEditable] = useState(false);
+    const [updatedContent, setUpdatedContent] = useState(content);
+    const  { user } = useSelector((state: RootState) => state.user);
+    const [loading, setLoading] = useState(false);
+    const { notify } = useNotification();
 
-    const toggleCommentBox = (postId: number) => {
-        setActivePostId(activePostId === postId ? null : postId);
-    };
-
-    const handleAddComment = (postId: number) => {
-        if (commentInput.trim() === "") return;
-
-        setComments((prev) => ({
-            ...prev,
-            [postId]: [...(prev[postId] || []), commentInput],
-        }));
-
-        setCommentInput("");
-        setActivePostId(null);
-    };
+    useEffect(() => {
+        const handleClickOutside = (e: MouseEvent) => {
+            const target = e.target as HTMLElement;
+            if (!target.closest(`#dropdown-${_id}`)) {
+                setDropdownVisibility(false);
+            }
+        };
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, []);
 
 
-  return (
-    <div className="dark:bg-[hsl(0,0%,8%)] bg-white  p-5 rounded-md dark:shadow-none shadow-xl space-y-2">
-        <div className="flex items-center space-x-4 justify-between">
-            <div className="flex items-center gap-4 text-sm">
-                <img
-                    src={owner.profileImageURL || (isDarkMode ? userIcon : userIconDark)}
-                    className="rounded-full w-10 h-10"
-                    alt="User"
-                />
-                <p className="font-semibold">{owner.firstName + ' ' + owner.lastName}</p>
+    const handleUpdate = () => {
+        if (!updatedContent.trim()) {
+            notify({ id: "post-toast", type: "error", content: "Post content cannot be empty" });
+            return;
+        }
+
+        setEditable(false);
+        updatePost(updatedContent, _id);
+        setDropdownVisibility(false);
+    }
+
+    const handleDelete = () => {
+        deletePost(_id);
+        setDropdownVisibility(false);
+    }
+
+    const handleAddConnection = async () => {
+        try {
+			setLoading(true);
+        	const result = await axios.put(`http://localhost:3000/api/user/connect/${owner._id}`, {}, {
+          		headers: {
+            		Authorization: `Bearer ${localStorage.getItem('accessToken')}`
+          	    }
+            });
+
+            const updatedUser = result.data?.data;
+            
+            if (updatedUser){                
+                updateUser(updatedUser);
+                notify({ id: "connection-toast", type: "success", content: "Connection added successfully" });             
+            }
+		} 
+		catch (error) {
+			console.error("Error fetching posts", error);
+
+			notify({ id: "connection-toast", type: "error", content: "Could not add connection" });
+		}
+        finally {
+            setLoading(false);
+        }
+
+    }
+
+    const handleRemoveConnection = async () => {
+        try {
+			setLoading(true);
+        	const result = await axios.delete(`http://localhost:3000/api/user/disconnect/${owner._id}`, {
+          		headers: {
+            		Authorization: `Bearer ${localStorage.getItem('accessToken')}`
+          	    }
+            });
+
+            const updatedUser = result.data?.data;
+            
+            if (updatedUser){                
+                updateUser(updatedUser);
+                notify({ id: "connection-toast", type: "success", content: "Connection removed successfully" });             
+            }
+		} 
+		catch (error) {
+			console.error("Error fetching posts", error);
+
+			notify({ id: "connection-toast", type: "error", content: "Could not remove connection" });
+		}
+        finally {
+            setLoading(false);
+        }
+
+    }
+
+    return (
+        <div className="dark:bg-[hsl(0,0%,8%)] bg-white  p-5 rounded-md dark:shadow-none shadow-xl space-y-2">
+            { loading && <Spinner /> }
+            <div className="flex items-center space-x-4 justify-between">
+                <div className="flex items-center gap-4 text-sm">
+                    {
+                        owner.profileImageURL ?
+                        <img
+                            src={owner.profileImageURL}
+                            className="rounded-full w-8 h-8"
+                            alt="User"
+                        />
+                        : <FaUserCircle className="w-8 h-8"/>
+                    }
+                    <div>
+                        <Link to={`/profile/${owner._id}`} className="font-semibold cursor-pointer">{owner.firstName + ' ' + owner.lastName}</Link>
+                        <p className="text-xs dark:text-gray-300 text-gray-500">{owner.role}</p>
+                    </div>
+                </div>
+
+                <div className="flex items-center gap-3">
+                    {
+                        owner._id !== user?._id &&
+                        (
+                            user?.connections.some(connection => connection._id === owner._id) ?
+                            <IoPersonRemoveOutline onClick={handleRemoveConnection}/> :
+                            <IoPersonAddOutline onClick={handleAddConnection}/>
+                        )
+                    }
+
+                    {   owner._id === user?._id &&
+                        <div className="relative">
+                        <PiDotsThreeOutlineVerticalFill className="cursor-pointer relative" onClick={() => setDropdownVisibility(prev => !prev)} />
+                        {
+                            dropdownVisibility &&
+                            <div id={`dropdown-${_id}`}
+                            className={`absolute top-6 right-1 z-20 w-20 rounded-sm border border-black bg-white text-black text-xs shadow-lg dark:bg-black dark:border-white dark:text-white`}
+                            >
+
+                                <div className="text-center w-full py-0.5 dark:hover:bg-white dark:hover:text-black hover:bg-black hover:text-white  cursor-pointer rounded-t-sm" onClick={() => setEditable(true)}>
+                                    Edit
+                                </div>
+
+                                <div className="cursor-pointer py-0.5 text-center dark:hover:bg-white hover:bg-black hover:text-white dark:hover:text-black  rounded-b-sm" onClick={handleDelete}>
+                                    Delete
+                                </div>
+                            </div>    
+                        }
+                    </div>
+                    }
+                </div>
+            
             </div>
 
-            <img src={isDarkMode ? connectIcon : connectIconDark} className="w-4 h-4 border border-none" />
-        </div>
+            
+            {
+                editable ? 
+                // add textarea
+                <div className="flex flex-col gap-2">
+                    <textarea name="post" className="resize-none border focus:ring-0 border-blue-500 p-2 text-xs" cols={50} placeholder="Enter text here" value={updatedContent} onChange={(e) => setUpdatedContent(e.target.value)}></textarea>
+                    <button className="text-xs w-20 self-end px-1 py-0.5 rounded-sm cursor-pointer dark:text-black font-semibold text-white dark:bg-white bg-black" onClick={handleUpdate}>Update</button>
+                </div>
+                : <p className="pl-8 text-sm dark:text-gray-200 text-gray-800 break-words">{content}</p>
+            }
 
-        <p className="pl-8 text-sm dark:text-gray-200 text-gray-800">{content}</p>
-
-        <div className="flex justify-between items-center mt-2 px-2">
-            <button
-                className="flex items-center gap-1 text-red-400"
-            >
-                ❤️ {likes}
-            </button>
-            <div
-                onClick={() => toggleCommentBox(id)}
-                className="cursor-pointer text-gray-700"
-            >
-            <img src={isDarkMode ? chatIcon : chatIconDark} className="w-6 h-6" /> 
+            <div className="flex justify-between items-center mt-2 px-2">
+                <button
+                    className="flex items-center gap-1 text-red-400"
+                >
+                    ❤️ {likes}
+                </button>
             </div>
         </div>
-
-        {activePostId === id && (
-        <div className="mt-2">
-            <input
-            className="w-full px-3 py-2 border rounded text-sm"
-            type="text"
-            placeholder="Write a comment..."
-            value={commentInput}
-            onChange={(e) => setCommentInput(e.target.value)}
-            />
-            <button
-            onClick={() => handleAddComment(id)}
-            className="text-sm text-white bg-blue-600 px-3 py-1 mt-2 rounded"
-            >
-            Post
-            </button>
-        </div>
-        )}
-
-        {comments[id]?.length > 0 && (
-        <div className="mt-2 space-y-1">
-            {comments[id].map((cmt, index) => (
-            <p key={index} className="text-sm text-gray-600">
-                {cmt}
-            </p>
-            ))}
-        </div>
-        )}
-    </div>
-  )
+    )
 }
+
+// {}

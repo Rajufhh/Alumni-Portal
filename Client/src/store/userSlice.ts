@@ -1,3 +1,4 @@
+import { userConnectionProps } from "@/components/Pages/Home/UserConnectionCard";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface User {
@@ -10,7 +11,7 @@ export interface User {
     dob: string;
     linkedin: string;
     github: string;
-    profileImageUrl?: string;
+    profileImageURL?: string;
     skills: string[];
     interests: string[];
     bio?: string;
@@ -22,6 +23,7 @@ export interface User {
     previousCompanies?: string[];
     internships?: string[];
     availableForMentorship: boolean;
+    connections: userConnectionProps[];
 };
 
 export interface UserState {
@@ -48,10 +50,10 @@ const userSlice = createSlice({
         },
         updateUser: (state, action: PayloadAction<User>) => {
             if (state.user) state.user = { ...state.user, ...action.payload };
-        }
+        },
     }
 });
 
-export const { setUser, clearUser } = userSlice.actions;
+export const { setUser, clearUser, updateUser } = userSlice.actions;
 
 export default userSlice.reducer;

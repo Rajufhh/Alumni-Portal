@@ -26,7 +26,7 @@ export const handleFetchAllArticles = asyncHandler(async (req: Request, res: Res
     const total = await Article.countDocuments(filter);
     const { startIndex, next, prev, totalPages } = pagination(page, limit, total);
 
-    const articles = await Article.find(filter).populate("author", "firstName lastName profileImageURL _id").skip(startIndex).limit(limit).lean();
+    const articles = await Article.find(filter).populate("author", "firstName role lastName profileImageURL _id").skip(startIndex).limit(limit).lean();
 
     res
         .status(200)
@@ -65,7 +65,7 @@ export const handleFetchArticlesByUser = asyncHandler(async (req: Request, res: 
         throw new APIError(404, "Invalid userId");
     }
 
-    const articles = await Article.find(filter).skip(startIndex).limit(limit).lean().populate("author", "_id firstName lastName profileImageURL");
+    const articles = await Article.find(filter).skip(startIndex).limit(limit).lean().populate("author", "_id role firstName lastName profileImageURL");
     
     res
         .status(200)
