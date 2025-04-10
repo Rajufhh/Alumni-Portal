@@ -141,7 +141,10 @@ export const ArticleForm = ({ setArticles, setFormVisibility, articleId }: artic
     <div className="w-full min-h-screen">
       <div className="w-1/2 mx-auto m-6 p-6 rounded-md dark:bg-[#222] bg-white shadow-lg text-white space-y-4">
         <div className="flex items-center gap-4">
-            <IoArrowBackOutline className="w-8 cursor-pointer h-8 dark:text-white text-black" onClick={() => setFormVisibility(prev => !prev)}/>    
+            <IoArrowBackOutline className="w-8 cursor-pointer h-8 dark:text-white text-black" onClick={() => {
+              setFormVisibility(prev => !prev);
+              articleId = null;
+            }}/>    
             <h2 className="text-3xl font-semibold dark:text-white text-black">
             {articleId ? "Edit Article" : "Post Article"}
             </h2>

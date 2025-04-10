@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 import { Article } from "./Articles";
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 interface ArticleProps {
   article: Article | null;
@@ -36,7 +37,7 @@ export const ViewArticle = ({ article, setArticleVisibility }: ArticleProps) => 
 
       {/* Article */}
       <div className="prose dark:prose-invert max-w-none">
-        <ReactMarkdown>
+        <ReactMarkdown remarkPlugins={[remarkGfm]}>
           {article.content || ""}
         </ReactMarkdown>
       </div>

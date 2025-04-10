@@ -29,11 +29,13 @@ export interface User {
 export interface UserState {
     user: User | null;
     loading: boolean;
+    isFetched: boolean;
 }
 
 const initialState: UserState = {
     user: null,
-    loading: false
+    loading: false,
+    isFetched: false
 }
 
 const userSlice = createSlice({
@@ -43,10 +45,12 @@ const userSlice = createSlice({
         setUser: (state, action: PayloadAction<User>) => {
             state.user = action.payload;
             state.loading = false;
+            state.isFetched = true;
         },
         clearUser: (state) => {
             state.user = null;
             state.loading = false;
+            state.isFetched = true;
         },
         updateUser: (state, action: PayloadAction<User>) => {
             if (state.user) state.user = { ...state.user, ...action.payload };
