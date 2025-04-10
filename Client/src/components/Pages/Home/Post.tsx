@@ -62,10 +62,10 @@ export const Post = ({ _id, owner, content, likes, deletePost, updatePost }: Pos
         setDropdownVisibility(false);
     }
 
-    const handleAddConnection = async () => {
+    const handleAddConnection = async (connecteeId: string) => {
         try {
 			setLoading(true);
-        	const result = await axios.put(`http://localhost:3000/api/user/connect/${owner._id}`, {}, {
+        	const result = await axios.put(`http://localhost:3000/api/user/connect/${connecteeId}`, {},{
           		headers: {
             		Authorization: `Bearer ${localStorage.getItem('accessToken')}`
           	    }
@@ -89,10 +89,10 @@ export const Post = ({ _id, owner, content, likes, deletePost, updatePost }: Pos
 
     }
 
-    const handleRemoveConnection = async () => {
+    const handleRemoveConnection = async (connecteeId: string) => {
         try {
 			setLoading(true);
-        	const result = await axios.delete(`http://localhost:3000/api/user/disconnect/${owner._id}`, {
+        	const result = await axios.delete(`http://localhost:3000/api/user/disconnect/${connecteeId}`, {
           		headers: {
             		Authorization: `Bearer ${localStorage.getItem('accessToken')}`
           	    }
@@ -141,8 +141,8 @@ export const Post = ({ _id, owner, content, likes, deletePost, updatePost }: Pos
                         owner._id !== user?._id &&
                         (
                             user?.connections.some(connection => connection._id === owner._id) ?
-                            <IoPersonRemoveOutline onClick={handleRemoveConnection}/> :
-                            <IoPersonAddOutline onClick={handleAddConnection}/>
+                            <IoPersonRemoveOutline onClick={() => handleRemoveConnection(owner._id)}/> :
+                            <IoPersonAddOutline onClick={() => handleAddConnection(owner._id)}/>
                         )
                     }
 

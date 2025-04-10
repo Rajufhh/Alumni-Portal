@@ -26,7 +26,7 @@ export const UserConnectionCard = ({ firstName, lastName, _id, profileImageURL, 
 
         <div className="">
             <p className="text-sm">{firstName + ' ' + lastName}</p>
-            <p className="text-xs text-gray-400">{role[0].toUpperCase() + role.substring(1)}</p>
+            <p className="text-xs text-gray-400">{role ? role[0].toUpperCase() + role.substring(1) : "-"}</p>
         </div>
 
         <img src={ isDarkMode ? disconnectIconDark : disconnectIcon } className="w-4 h-4 absolute right-2 top-2" />

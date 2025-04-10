@@ -1,5 +1,4 @@
 import { useState, ChangeEvent } from "react";
-import Rose from "@/assets/rose.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router";
 import axios from "axios";
@@ -10,6 +9,7 @@ import { ViewProfile } from "./ViewProfile";
 import { RootState } from "@/store/Store";
 import { Uploads } from "./Uploads";
 import { useAuthorize } from "@/hooks/useAuthorize";
+import { FaUserCircle } from "react-icons/fa";
 
 type ComponentType = "view" | "edit" | "password" | "uploads";
 
@@ -26,14 +26,11 @@ export const Profile = () => {
   const [activeComponent, setActiveComponent] = useState<ComponentType>(initialComponent);
   
 
-  const [profilePic, setProfilePic] = useState<string>(Rose);
-
   const handleProfilePicChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        setProfilePic(reader.result as string);
       };
       reader.readAsDataURL(file);
     }
@@ -72,11 +69,16 @@ export const Profile = () => {
     <div className="flex flex-col md:flex-row w-full min-h-screen bg-[#f5f3ea] dark:bg-[#000000] transition-colors">
       
       <div className="w-full md:w-1/3 flex flex-col items-center py-10 border-r border-gray-300 dark:border-neutral-800">
-        <img
-          src={profilePic}
-          alt="Profile"
-          className="rounded-full w-48 h-48 object-cover border-4 border-white"
-        />
+        
+        {
+          user?.profileImageURL ?
+          <img
+            src={user?.profileImageURL}
+            alt="Profile"
+            className="rounded-full w-48 h-48 object-cover border-4 border-white"
+          />
+          : <FaUserCircle className="w-48 h-48"/>
+        }
         {
           activeComponent === "edit" && isOwnProfile &&
           <label

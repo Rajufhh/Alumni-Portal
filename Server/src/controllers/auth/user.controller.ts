@@ -279,7 +279,7 @@ export const handleGetUserProfile = asyncHandler(async (req: Request, res: Respo
     
     const user = await User.findById(id).select(
         "-password -refreshToken"
-    ); 
+    ).populate("connections", "firstName lastName _id profileImageURL role").lean(); 
     
     if (!user){
         throw new APIError(404, "User nto found");

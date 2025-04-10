@@ -79,7 +79,7 @@ export const UserProfileCard = () => {
                 : <FaUserCircle  className="w-6 h-6"/>
             }
             <div>
-                <h2 className="font-semibold">{user?.firstName + ' ' + user?.lastName}</h2>
+                <Link to={`/profile/${user?._id}`} className="cursor-pointer font-semibold">{user?.firstName + ' ' + user?.lastName}</Link>
                 <p className="text-start text-xs text-gray-400">{role}</p>
             </div>
 
@@ -129,3 +129,5 @@ export const UserProfileCard = () => {
     </div>
   );
 };
+
+// {}
