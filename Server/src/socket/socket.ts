@@ -1,5 +1,4 @@
 import { DefaultEventsMap, Server, Socket } from "socket.io";
-import { io } from "..";
 import mongoose from "mongoose";
 import { ChatEvents, ChatEventsEnum } from "./chatEvents";
 import { Request } from "express";
@@ -23,7 +22,8 @@ export interface CustomSocket extends Socket<DefaultEventsMap, DefaultEventsMap,
 }
 
 export const initSocketIO = (io: Server) => {
-    return io.on("connection", (socket: CustomSocket) => {
+    console.log("initSocketIO");
+    return io.on('connection', (socket: CustomSocket) => {
         try {
             const userId = socket?.user?._id.toString() as string;
 
@@ -45,6 +45,7 @@ export const initSocketIO = (io: Server) => {
         }        
     });    
 };
+
 
 export const emitSocketEvent = (req: Request, roomId: string, event: ChatEvents, payload: any ) => {
     req.app.get("io").in(roomId).emit(event, payload);

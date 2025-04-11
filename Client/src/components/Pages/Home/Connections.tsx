@@ -4,7 +4,6 @@ import { RootState } from "@/store/Store";
 
 export const Connections = () => {
 	const connections = useSelector((state: RootState) => state.user.user?.connections || []);	
-	console.log(connections);
     
 	return (
 		<div className="dark:bg-[#151515] bg-white  p-4 rounded-md dark:shadow-none shadow-xl">

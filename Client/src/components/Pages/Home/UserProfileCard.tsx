@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "@/store/Store";
+import Store, { RootState } from "@/store/Store";
 import githubIcon from "../../../assets/github-logo.png"
 import linkedinIcon from "../../../assets/linkedin-logo.png"
 import linkIcon from "../../../assets/link-icon.svg"
@@ -10,6 +10,7 @@ import { Link, useNavigate } from "react-router";
 import { clearUser } from "@/store/userSlice";
 import axios from "axios";
 import { FaUserCircle } from "react-icons/fa";
+import { clearSocket } from "@/store/socketSlice";
 
 export const UserProfileCard = () => {
 
@@ -17,6 +18,7 @@ export const UserProfileCard = () => {
     const user = useSelector((state: RootState) => state.user.user);
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const socket = Store.getState().socket.socket;
 
     const socialProfiles = [
         {
@@ -44,7 +46,6 @@ export const UserProfileCard = () => {
                 withCredentials: true
             });
 
-            console.log(response);
             if (response.status === 200){
                 // Clear user from store
                 dispatch(clearUser());
@@ -52,6 +53,9 @@ export const UserProfileCard = () => {
                 // Clear tokens from localStorage
                 localStorage.removeItem("accessToken");
                 localStorage.removeItem("refreshToken");
+  
+                    socket?.disconnect();
+                    dispatch(clearSocket());
 
                 // Navigate to the login/signup page
                 navigate("/");

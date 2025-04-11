@@ -5,8 +5,9 @@ import mongoose from "mongoose";
 
 export const handleSocketAuth = (io: Server) => {
     io.use((socket: CustomSocket , next: (err?: ExtendedError) => void) => {
-        const token = socket.handshake.auth.token;
-        console.log("in middleware");
+        const token = socket.handshake.auth.accessToken;
+
+        console.log("in socket middleware");
     
         if (!token){
             return next(new Error("Authentication Error: No token provided"));
@@ -21,7 +22,7 @@ export const handleSocketAuth = (io: Server) => {
     
             const decodedToken = jwt.verify(token, secret as string) as { _id: mongoose.Types.ObjectId, role: string };
             socket.user = decodedToken;
-    
+            
             next();
         }
         catch (error){

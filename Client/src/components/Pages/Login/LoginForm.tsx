@@ -5,6 +5,9 @@ import { setUser } from "@/store/userSlice";
 import { useNavigate } from "react-router";
 import { Spinner } from "@/components/ui/Spinner";
 import { useNotification } from "@/hooks/useNotification";
+import { setSocket } from "@/store/socketSlice";
+import { initializeSocket } from "@/socket";
+import { mountSocketListeners } from "@/socket/listeners";
 
 export const LoginForm = () => {
   const [email, setEmail] = useState("");
@@ -24,39 +27,54 @@ export const LoginForm = () => {
     setPassword(e.target.value);
   };
 
-    const submitForm = async () => {
-        setLoading(true);
+  const submitForm = async () => {
+    setLoading(true);
 
-        try {
-          const values = { email, password }
+    try {
+      const values = { email, password };
 
-          const response = await axios.post("http://localhost:3000/api/login", values, { withCredentials: true });
-          const accessToken = response.data.data.accessToken;
-          const refreshToken = response.data.data.refreshToken;
-          const user = response.data.data.user;
+      const response = await axios.post(
+        "http://localhost:3000/api/login",
+        values,
+        { withCredentials: true }
+      );
+      const accessToken = response.data.data.accessToken;
+      const refreshToken = response.data.data.refreshToken;
+      const user = response.data.data.user;
 
-          dispatch(setUser(user));
+      dispatch(setUser(user));
 
-          if (!accessToken || !refreshToken){
-              throw new Error("Error while signing up");
-          }
+      if (!accessToken || !refreshToken) {
+        throw new Error("Error while signing up");
+      }
 
-          // Store the tokens for authorization purposes
-          localStorage.setItem('accessToken', accessToken);
-          localStorage.setItem('refreshToken', refreshToken);
+      // Store the tokens for authorization purposes
+      localStorage.setItem("accessToken", accessToken);
+      localStorage.setItem("refreshToken", refreshToken);
 
-          // Navigate the user to the dashboard/home page
-          navigate("/home");
-        } 
-        catch (error) {
-          console.error("LOGIN_SUBMISSION_ERROR", error);
-          notify({ id: "login-error", type: "error", content: "500: Login Error" });
-        }
-        finally{
-          notify({ id: "login-toast", type: "success", content: "Logged-in successfully!" });
-          setLoading(false);
-        }
+      const socket = initializeSocket();
+      console.log("socket init");
+
+      if (!socket.connected) {
+        socket?.connect();
+        mountSocketListeners(socket);
+        dispatch(setSocket(socket));
+      }
+
+      // Navigate the user to the dashboard/home page
+      navigate("/home");
+    } catch (error) {
+      console.error("LOGIN_SUBMISSION_ERROR", error);
+      notify({ id: "login-error", type: "error", content: "500: Login Error" });
+    } finally {
+      notify({
+        id: "login-toast",
+        type: "success",
+        content: "Logged-in successfully!",
+      });
+      setLoading(false);
     }
+  };
 
   return (
     <div className="w-full flex items-center justify-center text-black">
@@ -102,13 +120,11 @@ export const LoginForm = () => {
           type="submit"
           disabled={!isFormActive}
           className={`w-full py-3 rounded text-white font-medium transition-colors cursor-pointer ${
-            isFormActive
-              ? "bg-black"
-              : "bg-gray-400 cursor-not-allowed"
+            isFormActive ? "bg-black" : "bg-gray-400 cursor-not-allowed"
           }`}
           onClick={submitForm}
         >
-          { loading ? <Spinner /> : 'Sign In →' }
+          {loading ? <Spinner /> : "Sign In →"}
         </button>
       </form>
     </div>

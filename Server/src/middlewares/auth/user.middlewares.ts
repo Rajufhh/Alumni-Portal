@@ -8,7 +8,6 @@ import APIResponse from "../../utils/APIResponse";
 
 export const verifyJWT = asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
     const token = req.cookies?.accessToken || req.header("Authorization")?.replace("Bearer ", "");
-    console.log(req);
 
     if (!token) {
         throw new APIError(401, "Unauthorized request");
@@ -33,7 +32,6 @@ export const verifyJWT = asyncHandler(async (req: Request, res: Response, next: 
             }
 
             req.user = user;
-            console.log(req.user);
             next();
         }
     }

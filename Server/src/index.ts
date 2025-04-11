@@ -5,6 +5,7 @@ import { createServer } from 'http';
 import { Server } from 'socket.io';
 import { initSocketIO } from './socket/socket';
 import { handleSocketAuth } from './middlewares/socket.middlewares';
+import { ChatEventsEnum } from './socket/chatEvents';
 
 dotenv.config();
 const PORT = process.env.PORT || 3000;  
@@ -23,6 +24,10 @@ app.set("io", io);
 
 handleSocketAuth(io);
 initSocketIO(io);
+
+io.on(ChatEventsEnum.CONNECT, () => {
+    console.log("connected");
+})
 
 
 connectDB()

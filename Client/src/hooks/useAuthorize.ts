@@ -8,7 +8,6 @@ export const useAuthorize = () => {
     const navigate = useNavigate();
 
     useEffect(() => {      
-        console.log(user);
         if (isFetched && user === null){
             console.log("!user");
             navigate("/");

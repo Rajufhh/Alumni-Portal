@@ -2,6 +2,9 @@
 
 import { Spinner } from "@/components/ui/Spinner";
 import { useNotification } from "@/hooks/useNotification";
+import { initializeSocket } from "@/socket";
+import { mountSocketListeners } from "@/socket/listeners";
+import { setSocket } from "@/store/socketSlice";
 import { setUser } from "@/store/userSlice";
 import axios from "axios";
 import { useState } from "react";
@@ -54,12 +57,21 @@ export const SignupForm = () => {
       localStorage.setItem("accessToken", accessToken);
       localStorage.setItem("refreshToken", refreshToken);
 
+      const socket = initializeSocket();
+
+      if (!socket.connected) {
+        socket.connect();
+        mountSocketListeners(socket);
+        dispatch(setSocket(socket));
+      }
+
       navigate("/home");
-    } catch (error) {
+    } 
+    catch (error) {
       console.error("SIGNUP_ERROR", error);
       notify({ id: "signup-error", type: "error", content: "500: Signup Error" });
     }
-    finally{
+    finally {
       notify({ id: "signup-toast", type: "success", content: "Signed-up successfully" });
       setLoading(false);
     }

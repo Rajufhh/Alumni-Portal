@@ -15,9 +15,6 @@ export interface userConnectionProps {
 
 export const UserConnectionCard = ({ firstName, lastName, _id, profileImageURL, role }: userConnectionProps) => {
     const isDarkMode = useSelector((state: RootState) => state.config.isDarkMode);
-    if (!isDarkMode){
-      console.log(_id);
-    }
 
   return (
     <div className="flex relative gap-4 items-center">

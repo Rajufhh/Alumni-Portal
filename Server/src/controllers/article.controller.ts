@@ -10,11 +10,6 @@ export const handleFetchAllArticles = asyncHandler(async (req: Request, res: Res
     const page = parseInt(req.query.page as string) || 1;
     const limit = parseInt(req.query.limit as string) || 10;
     const search = (req.query.search as string).toLowerCase() || "";
-
-    console.log(page);
-    console.log(limit);
-    console.log(search);
-       
     // Create a mongoDB filter
     const filter = { 
         ...(search && {
