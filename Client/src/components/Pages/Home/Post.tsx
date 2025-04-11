@@ -117,7 +117,7 @@ export const Post = ({ _id, owner, content, likes, deletePost, updatePost }: Pos
     }
 
     return (
-        <div className="dark:bg-[hsl(0,0%,8%)] bg-white  p-5 rounded-md dark:shadow-none shadow-xl space-y-2">
+        <div className="dark:bg-[hsl(0,0%,8%)] bg-white  p-5 rounded-md dark:shadow-none shadow-xl space-y-5">
             { loading && <Spinner /> }
             <div className="flex items-center space-x-4 justify-between">
                 <div className="flex items-center gap-4 text-sm">
@@ -173,7 +173,6 @@ export const Post = ({ _id, owner, content, likes, deletePost, updatePost }: Pos
             
             {
                 editable ? 
-                // add textarea
                 <div className="flex flex-col gap-2">
                     <textarea name="post" className="resize-none border focus:ring-0 border-blue-500 p-2 text-xs" cols={50} placeholder="Enter text here" value={updatedContent} onChange={(e) => setUpdatedContent(e.target.value)}></textarea>
                     <button className="text-xs w-20 self-end px-1 py-0.5 rounded-sm cursor-pointer dark:text-black font-semibold text-white dark:bg-white bg-black" onClick={handleUpdate}>Update</button>

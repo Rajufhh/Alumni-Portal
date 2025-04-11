@@ -94,7 +94,7 @@ export const handleFetchOrCreateNewChat = asyncHandler(async (req, res) => {
 
 });
 
-const handleDeleteChat = asyncHandler(async (req, res) => {
+export  const handleDeleteChat = asyncHandler(async (req, res) => {
     const { chatId } = req.params;
     const userId = req.user?._id;
 
@@ -118,7 +118,7 @@ const handleDeleteChat = asyncHandler(async (req, res) => {
         .json(new APIResponse(200, null, "Chat deleted successfully!"));
 });
 
-const handleResetUnreadCount = asyncHandler(async (req, res) => {
+export const handleResetUnreadCount = asyncHandler(async (req, res) => {
     const { chatId } = req.params;
     
     if (!chatId) throw new APIError(400, "chatId is required");
