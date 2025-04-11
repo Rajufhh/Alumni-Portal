@@ -219,4 +219,24 @@ import { pagination } from "../utils/Pagination";
             .json(new APIResponse(200, events, "Fetched rsvp'd events successfully"));
     });
 
+    export const handleFetchEventById = asyncHandler(async (req: Request, res: Response) => {
+        const { eventId } = req.params;
+
+        if (!eventId){
+            throw new APIError(400, "eventId is required");
+        }
+
+        const event = await Event.findById(eventId).lean().populate("owner", "firstName lastName _id role profileImageURL");
+        
+        if (!event){
+            throw new APIError(404, "Event not found");
+        }
+
+        res
+            .status(200)
+            .json(new APIResponse(200, event, "Event fetched successfully"));
+    });
+
+
+
 // {}

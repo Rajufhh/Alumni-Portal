@@ -1,21 +1,29 @@
-import { Schema, Types, Document, model } from 'mongoose'
+import mongoose, { Schema, Document, Model } from 'mongoose';
 
-interface Message extends Document {
-    sender: Types.ObjectId;
-    receiver: Types.ObjectId;
-    content: string;
-    attachment: {
-        type: 'video' | 'image' | 'file',
-        url: string
-    };
-};
+export interface Message extends Document {
+  chat: mongoose.Types.ObjectId;
+  sender: mongoose.Types.ObjectId;
+  content: string;
+}
 
-const MessageSchema = new Schema<Message>({
-    sender: { type: Schema.Types.ObjectId, ref: 'User', required: true },
-    receiver: { type: Schema.Types.ObjectId, ref: 'User', required: true },
-    content: { type: String, default: "" },
-    attachment: { type: String, enum: [ 'image', 'video', 'file' ] },
-}, { timestamps: true });
+const messageSchema = new Schema<Message>(
+  {
+    chat: {
+      type: Schema.Types.ObjectId,
+      ref: 'Chat',
+      required: true,
+    },
+    sender: {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+      required: true,
+    },
+    content: {
+      type: String,
+      required: true,
+    },
+  },
+  { timestamps: true }
+);
 
-const Message = model<Message>("Message", MessageSchema);
-export default Message;
+export const Message: Model<Message> = mongoose.model<Message>('Message', messageSchema);

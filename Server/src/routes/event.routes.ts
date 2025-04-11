@@ -6,8 +6,9 @@ const router = Router();
 
 // /api/event
 
-router.get("", verifyJWT, handleFetchAllEvents);
-router.get("/:id", verifyJWT, verifyPermission(["alumni", "admin"]), handleFetchEventsByUser);
+router.get("/", verifyJWT, handleFetchAllEvents);
+router.get("/user/:id", verifyJWT, verifyPermission(["alumni", "admin"]), handleFetchEventsByUser);
+router.get("/:eventId", verifyJWT, verifyPermission(["alumni", "admin"]), handleFetchEventsByUser);
 router.post("/", verifyJWT, verifyPermission(["alumni", "admin"]), handlePostEvent);
 router.delete("/:eventId", verifyJWT, verifyPermission(["alumni", "admin"]), handleDeleteEvent);
 router.post("/update/:eventId", verifyJWT, verifyPermission(["alumni", "admin"]), handleUpdateEvent);
