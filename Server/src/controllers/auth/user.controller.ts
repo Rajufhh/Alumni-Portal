@@ -60,6 +60,11 @@ export const handleUserSignUp = asyncHandler(async (req: Request, res: Response)
     }   
 
     const [ day, month, year ] = dob.split("/").map(Number);
+
+    if (day > 31 || month > 12 || year < 1900 || year > new Date().getFullYear()) {
+        throw new APIError(400, "Invalid date format. Please use dd/mm/yyyy");
+    }
+
     const DOB = new Date(year, month - 1, day);
 
     await User.create({

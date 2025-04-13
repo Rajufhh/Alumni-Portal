@@ -9,6 +9,8 @@ import { useNotification } from "@/hooks/useNotification";
 import { Spinner } from "@/components/ui/Spinner";
 import { useLocation } from "react-router";
 import { ViewArticle } from "./ViewArticle";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store/Store";
 
 export interface Article {
   title: string;
@@ -28,6 +30,7 @@ export interface Article {
 
 
 export const Articles = () => {
+  const { user } = useSelector((state: RootState) => state.user);
   const [searchQuery, setSearchQuery] = useState("");
   const [formVisibility, setFormVisibility] = useState(false);
   const [articleVisibility, setArticleVisibility] = useState(false);
@@ -35,14 +38,14 @@ export const Articles = () => {
   const [articleToEdit, setArticleToEdit] = useState("");
   const [articleToView, setArticleToView] = useState<Article | null>(null);
   const [articles, setArticles] = useState<Article[]>([]);
-  const { notify } = useNotification(); 
-  
+  const { notify } = useNotification();
+
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   useAuthorize();
 
   const location = useLocation();
-  const isOnArticlesPage = location.pathname === "/articles";
+  const isOnArticlesPage = location.pathname === "/donation";
 
   useEffect(() => {
     setCurrentPage(1);
@@ -55,7 +58,7 @@ export const Articles = () => {
     const handleFetchArticles = async () => {
       try {
         setLoading(true);
-            const result = await axios.get(`http://localhost:3000/api/article?page=${currentPage}&limit=10&search=${searchQuery}`, {
+            const result = await axios.get(`http://localhost:3000/api/donation?page=${currentPage}&limit=10&search=${searchQuery}`, {
                 headers: {
                   Authorization: `Bearer ${localStorage.getItem('accessToken')}`
               }
@@ -84,7 +87,7 @@ export const Articles = () => {
   const deleteArticle = async (articleId: string) => {
     try {
       setLoading(true);
-      await axios.delete(`http://localhost:3000/api/article/${articleId}`, {
+      await axios.delete(`http://localhost:3000/api/donation/${articleId}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('accessToken')}`
         }
@@ -110,13 +113,18 @@ export const Articles = () => {
       : <>
       <div className="space-y-2 flex justify-between py-6 w-full bg-gray-50 px-12 dark:bg-[#151515] items-center">
         <div>
-          <h2 className="text-3xl font-bold dark:text-white text-black">Articles</h2>
-          <p className="dark:text-gray-300 text-gray-700">Insights, experiences, and advice from our alumni community</p>
+          <h2 className="text-3xl font-bold dark:text-white text-black">Donations</h2>
+          <p className="dark:text-gray-300 text-gray-700">Support our cause and help us make a difference</p>
         </div>
 
-        <button className="text-sm dark:text-black text-white dark:bg-white bg-black px-2 py-1 rounded-sm cursor-pointer font-semibold" onClick={() => setFormVisibility(prev => !prev)}>
-          Post Article
-        </button>
+        {user?.role !== "student" && (
+          <button
+            className="text-sm dark:text-black text-white dark:bg-white bg-black px-2 py-1 rounded-sm cursor-pointer font-semibold"
+            onClick={() => setFormVisibility((prev) => !prev)}
+          >
+            Post Article
+          </button>
+        )}
       </div>
 
       <SearchbarTemplate placeholder="Search articles by title, author or description" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
@@ -162,4 +170,3 @@ export const Articles = () => {
   </div>
   )
 }
-

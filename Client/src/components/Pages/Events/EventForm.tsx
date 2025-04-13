@@ -2,6 +2,7 @@ import { useNotification } from "@/hooks/useNotification";
 import { RootState } from "@/store/Store";
 import axios from "axios";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Event } from "@/components/Pages/Events/Events";
 import { useSelector } from "react-redux";
 import { IoArrowBackOutline } from "react-icons/io5";
 import { Spinner } from "@/components/ui/Spinner";
@@ -15,7 +16,7 @@ interface eventProps {
 export const EventForm = ({ setEvents, setFormVisibility, eventId }: eventProps) => {
   const [title, setTitle] = useState("");
   const [location, setLocation] = useState("");
-  const [date, setDate] = useState<Date | string>(""); // Date
+  const [date, setDate] = useState<Date | null>(null);
   const [time, setTime] = useState("");
   const [description, setDescription] = useState("");
   const [entryFee, setEntryFee] = useState<number>(0);
@@ -177,20 +178,19 @@ export const EventForm = ({ setEvents, setFormVisibility, eventId }: eventProps)
               onChange={(e) => setLocation(e.target.value)}
             />
           </div>
-
-          {/* Date */}
-          <div className="space-y-2">
-            <label htmlFor="date" className="text-lg font-semibold block dark:text-white text-black">
-              Date
-            </label>
-            <input
-              type="date"
-              name="date"
-              className="rounded-sm px-2 py-2 text-sm bg-black dark:bg-white dark:text-black text-white w-full focus:outline-none focus:ring-2 dark:focus:ring-white focus:ring-black"
-              value={new Date(date).toLocaleDateString().toString()}
-              onChange={(e) => setDate(e.target.value)}
-            />
-          </div>
+{/* Date */}
+<div className="space-y-2">
+  <label htmlFor="date" className="text-lg font-semibold block dark:text-white text-black">
+    Date
+  </label>
+  <input
+    type="date"
+    name="date"
+    className="rounded-sm px-2 py-2 text-sm bg-black dark:bg-white dark:text-black text-white w-full focus:outline-none focus:ring-2 dark:focus:ring-white focus:ring-black"
+    value={date ? new Date(date).toISOString().split("T")[0] : ""}
+    onChange={(e) => setDate(e.target.value ? new Date(e.target.value) : null)}
+  />
+</div>
 
           {/* Time */}
           <div className="space-y-2">

@@ -157,7 +157,6 @@ export const JobForm = ({ setJobs, setFormVisibility, jobId }: JobFormProps) => 
                 { label: "Title", value: title, setter: setTitle },
                 { label: "Company", value: company, setter: setCompany },
                 { label: "Location", value: location, setter: setLocation },
-                { label: "Job Type", value: jobType, setter: setJobType },
                 { label: "Salary", value: salary, setter: setSalary },
                 { label: "URL", value: url, setter: setUrl },
                 ].map(({ label, value, setter }) => (
@@ -173,6 +172,19 @@ export const JobForm = ({ setJobs, setFormVisibility, jobId }: JobFormProps) => 
                     />
                 </div>
                 ))}
+                <div className="flex-1 min-w-[48%]">
+                    <label className="block text-lg font-semibold dark:text-white text-black">
+                    Job Type
+                    </label>
+                    <select
+                    className="rounded-sm w-4/5 px-2 py-1.5 text-sm bg-black dark:bg-white text-white dark:text-black focus:outline-none focus:ring-2 dark:focus:ring-white focus:ring-black"
+                    value={jobType}
+                    onChange={(e) => setJobType(e.target.value)}
+                    >
+                        <option value="Full-time">Full-time</option>
+                        <option value="Half-time">Half-time</option>
+                    </select>
+                </div>
             </div>
 
             {/* Skills */}

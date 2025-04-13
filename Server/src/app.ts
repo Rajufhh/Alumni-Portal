@@ -20,7 +20,7 @@ import userRouter from './routes/user.routes'
 import jobRouter from './routes/job.routes'
 import eventRouter from './routes/event.routes'
 import likeRouter from './routes/like.routes'
-import articleRouter from './routes/article.routes'
+import donationRouter from './routes/donation.routes'
 import mentorshipRouter from './routes/mentorship.routes'
 import commentRouter from './routes/comment.routes'
 import tweetRouter from './routes/tweet.routes'
@@ -31,7 +31,7 @@ app.use("/api", userRouter);
 app.use("/api/job", jobRouter);
 app.use("/api/event", eventRouter);
 app.use("/api/like", likeRouter);
-app.use("/api/article", articleRouter);
+app.use("/api/donation", donationRouter);
 app.use("/api/mentorship", mentorshipRouter);
 app.use("/api/comment", commentRouter);
 app.use("/api/tweets", tweetRouter);

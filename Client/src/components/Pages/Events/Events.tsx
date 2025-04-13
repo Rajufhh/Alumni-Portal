@@ -37,10 +37,28 @@ export const Events = () => {
   const [eventToEdit, setEventToEdit] = useState("");
   const [events, setEvents] = useState<Event[]>([]);
 
-  const { notify } = useNotification(); 
+  const { notify } = useNotification();
   const { user } = useSelector((state: RootState) => state.user);
-  
+
   useAuthorize();
+
+  const handleDeleteEvent = async (eventId: string) => {
+    try {
+      setLoading(true);
+      await axios.delete(`http://localhost:3000/api/event/${eventId}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('accessToken')}`
+        }
+      });
+      setEvents(events.filter((event) => event._id !== eventId));
+      notify({ id: 'event-toast', type: 'success', content: 'Event deleted successfully' });
+    } catch (error) {
+      console.error("Could not delete event", error);
+      notify({ id: 'event-toast', type: 'error', content: 'Could not delete event' });
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
     setCurrentPage(1);
@@ -53,7 +71,7 @@ export const Events = () => {
         setLoading(true);
 
         const result = await axios.get(
-          `http://localhost:3000/api/event?page=${currentPage}&limit=${10}&search=${searchQuery}`,
+          `http://localhost:3000/api/donation?page=${currentPage}&limit=${10}&search=${searchQuery}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -111,6 +129,8 @@ export const Events = () => {
               events.map((event, index) => (
                 <EventCard key={index}
                   event={event}
+                  setEventToEdit={setEventToEdit}
+                  handleDeleteEvent={() => handleDeleteEvent(event._id)}
                 />
               ))
             }
@@ -129,5 +149,3 @@ export const Events = () => {
     </div>
   )
 }
-
-

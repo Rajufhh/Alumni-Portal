@@ -6,37 +6,34 @@ import { clearUser } from "@/store/userSlice"
 import { RootState } from "@/store/Store"
 import { useEffect, useState } from "react"
 import { toggleMode } from "@/store/configSlice"
-import { FaUserCircle } from "react-icons/fa"
-import { IoChatbubbleEllipsesOutline } from "react-icons/io5"
-import { BsSunFill, BsMoon } from "react-icons/bs"
+import { FaUserCircle } from "react-icons/fa";
+import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
+import { BsSunFill, BsMoon } from "react-icons/bs";
 
 export const Header = () => {
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const isDarkMode = useSelector((state: RootState) => state.config.isDarkMode);
-    const [dropdownVisibility, setDropdownVisibility] = useState(false);
-    const { user } = useSelector((state: RootState) => state.user);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const isDarkMode = useSelector((state: RootState) => state.config.isDarkMode);
+  const [dropdownVisibility, setDropdownVisibility] = useState(false);
+  const { user } = useSelector((state: RootState) => state.user);
 
-    useEffect(() => {
-        if (isDarkMode) {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-        }
-    }, [isDarkMode]);
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [isDarkMode]);
 
-    const navItems = [
-        { path: "/home", label: "Home" },
-        { path: "/events", label: "Events" },
-        { path: "/jobs", label: "Jobs" },
-        { path: "/articles", label: "Articles" },
-        { path: "/find-mentor", label: "Find Mentor" },
-        { path: "/alumni-directory", label: "Alumni Directory" },
-        { path: "/gallery", label: "Gallery" },
-        { path: "/resources", label: "Resources" }
-    ];
+  const navItems = [
+    { path: "/home", label: "Home" },
+    { path: "/events", label: "Events" },
+    { path: "/jobs", label: "Jobs" },
+    { path: "/donation", label: "Donations" },
+    { path: "/alumni-directory", label: "Alumni Directory" },
+  ].filter((item) => user?.role !== "student" || item.label !== "Find Mentor");
 
-    const handleLogout = async () => {
+  const handleLogout = async () => {
         try {
             const accessToken = localStorage.getItem("accessToken");
 
